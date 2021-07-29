@@ -52,6 +52,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Hide username
 USER=``
+export DEFAULT_USER="$(whoami)"
 
 # Time
 #PROMPT='%{$fg[yellow]%}[%D{%L:%M:%S}] '$PROMPT
