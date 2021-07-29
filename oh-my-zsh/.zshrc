@@ -103,10 +103,8 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export ELECTRON_USE_UBUNTU_NOTIFIER=1
 
 # Configs for nvim's lspconfig
-export JAR=~/GitHub/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins/org.eclipse.equinox.launcher_1.6.0.v20200915-1508.jar
-export GRADLE_HOME=$HOME/gradle
+export JDTLS_HOME=~/GitHub/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
-export JDTLS_CONFIG=~/GitHub/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/config_linux
 export WORKSPACE=$HOME/workspace
 # }}}
 
