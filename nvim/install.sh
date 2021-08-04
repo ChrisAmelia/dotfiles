@@ -38,6 +38,7 @@ createConfigsSymlinks() {
 	)
 
 	readonly SYMLINKS_FTDETECT=(
+		jspf.vim
 		lua.vim
 		vim.vim
 		zsh.vim
