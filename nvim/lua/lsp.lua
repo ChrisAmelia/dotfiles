@@ -177,6 +177,16 @@ lspconfig.gopls.setup{
 				unusedparams = true,
 			},
 			staticcheck = true,
+			linksInHover = false,
+			codelens = {
+				generate = true,
+				gc_details = true,
+				regenerate_cgo = true,
+				tidy = true,
+				upgrade_depdendency = true,
+				vendor = true,
+			},
+			usePlaceholders = true,
 		},
 	},
 }
