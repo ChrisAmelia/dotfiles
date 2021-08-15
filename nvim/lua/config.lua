@@ -3,6 +3,33 @@ require('colors')
 local fn = vim.fn
 local api = vim.api
 
+-- Built-in plugins {{{
+local disabledPlugins = {
+    "netrw",
+    "netrwPlugin",
+    "netrwSettings",
+    "netrwFileHandlers",
+    "gzip",
+    "zip",
+    "zipPlugin",
+    "tar",
+    "tarPlugin",
+    "getscript",
+    "getscriptPlugin",
+    "vimball",
+    "vimballPlugin",
+    "2html_plugin",
+    "logipat",
+    "rrhelper",
+    "spellfile_plugin",
+}
+
+for _, plugin in pairs(disabledPlugins) do
+	vim.g["loaded_" .. plugin] = 1
+end
+
+-- }}}
+
 -- Diagnostics {{{
 
 fn.sign_define("LspDiagnosticsSignHint",        { text = "",  texthl = "LspDiagnosticsDefaultHint"        })
