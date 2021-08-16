@@ -145,7 +145,7 @@ local getGitRelativePath = function()
 	local endIndex = string.len(fullPath) - string.len(filename) - 1
 	local path = string.sub(fullPath, beginIndex, endIndex)
 
-	return icon .. " :" .. path
+	return icon .. " " .. path
 end
 
 --- Returns full path to current file
