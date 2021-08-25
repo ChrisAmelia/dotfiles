@@ -10,11 +10,13 @@ cmd [[packadd! vim-sublime-monokai]]
 
 -- Completion
 cmd [[packadd! nvim-cmp]]
+cmd [[packadd! vim-vsnip]]
+cmd [[packadd! vim-vsnip-integ]]
 cmd [[packadd! cmp-nvim-lsp]]
 cmd [[packadd! cmp-nvim-lua]]
 cmd [[packadd! cmp-buffer]]
 cmd [[packadd! cmp-path]]
-cmd [[packadd! LuaSnip]]
+cmd [[packadd! cmp-vsnip]]
 cmd [[packadd! delimitMate]]
 cmd [[packadd! vim-closetag]]
 
@@ -54,12 +56,18 @@ return require('packer').startup(function()
 	use { 'ErichDonGubler/vim-sublime-monokai', opt = true }
 
 	-- Completion
-	use { 'hrsh7th/nvim-cmp', opt = true }
-	use { 'hrsh7th/cmp-buffer', opt = true }
-	use { 'hrsh7th/cmp-path', opt = true }
-	use { 'hrsh7th/cmp-nvim-lua', opt = true }
-	use { 'hrsh7th/cmp-nvim-lsp', opt = true }
-	use { 'L3MON4D3/LuaSnip', opt = true}
+	use { 'hrsh7th/nvim-cmp',
+		opt = true,
+		requires = {
+			{ 'hrsh7th/cmp-buffer', opt = true },
+			{ 'hrsh7th/cmp-path', opt = true },
+			{ 'hrsh7th/cmp-nvim-lsp', opt = true },
+			{ 'hrsh7th/cmp-nvim-lua', opt = true },
+			{ 'hrsh7th/cmp-vsnip', opt = true },
+			{ 'hrsh7th/vim-vsnip', opt = true },
+			{ 'hrsh7th/vim-vsnip-integ', opt = true},
+		},
+	}
 	use { 'Raimondi/delimitMate', opt = true }
 	use { 'alvan/vim-closetag', opt = true}
 

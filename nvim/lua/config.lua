@@ -251,7 +251,6 @@ api.nvim_set_keymap("n", "<Leader>bd", ":BufferClose<CR>", { noremap = true, sil
 -- nvim-cmp {{{
 
 local cmp = require('cmp')
-local luasnip = require('luasnip')
 
 cmp.setup {
 	completion = {
@@ -270,7 +269,7 @@ cmp.setup {
 				Function      = '',
 				Constructor   = '',
 				Field         = '識',
-				Variable      = '',
+				Variable      = '𝑋',
 				Class         = '',
 				Interface     = '',
 				Module        = '',
@@ -297,7 +296,7 @@ cmp.setup {
 
 	snippet = {
 		expand = function(args)
-			require('luasnip').lsp_expand(args.body)
+			vim.fn['vsnip#anonymous'](args.body)
 		end,
 	},
 
@@ -316,8 +315,8 @@ cmp.setup {
 		['<Tab>'] = function(fallback)
 			if vim.fn.pumvisible() == 1 then
 				vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
-			elseif luasnip.expand_or_jumpable() then
-				vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
+			elseif vim.fn['vsnip#available'] == 1 then
+				vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>vsnip-expand-or-jump', true, true, true), '')
 			else
 				fallback()
 			end
@@ -326,8 +325,8 @@ cmp.setup {
 		['<S-Tab>'] = function(fallback)
 			if vim.fn.pumvisible() == 1 then
 				vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
-			elseif luasnip.jumpable(-1) then
-				vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
+			elseif vim.fn['vsnip#jumpable'](-1) == 1 then
+				vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>vsnip-jump-prev', true, true, true), '')
 			else
 				fallback()
 			end
@@ -337,8 +336,8 @@ cmp.setup {
 	sources = {
 		{ name = 'buffer'   },
 		{ name = 'nvim_lsp' },
-		{ name = 'luasnip'  },
 		{ name = 'path'     },
+		{ name = 'vsnip'    },
 	},
 }
 
