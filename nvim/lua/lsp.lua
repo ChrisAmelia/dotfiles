@@ -21,44 +21,29 @@ end
 --- Custom attach
 local on_attach_vim = function()
 	document_highlight()
-
-	protocol.CompletionItemKind = {
-		'';             -- Text          = 1;
-		'ƒ';             -- Method        = 2;
-		'ƒ';             -- Function      = 3;
-		'';             -- Constructor   = 4;
-		'識';            -- Field         = 5;
-		'𝑋';             -- Variable      = 6;
-		'';             -- Class         = 7;
-		'';             -- Interface     = 8;
-		'';             -- Module        = 9;
-		'Property';      -- Property      = 10;
-		'Unit';          -- Unit          = 11;
-		'Value';         -- Value         = 12;
-		'了';            -- Enum          = 13;
-		'';             -- Keyword       = 14;
-		'﬌';             -- Snippet       = 15;
-		'Color';         -- Color         = 16;
-		'';             -- File          = 17;
-		'Reference';     -- Reference     = 18;
-		'';             -- Folder        = 19;
-		'';             -- EnumMember    = 20;
-		'';             -- Constant      = 21;
-		'';             -- Struct        = 22;
-		'Event';         -- Event         = 23;
-		'Operator';      -- Operator      = 24;
-		'TypeParameter'; -- TypeParameter = 25;
-	}
 end
 
-local capabilities = protocol.make_client_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.preselectSupport = true
+capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+	properties = {
+		'documentation',
+		'detail',
+		'additionalTextEdits',
+	}
+}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
- vim.lsp.diagnostic.on_publish_diagnostics, {
-   underline = false, -- Enable underline, use default values
-   virtual_text = false -- Enable virtual text only on Warning or above, override spacing to 2
- }
+vim.lsp.diagnostic.on_publish_diagnostics, {
+	underline = false, -- Enable underline, use default values
+	virtual_text = false -- Enable virtual text only on Warning or above, override spacing to 2
+}
 )
 
 -- JDTLS {{{

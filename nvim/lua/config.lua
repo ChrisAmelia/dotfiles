@@ -1,4 +1,5 @@
 require('colors')
+require('lsp')
 
 local fn = vim.fn
 local api = vim.api
@@ -82,6 +83,14 @@ require'nvim-treesitter.configs'.setup {
 api.nvim_command("hi TSFunctBuiltin guifg=red")
 api.nvim_command("hi TSCharacter guifg=red")
 api.nvim_command("hi TSLabel guifg=red")
+api.nvim_command("hi TSWarning guifg=red")
+api.nvim_command("hi TSDanger guifg=red")
+api.nvim_command("hi TSNote guifg=red")
+api.nvim_command("hi TSEnvironment guifg=red")
+api.nvim_command("hi TSEnvironmentName guifg=red")
+api.nvim_command("hi TSTag guifg=" .. ROSE)
+api.nvim_command("hi TSSymbol guifg=red")
+
 
 api.nvim_command("hi TSAnnotation           guifg=" .. WHITE)
 api.nvim_command("hi TSAttribute            guifg=" .. SCHOOL_BUS_YELLOW)
@@ -187,15 +196,17 @@ vim.g.gitgutter_sign_modified = '│'
 -- }}}
 
 -- LSP Config {{{
-api.nvim_set_keymap("n" , "K"          , "<cmd>lua vim.lsp.buf.hover()<CR>"            , { noremap = true })
-api.nvim_set_keymap("n" , "gi"         , "<cmd>lua vim.lsp.buf.implementation()<CR>"   , { noremap = true })
-api.nvim_set_keymap("i" , "<C-k>"      , "<cmd>lua vim.lsp.buf.signature_help()<CR>"   , { noremap = true })
-api.nvim_set_keymap("n" , "gr"         , "<cmd>lua vim.lsp.buf.references()<CR>"       , { noremap = true })
-api.nvim_set_keymap("n" , "gW"         , "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>" , { noremap = true })
-api.nvim_set_keymap("n" , "gd"         , "<cmd>lua vim.lsp.buf.definition()<CR>"       , { noremap = true })
-api.nvim_set_keymap("n" , "<Leader>ac" , "<cmd>lua vim.lsp.buf.code_action()<CR>"      , { noremap = true })
-api.nvim_set_keymap("n" , "<Leader>rn" , "<cmd>lua vim.lsp.buf.rename()<CR>"           , { noremap = true })
-api.nvim_set_keymap("n" , "<Leader>e" , "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>" , { noremap = true })
+
+api.nvim_set_keymap("n" , "K"          , "<cmd>lua vim.lsp.buf.hover()<CR>"                        , { noremap = true })
+api.nvim_set_keymap("n" , "gi"         , "<cmd>lua vim.lsp.buf.implementation()<CR>"               , { noremap = true })
+api.nvim_set_keymap("i" , "<C-k>"      , "<cmd>lua vim.lsp.buf.signature_help()<CR>"               , { noremap = true })
+api.nvim_set_keymap("n" , "gr"         , "<cmd>lua vim.lsp.buf.references()<CR>"                   , { noremap = true })
+api.nvim_set_keymap("n" , "gW"         , "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>"             , { noremap = true })
+api.nvim_set_keymap("n" , "gd"         , "<cmd>lua vim.lsp.buf.definition()<CR>"                   , { noremap = true })
+api.nvim_set_keymap("n" , "<Leader>ac" , "<cmd>lua vim.lsp.buf.code_action()<CR>"                  , { noremap = true })
+api.nvim_set_keymap("n" , "<Leader>rn" , "<cmd>lua vim.lsp.buf.rename()<CR>"                       , { noremap = true })
+api.nvim_set_keymap("n" , "<Leader>e"  , "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>" , { noremap = true })
+
 -- }}}
 
 -- barbar.nvim {{{
@@ -237,68 +248,98 @@ api.nvim_set_keymap("n", "<Leader>bd", ":BufferClose<CR>", { noremap = true, sil
 
 -- }}}
 
--- nvim-compe {{{
+-- nvim-cmp {{{
 
-require('lsp')
+local cmp = require('cmp')
+local luasnip = require('luasnip')
 
-api.nvim_set_keymap("i" , "<C-space>" , "compe#complete()"      , { noremap = true , expr = true , silent = true })
-api.nvim_set_keymap("i" , "<CR>"      , "compe#confirm({ 'keys': '<Plug>delimitMateCR', 'mode': '' })" , { noremap = true , expr = true , silent = true })
-api.nvim_set_keymap("i" , "<C-e>"     , "compe#complete()"      , { noremap = true , expr = true , silent = true })
+cmp.setup {
+	completion = {
+		completeopt = 'menu,menuone,noinsert',
+	},
 
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
+	formatting = {
+		format = function(entry, vim_item)
+			vim_item.menu = ({
+				nvim_lsp = '',
+				buffer   = '',
+			})[entry.source.name]
+			vim_item.kind = ({
+				Text          = '',
+				Method        = '',
+				Function      = '',
+				Constructor   = '',
+				Field         = '識',
+				Variable      = '',
+				Class         = '',
+				Interface     = '',
+				Module        = '',
+				Property      = '',
+				Unit          = '',
+				Value         = '',
+				Enum          = '',
+				Keyword       = '',
+				Snippet       = '﬌',
+				Color         = '',
+				File          = '',
+				Reference     = '',
+				Folder        = '',
+				EnumMember    = '',
+				Constant      = '',
+				Struct        = '',
+				Event         = '',
+				Operator      = 'ﬦ',
+				TypeParameter = '',
+			})[vim_item.kind]
+			return vim_item
+		end
+	},
 
-local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        return true
-    else
-        return false
-    end
-end
+	snippet = {
+		expand = function(args)
+			require('luasnip').lsp_expand(args.body)
+		end,
+	},
 
-_G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-n>"
-  elseif vim.fn.call("vsnip#available", {1}) == 1 then
-    return t "<Plug>(vsnip-expand-or-jump)"
-  elseif check_back_space() then
-    return t "<Tab>"
-  else
-    return vim.fn['compe#complete']()
-  end
-end
-_G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-p>"
-  elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-    return t "<Plug>(vsnip-jump-prev)"
-  else
-    return t "<S-Tab>"
-  end
-end
+	mapping = {
+		['<C-p>'] = cmp.mapping.select_prev_item(),
+		['<C-n>'] = cmp.mapping.select_next_item(),
+		['<C-d>'] = cmp.mapping.scroll_docs(-4),
+		['<C-f>'] = cmp.mapping.scroll_docs(4),
+		['<C-Space>'] = cmp.mapping.complete(),
+		['<C-e>'] = cmp.mapping.close(),
+		['<CR>'] = cmp.mapping.confirm {
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = true,
+		},
 
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+		['<Tab>'] = function(fallback)
+			if vim.fn.pumvisible() == 1 then
+				vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
+			elseif luasnip.expand_or_jumpable() then
+				vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
+			else
+				fallback()
+			end
+		end,
 
-require'compe'.setup {
-	enabled = true;
-	debug = false;
-	min_length = 1;
-	documentation = true;
-	autocomplete = true;
-	source = {
-		buffer   = true;
-		calc     = false;
-		nvim_lsp = true;
-		nvim_lua = true;
-		path     = true;
-		spell    = false;
-		vsnip    = true;
-	};
+		['<S-Tab>'] = function(fallback)
+			if vim.fn.pumvisible() == 1 then
+				vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
+			elseif luasnip.jumpable(-1) then
+				vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
+			else
+				fallback()
+			end
+		end,
+	},
+
+	sources = {
+		{ name = 'buffer'   },
+		{ name = 'nvim_lsp' },
+		{ name = 'luasnip'  },
+		{ name = 'path'     },
+	},
 }
 
 -- }}}
