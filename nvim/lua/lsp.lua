@@ -1,4 +1,3 @@
-local api = vim.api
 local protocol = require'vim.lsp.protocol'
 local lspconfig = require 'lspconfig'
 
@@ -49,7 +48,7 @@ vim.lsp.diagnostic.on_publish_diagnostics, {
 -- JDTLS {{{
 local root_pattern = lspconfig.util.root_pattern
 
-lspconfig.jdtls.setup{
+lspconfig.jdtls.setup {
 	root_dir = root_pattern(".git"),
 	on_attach = on_attach_vim,
 	capabilities = capabilities,
@@ -91,7 +90,7 @@ lspconfig.jdtls.setup{
 
 			-- Enable/disable the implementations code lens.
 			implementationsCodeLens = {
-				enabled = true,
+				enabled = false,
 			},
 
 			maven = {
