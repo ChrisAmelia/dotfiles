@@ -54,7 +54,7 @@ are not installed by this script.
 | :-          | :-                                                                              | :-                                                                                                              |
 | Colors      | [nvim-colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua)            | A high-performance color highlighter for Neovim which has no external dependencies!                             |
 | Colorscheme | [vim-sublime-monokai](https://github.com/ErichDonGubler/vim-sublime-monokai)    | vim-sublime-monokai is a refined Monokai color scheme for vim tries to look like Sublime's default color scheme |
-| Completion  | [nvim-compe](https://github.com/hrsh7th/nvim-compe)                             | Auto completion plugin for nvim.                                                                                |
+| Completion  | [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                                 | A completion plugin for neovim coded in Lua.                                                                    |
 | Completion  | [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)                               | VSCode(LSP)'s snippet feature in vim.                                                                           |
 | Completion  | [vim-vsnip-integ](https://github.com/hrsh7th/vim-vsnip-integ)                   | Snippet completion/expansion.                                                                                   |
 | Completion  | [delimitMate](https://github.com/Raimondi/delimitMate)                          | This plug-in provides automatic closing of quotes, parenthesis, brackets, etc..                                 |
