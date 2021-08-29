@@ -17,8 +17,7 @@ cmd [[packadd! cmp-nvim-lua]]
 cmd [[packadd! cmp-buffer]]
 cmd [[packadd! cmp-path]]
 cmd [[packadd! cmp-vsnip]]
-cmd [[packadd! delimitMate]]
-cmd [[packadd! vim-closetag]]
+cmd [[packadd! pears.nvim]]
 
 -- Tree-sitter
 cmd [[packadd! nvim-treesitter]]
@@ -68,8 +67,7 @@ return require('packer').startup(function()
 			{ 'hrsh7th/vim-vsnip-integ', opt = true},
 		},
 	}
-	use { 'Raimondi/delimitMate', opt = true }
-	use { 'alvan/vim-closetag', opt = true}
+	use { 'steelsojka/pears.nvim', opt = true }
 
 	-- Git
 	use { 'tpope/vim-fugitive', opt = true }

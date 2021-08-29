@@ -74,7 +74,7 @@ api.nvim_set_keymap("n", "ga", "<Plug>(EasyAlign)", { noremap = false } )
 -- Tree-sitter {{{
 
 require'nvim-treesitter.configs'.setup {
-	ensure_installed = "java", "lua", -- one of "all", "language", or a list of languages
+	ensure_installed = "java", "lua", "go", -- one of "all", "language", or a list of languages
 	highlight = {
 		enable = true,                -- false will disable the whole extension
 	},
@@ -353,17 +353,21 @@ cmp.setup {
 
 -- }}}
 
--- vim-closetag {{{
-
-vim.g.closetag_filetypes = 'html,xhtml,phtml,xml,jsp,jspf'
-
--- }}}
-
 -- indent_blankline {{{
 
 vim.g.indent_blankline_show_trailing_blankline_indent = false
 vim.g.indent_blankline_show_current_context = true
 vim.g.indent_blankline_context_patterns = {'class', 'function', 'method', '^if', '^while', '^for', '^object', '^table', 'block'}
 vim.g.indent_blankline_char_highlight_list = { 'Function', 'Type', 'String', 'Comment', 'Number' }
+
+-- }}}
+
+-- pears.nvim {{{
+
+require "pears".setup(function(conf)
+	conf.pair("{", "}")
+	conf.expand_on_enter(true)
+	conf.preset "tag_matching"
+end)
 
 -- }}}
