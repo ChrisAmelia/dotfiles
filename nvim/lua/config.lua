@@ -33,24 +33,24 @@ end
 
 -- Diagnostics {{{
 
-fn.sign_define("LspDiagnosticsSignHint",        { text = "",  texthl = "LspDiagnosticsDefaultHint"        })
-fn.sign_define("LspDiagnosticsSignError",       { text = "",  texthl = "LspDiagnosticsDefaultError"       })
-fn.sign_define("LspDiagnosticsSignWarning",     { text = " ", texthl = "LspDiagnosticsDefaultWarning"     })
-fn.sign_define("LspDiagnosticsSignInformation", { text = " ", texthl = "LspDiagnosticsDefaultInformation" })
+fn.sign_define("DiagnosticSignHint",        { text = "",  texthl = "DiagnosticHint"        })
+fn.sign_define("DiagnosticSignError",       { text = "",  texthl = "DiagnosticError"       })
+fn.sign_define("DiagnosticSignWarn",        { text = " ", texthl = "DiagnosticWarn"        })
+fn.sign_define("DiagnosticSignInformation", { text = " ", texthl = "DiagnosticInformation" })
 
-api.nvim_command("hi LspDiagnosticsDefaultError   guifg=" .. CONIFER)
-api.nvim_command("hi LspDiagnosticsDefaultWarning guifg=" .. GOLD)
-api.nvim_command("hi LspDiagnosticsDefaultHint    guifg=" .. BRILLIANT_ROSE)
+api.nvim_command("hi DiagnosticError   guifg=" .. CONIFER)
+api.nvim_command("hi DiagnosticWarn    guifg=" .. GOLD)
+api.nvim_command("hi DiagnosticHint    guifg=" .. BRILLIANT_ROSE)
 
-api.nvim_command("hi LspDiagnosticsVirtualTextError       guifg=Red")
-api.nvim_command("hi LspDiagnosticsVirtualTextWarning     guifg=Yellow")
-api.nvim_command("hi LspDiagnosticsVirtualTextInformation guifg=White")
-api.nvim_command("hi LspDiagnosticsVirtualTextHint        guifg=White")
+api.nvim_command("hi DiagnosticVirtualTextError       guifg=Red")
+api.nvim_command("hi DiagnosticVirtualTextWarn        guifg=Yellow")
+api.nvim_command("hi DiagnosticVirtualTextInformation guifg=White")
+api.nvim_command("hi DiagnosticVirtualTextHint        guifg=White")
 
-api.nvim_command("hi LspDiagnosticsUnderlineError       guifg=NONE gui=underline")
-api.nvim_command("hi LspDiagnosticsUnderlineWarning     guifg=NONE gui=underline")
-api.nvim_command("hi LspDiagnosticsUnderlineInformation guifg=NONE gui=underline")
-api.nvim_command("hi LspDiagnosticsUnderlineHint        guifg=NONE gui=underline")
+api.nvim_command("hi DiagnosticUnderlineError       guifg=NONE gui=underline")
+api.nvim_command("hi DiagnosticUnderlineWarn        guifg=NONE gui=underline")
+api.nvim_command("hi DiagnosticUnderlineInformation guifg=NONE gui=underline")
+api.nvim_command("hi DiagnosticUnderlineHint        guifg=NONE gui=underline")
 -- }}}
 
 -- nvim-colorizer {{{
