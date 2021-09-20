@@ -246,6 +246,12 @@ api.nvim_set_keymap("n", "<Leader>8", ":BufferGoto 8<CR>", { noremap = true, sil
 api.nvim_set_keymap("n", "<Leader>9", ":BufferGoto 9<CR>", { noremap = true, silent = true })
 api.nvim_set_keymap("n", "<Leader>bd", ":BufferClose<CR>", { noremap = true, silent = true })
 
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
+map('n', '<S-Tab>', ':BufferPrevious<CR>', opts)
+map('n', '<Tab>', ':BufferNext<CR>', opts)
+
 -- }}}
 
 -- nvim-cmp {{{
