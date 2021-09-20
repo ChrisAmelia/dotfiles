@@ -57,7 +57,7 @@ are not installed by this script.
 | Completion  | [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                                 | A completion plugin for neovim coded in Lua.                                                                    |
 | Completion  | [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)                               | VSCode(LSP)'s snippet feature in vim.                                                                           |
 | Completion  | [vim-vsnip-integ](https://github.com/hrsh7th/vim-vsnip-integ)                   | Snippet completion/expansion.                                                                                   |
-| Completion  | [delimitMate](https://github.com/Raimondi/delimitMate)                          | This plug-in provides automatic closing of quotes, parenthesis, brackets, etc..                                 |
+| Completion  | [pears.nvim](https://github.com/steelsojka/pears.nvim)                          | Auto pair plugin for neovim                                                                                     |
 | Finder      | [LeaderF](https://github.com/Yggdroot/LeaderF)                                  | An efficient fuzzy finder that helps to locate files, buffers, mrus, gtags, etc. on the fly.                    |
 | Finder      | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)              | Telescope.nvim is a next generation library for creating floating pickers with advanced features..              |
 | Formatting  | [vim-easy-align](https://github.com/junegunn/vim-easy-align)                    | A simple, easy-to-use Vim alignment plugin.                                                                     |
