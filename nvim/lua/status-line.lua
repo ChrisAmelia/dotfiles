@@ -309,26 +309,26 @@ end
 
 --- Returns the number of warnings
 local getWarnings = function()
-	local warnings = require'lsp-status'.diagnostics()['warnings']
+	local warns = vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
 	local icon = ""
 
-	if warnings == 0 then
+	if #warns == 0 then
 		return ""
 	end
 
-	return "" .. icon .. " :" .. warnings .. ""
+	return "" .. icon .. " :" .. #warns.. ""
 end
 
 --- Returns the number of errors
 local getErrors = function()
-	local errors = require'lsp-status'.diagnostics()['errors']
+	local errors = vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
 	local icon = ""
 
-	if errors == 0 then
+	if #errors == 0 then
 		return ""
 	end
 
-	return "" .. icon .. " :" .. errors .. ""
+	return "" .. icon .. " :" .. #errors .. ""
 end
 
 --- Returns current function
