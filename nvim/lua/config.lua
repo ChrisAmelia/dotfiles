@@ -369,6 +369,13 @@ cmp.setup {
 	},
 }
 
+api.nvim_command("hi CmpItemAbbr guifg=grey")
+api.nvim_command("hi CmpItemAbbrDeprecated guifg=pink")
+api.nvim_command("hi CmpItemAbbrMatch guifg=black")
+api.nvim_command("hi CmpItemAbbrMatchFuzzy guifg=green")
+api.nvim_command("hi CmpItemKind guifg=#E75480")
+api.nvim_command("hi CmpItemMenu guifg=#0066FF")
+
 -- }}}
 
 -- indent_blankline {{{
