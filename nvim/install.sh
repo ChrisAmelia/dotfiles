@@ -91,6 +91,16 @@ createConfigsSymlinks() {
 }
 
 #------------------------------------------------------------------
+# @description Rename current appimage to old.
+#------------------------------------------------------------------
+renameCurrentNvimAppImage() {
+	readonly MESSAGE_RENAME_NVIM_APPIMAGE="Renaming current $NVIM_APPIMAGE"
+	readonly COMMAND_RENAME_NVIM_APPIMAGE="mv $NVIM_APPIMAGE old.$NVIM_APPIMAGE"
+
+	evaluateCommand "$MESSAGE_RENAME_NVIM_APPIMAGE" "$COMMAND_RENAME_NVIM_APPIMAGE"
+}
+
+#------------------------------------------------------------------
 # @description Download nighlty build neovim
 #------------------------------------------------------------------
 downloadNvim() {
@@ -133,6 +143,8 @@ then
 	createNvimDirectory
 	echo
 	createConfigsSymlinks
+	echo
+	renameCurrentNvimAppImage
 	echo
 	downloadNvim
 	echo
