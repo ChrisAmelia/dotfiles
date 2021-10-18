@@ -30,7 +30,7 @@ readonly CHMOD_X_INSTALL="chmod +x $INSTALL_SH"
 # @arg $1: message to print
 #------------------------------------------------------------------
 echoMessage() {
-	echo -e "${YELLOW}$1${NC}"
+	echo -e "${YELLOW}\uf869 $1${NC}"
 }
 
 #------------------------------------------------------------------
@@ -44,7 +44,7 @@ echoCommand() {
 	do
 		commands+=$var" "
 	done
-	printf "${LIGHT_CYAN}+${commands}${NC}"
+	printf "${LIGHT_GREEN}\uf155 ${LIGHT_CYAN}+${commands}${NC}"
 }
 
 #------------------------------------------------------------------
@@ -52,9 +52,9 @@ echoCommand() {
 #------------------------------------------------------------------
 echoSuccessFail() {
 	if [ $? -eq 0 ]; then
-		echo -e "${LIGHT_GREEN}√${NC}"
+		echo -e "${LIGHT_GREEN}\uf00c${NC}"
 	else
-		echo -e "${LIGHT_RED}✘${NC}"
+		echo -e "${LIGHT_RED}\uf00d${NC}"
 	fi
 }
 
@@ -82,9 +82,9 @@ evaluateCreateSymlink() {
 	echoCommand "$2"
 	eval "$2" 2> /dev/null
 	if [ $? -eq 0 ]; then
-		printf "${LIGHT_GREEN}√${NC}\n"
+		printf "${LIGHT_GREEN}\uf00c${NC}\n"
 	else
-		echo -e "\n${LIGHT_RED}✘ Link already exists${NC}"
+		echo -e "\n${LIGHT_RED}\uf00d Link already exists${NC}"
 	fi
 }
 
