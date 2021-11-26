@@ -115,8 +115,10 @@ local getGitBranchName = function()
 		icon = ""
 	elseif string.find(string.lower(branchName), "fix") then
 		icon = ""
+		branchName = branchName:sub(5, -1)
 	elseif string.find(string.lower(branchName), "feat") then
 		icon = ""
+		branchName = branchName:sub(6, -1)
 	else
 		icon = ""
 	end
