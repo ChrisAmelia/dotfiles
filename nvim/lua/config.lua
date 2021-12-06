@@ -270,46 +270,44 @@ end
 
 local cmp = require('cmp')
 
+local cmp_kinds = {
+	Text          = ' ',
+	Method        = ' ',
+	Function      = ' ',
+	Constructor   = ' ',
+	Field         = '識',
+	Variable      = '𝑋 ',
+	Class         = ' ',
+	Interface     = ' ',
+	Module        = ' ',
+	Property      = ' ',
+	Unit          = ' ',
+	Value         = ' ',
+	Enum          = ' ',
+	Keyword       = ' ',
+	Snippet       = '﬌ ',
+	Color         = ' ',
+	File          = ' ',
+	Reference     = ' ',
+	Folder        = ' ',
+	EnumMember    = ' ',
+	Constant      = ' ',
+	Struct        = ' ',
+	Event         = ' ',
+	Operator      = 'ﬦ' ,
+	TypeParameter = ' ',
+}
+
 cmp.setup {
 	completion = {
 		completeopt = 'menu,menuone,noinsert',
 	},
 
 	formatting = {
-		format = function(entry, vim_item)
-			vim_item.menu = ({
-				nvim_lsp = '',
-				buffer   = '',
-			})[entry.source.name]
-			vim_item.kind = ({
-				Text          = '',
-				Method        = '',
-				Function      = '',
-				Constructor   = '',
-				Field         = '識',
-				Variable      = '𝑋',
-				Class         = '',
-				Interface     = '',
-				Module        = '',
-				Property      = '',
-				Unit          = '',
-				Value         = '',
-				Enum          = '',
-				Keyword       = '',
-				Snippet       = '﬌',
-				Color         = '',
-				File          = '',
-				Reference     = '',
-				Folder        = '',
-				EnumMember    = '',
-				Constant      = '',
-				Struct        = '',
-				Event         = '',
-				Operator      = 'ﬦ',
-				TypeParameter = '',
-			})[vim_item.kind]
+		format = function(_, vim_item)
+			vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
 			return vim_item
-		end
+		end,
 	},
 
 	snippet = {
@@ -369,13 +367,17 @@ cmp.setup {
 	},
 }
 
-api.nvim_command("hi CmpItemAbbr guifg=grey")
-api.nvim_command("hi CmpItemAbbrDeprecated guifg=pink")
-api.nvim_command("hi CmpItemAbbrMatch guifg=black")
-api.nvim_command("hi CmpItemAbbrMatchFuzzy guifg=green")
-api.nvim_command("hi CmpItemKind guifg=#E75480")
-api.nvim_command("hi CmpItemMenu guifg=#0066FF")
-
+api.nvim_command(" highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080")
+api.nvim_command(" highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6")
+api.nvim_command(" highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6")
+api.nvim_command(" highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE")
+api.nvim_command(" highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE")
+api.nvim_command(" highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE")
+api.nvim_command(" highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0")
+api.nvim_command(" highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0")
+api.nvim_command(" highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4")
+api.nvim_command(" highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4")
+api.nvim_command(" highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4")
 -- }}}
 
 -- indent_blankline {{{
