@@ -134,7 +134,7 @@ api.nvim_set_keymap("n" , "<Leader>f"  , ":LeaderfFunction<CR>"      , { noremap
 -- Telescope {{{
 
 api.nvim_set_keymap("n", "gr", "<cmd>lua require'telescope.builtin'.lsp_references{}<CR>", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "<Leader>dc", "<cmd>lua require'telescope.builtin'.lsp_document_diagnostics({previewer = false})<CR>", { noremap = true, silent = true })
+api.nvim_set_keymap("n", "<Leader>dc", ":Telescope diagnostics bufnr=0 preview=false<CR>", { noremap = true, silent = true })
 
 api.nvim_command("hi TelescopeSelection guifg=#FFFF00 gui=bold")
 api.nvim_command("hi TelescopeNormal guibg=#00000F")
