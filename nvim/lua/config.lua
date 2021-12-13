@@ -206,7 +206,7 @@ api.nvim_set_keymap("n" , "gW"         , "<cmd>lua vim.lsp.buf.workspace_symbol(
 api.nvim_set_keymap("n" , "gd"         , "<cmd>lua vim.lsp.buf.definition()<CR>"                   , { noremap = true })
 api.nvim_set_keymap("n" , "<Leader>ac" , "<cmd>lua vim.lsp.buf.code_action()<CR>"                  , { noremap = true })
 api.nvim_set_keymap("n" , "<Leader>rn" , "<cmd>lua vim.lsp.buf.rename()<CR>"                       , { noremap = true })
-api.nvim_set_keymap("n" , "<Leader>e"  , "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>" , { noremap = true })
+api.nvim_set_keymap("n" , "<Leader>e"  , "<cmd>lua vim.diagnostic.open_float()<CR>" , { noremap = true })
 
 -- }}}
 
