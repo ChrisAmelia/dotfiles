@@ -33,6 +33,9 @@ opt.number         = true -- Show line numbers on the sidebar
 opt.relativenumber = true -- Show the line number relative to the line with the cursor in front of each line
 
 
+opt.fillchars:append { eob = " "}
+
+
 cmd("colorscheme sublimemonokai")    -- Set colorscheme
 cmd("set noswapfile")                -- Disable swap to prevent annoying messages.
 cmd("set list lcs=tab:\\│\\ ,eol:↴") -- List mode: Show tabs as CTRL-I is displayed, display $ after end of line.
