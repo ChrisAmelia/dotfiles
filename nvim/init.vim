@@ -7,7 +7,7 @@ luafile $HOME/.config/nvim/lua/config.lua
 " LSP Diagnostics {{{
 augroup UPDATE_DIAGNOSTICS_LOCLIST
 	autocmd!
-	autocmd InsertLeave * lua vim.lsp.diagnostic.set_loclist({open = false})
+	autocmd InsertLeave * lua vim.diagnostic.setloclist({open = false})
 augroup END
 " }}}
 " Nvim highlight yank {{{
