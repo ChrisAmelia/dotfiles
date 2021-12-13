@@ -52,7 +52,8 @@ api.nvim_command("hi NormalFloat guibg=#2F4F4F"            ) -- Floatin window h
 api.nvim_command("hi SignColumn  guibg=none"               ) -- Sign column highlight
 api.nvim_command("hi Visual      guibg=#00FA9A guifg=BLACK") -- Visual highlight
 api.nvim_command("hi PMenu guibg=#191f22 guifg=#C0C0C0")
-api.nvim_command("hi PMenuSel guibg=#191f22 guifg=#C0C0C0")
+api.nvim_command("hi PMenuSel guibg=NONE guifg=NONE")
+
 
 -- Quick mappings
 api.nvim_set_keymap("n", "<leader>w", ":w<CR>",        { noremap = true } )
