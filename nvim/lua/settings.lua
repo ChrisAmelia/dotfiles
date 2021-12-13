@@ -63,4 +63,4 @@ api.nvim_set_keymap("n", "²",         "0",             { noremap = true } )
 api.nvim_set_keymap("n", "<space>",   "i<space><esc>", { noremap = true } )
 
 
-opt .colorcolumn = "99999" -- https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
+opt.colorcolumn = "99999" -- https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
