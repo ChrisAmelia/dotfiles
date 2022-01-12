@@ -214,7 +214,7 @@ local getColorsPerFiletype = function(filetype)
 	end
 
 	if filetype == 'html' then
-		separatorColor, fileNameColor = WHITE, TANGO
+		separatorColor, fileNameColor = DEEP_RED, WHITE
 	end
 
 	if filetype == 'java' then

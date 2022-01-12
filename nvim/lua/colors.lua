@@ -10,6 +10,7 @@ COD_GRAY          = "#121111";
 CONIFER           = "#A7ED61"
 CORAL_RED         = "#FF4040"
 CORNFLOWER_BLUE   = "#6495ED"
+DEEP_RED          = "#650101"
 ENDEAVOUR         = "#0059B3"
 FERN_GREEN        = "#487A38"
 FLAX              = "#ECE47E"
