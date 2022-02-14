@@ -51,6 +51,9 @@ api.nvim_command("hi DiagnosticUnderlineError guifg=NONE gui=underline")
 api.nvim_command("hi DiagnosticUnderlineWarn  guifg=NONE gui=underline")
 api.nvim_command("hi DiagnosticUnderlineInfo  guifg=NONE gui=underline")
 api.nvim_command("hi DiagnosticUnderlineHint  guifg=NONE gui=underline")
+
+vim.keymap.set("n" , "<Leader>e"  , vim.diagnostic.open_float)
+
 -- }}}
 
 -- nvim-colorizer {{{
@@ -67,8 +70,8 @@ require 'colorizer'.setup {
 -- }}}
 
 -- EasyAlign {{{
-api.nvim_set_keymap("x", "ga", "<Plug>(EasyAlign)", { noremap = false } )
-api.nvim_set_keymap("n", "ga", "<Plug>(EasyAlign)", { noremap = false } )
+vim.keymap.set("x", "ga", "<Plug>(EasyAlign)")
+vim.keymap.set("n", "ga", "<Plug>(EasyAlign)")
 -- }}}
 
 -- Tree-sitter {{{
@@ -124,17 +127,17 @@ api.nvim_command("hi TSVariable             guifg=" .. SOFT_AMBER)
 vim.g.Lf_PreviewInPopup = 1
 vim.g.Lf_WindowPosition = 'popup'
 
-api.nvim_set_keymap("n" , "<C-n>"      , ":Leaderf file<CR>"         , { noremap = true })
-api.nvim_set_keymap("n" , "<Leader>rg" , ":Leaderf rg -i -g '!git' " , { noremap = true })
-api.nvim_set_keymap("n" , "<Leader>rc" , ":LeaderfRgRecall<CR>"      , { noremap = true })
-api.nvim_set_keymap("n" , "<Leader>f"  , ":LeaderfFunction<CR>"      , { noremap = true })
+vim.keymap.set("n" , "<C-n>"      , ":Leaderf file<CR>"        )
+vim.keymap.set("n" , "<Leader>rg" , ":Leaderf rg -i -g '!git' ")
+vim.keymap.set("n" , "<Leader>rc" , ":LeaderfRgRecall<CR>"     )
+vim.keymap.set("n" , "<Leader>f"  , ":LeaderfFunction<CR>"     )
 
 -- }}}
 
 -- Telescope {{{
 
-api.nvim_set_keymap("n", "gr", "<cmd>lua require'telescope.builtin'.lsp_references{}<CR>", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "<Leader>dc", ":Telescope diagnostics bufnr=0 preview=false<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>gr', ":Telescope lsp_references<cr>", { buffer = 0 })
+vim.keymap.set('n', '<Leader>dc', ":Telescope diagnostics<cr>", { buffer = 0})
 
 api.nvim_command("hi TelescopeSelection guifg=#FFFF00 gui=bold")
 api.nvim_command("hi TelescopeNormal guibg=#00000F")
@@ -186,11 +189,11 @@ api.nvim_command("hi DiffAdd    guibg = none guifg = lightgreen")
 api.nvim_command("hi DiffDelete guibg = none guifg = red       ")
 api.nvim_command("hi DiffChange guibg = none guifg = sandybrown")
 
-api.nvim_set_keymap("n" , "gs"         , ":GitGutterPreviewHunk<CR>"  , { noremap = false })
-api.nvim_set_keymap("n" , "<Leader>gu" , ":GitGutterUndoHunk<CR>"     , { noremap = false })
-api.nvim_set_keymap("n" , "<Leader>ga" , ":GitGutterStageHunk<CR>"    , { noremap = false })
-api.nvim_set_keymap("n" , "gp"         , ":GitGutterPreviousHunk<CR>" , { noremap = false })
-api.nvim_set_keymap("n" , "gn"         , ":GitGutterNextHunk<CR>"     , { noremap = false })
+vim.keymap.set("n" , "gs"         , ":GitGutterPreviewHunk<CR>" )
+vim.keymap.set("n" , "<Leader>gu" , ":GitGutterUndoHunk<CR>"    )
+vim.keymap.set("n" , "<Leader>ga" , ":GitGutterStageHunk<CR>"   )
+vim.keymap.set("n" , "gp"         , ":GitGutterPreviousHunk<CR>")
+vim.keymap.set("n" , "gn"         , ":GitGutterNextHunk<CR>"    )
 
 vim.g.gitgutter_sign_added = '│'
 vim.g.gitgutter_sign_modified = '│'
@@ -198,15 +201,14 @@ vim.g.gitgutter_sign_modified = '│'
 
 -- LSP Config {{{
 
-api.nvim_set_keymap("n" , "K"          , "<cmd>lua vim.lsp.buf.hover()<CR>"                        , { noremap = true })
-api.nvim_set_keymap("n" , "gi"         , "<cmd>lua vim.lsp.buf.implementation()<CR>"               , { noremap = true })
-api.nvim_set_keymap("i" , "<C-k>"      , "<cmd>lua vim.lsp.buf.signature_help()<CR>"               , { noremap = true })
-api.nvim_set_keymap("n" , "gr"         , "<cmd>lua vim.lsp.buf.references()<CR>"                   , { noremap = true })
-api.nvim_set_keymap("n" , "gW"         , "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>"             , { noremap = true })
-api.nvim_set_keymap("n" , "gd"         , "<cmd>lua vim.lsp.buf.definition()<CR>"                   , { noremap = true })
-api.nvim_set_keymap("n" , "<Leader>ac" , "<cmd>lua vim.lsp.buf.code_action()<CR>"                  , { noremap = true })
-api.nvim_set_keymap("n" , "<Leader>rn" , "<cmd>lua vim.lsp.buf.rename()<CR>"                       , { noremap = true })
-api.nvim_set_keymap("n" , "<Leader>e"  , "<cmd>lua vim.diagnostic.open_float()<CR>" , { noremap = true })
+vim.keymap.set("n" , "K"          , vim.lsp.buf.hover           )
+vim.keymap.set("n" , "gi"         , vim.lsp.buf.implementation  )
+vim.keymap.set("i" , "<C-k>"      , vim.lsp.buf.signature_help  )
+vim.keymap.set("n" , "gr"         , vim.lsp.buf.references      )
+vim.keymap.set("n" , "gW"         , vim.lsp.buf.workspace_symbol)
+vim.keymap.set("n" , "gd"         , vim.lsp.buf.definition      )
+vim.keymap.set("n" , "<Leader>ac" , vim.lsp.buf.code_action     )
+vim.keymap.set("n" , "<Leader>rn" , vim.lsp.buf.rename          )
 
 -- }}}
 
@@ -236,22 +238,18 @@ api.nvim_command("hi BufferInactiveSign  guibg=none guifg=" .. WHITE)
 api.nvim_command("hi BufferInactiveMod   guibg=none guifg=" .. WHITE)
 api.nvim_command("hi BufferTabpageFill   guibg=none guifg=" .. WHITE)
 
-api.nvim_set_keymap("n", "<Leader>1", ":BufferGoto 1<CR>", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "<Leader>2", ":BufferGoto 2<CR>", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "<Leader>3", ":BufferGoto 3<CR>", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "<Leader>4", ":BufferGoto 4<CR>", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "<Leader>5", ":BufferGoto 5<CR>", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "<Leader>6", ":BufferGoto 6<CR>", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "<Leader>7", ":BufferGoto 7<CR>", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "<Leader>8", ":BufferGoto 8<CR>", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "<Leader>9", ":BufferGoto 9<CR>", { noremap = true, silent = true })
-api.nvim_set_keymap("n", "<Leader>bd", ":BufferClose<CR>", { noremap = true, silent = true })
-
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
-
-map('n', '<S-Tab>', ':BufferPrevious<CR>', opts)
-map('n', '<Tab>', ':BufferNext<CR>', opts)
+vim.keymap.set("n", "<Leader>1", ":BufferGoto 1<CR>")
+vim.keymap.set("n", "<Leader>2", ":BufferGoto 2<CR>")
+vim.keymap.set("n", "<Leader>3", ":BufferGoto 3<CR>")
+vim.keymap.set("n", "<Leader>4", ":BufferGoto 4<CR>")
+vim.keymap.set("n", "<Leader>5", ":BufferGoto 5<CR>")
+vim.keymap.set("n", "<Leader>6", ":BufferGoto 6<CR>")
+vim.keymap.set("n", "<Leader>7", ":BufferGoto 7<CR>")
+vim.keymap.set("n", "<Leader>8", ":BufferGoto 8<CR>")
+vim.keymap.set("n", "<Leader>9", ":BufferGoto 9<CR>")
+vim.keymap.set("n", "<Leader>bd", ":BufferClose<CR>")
+vim.keymap.set("n", "<S-Tab>", ":BufferPrevious<CR>")
+vim.keymap.set("n", "<Tab>", ":BufferNext<CR>")
 
 -- }}}
 
@@ -397,5 +395,20 @@ require "pears".setup(function(conf)
 	conf.expand_on_enter(true)
 	conf.preset "tag_matching"
 end)
+
+-- }}}
+
+-- hlargs {{{
+
+require('hlargs').setup {
+	color = MAYA_BLUE,
+	excluded_filetypes = {},
+	paint_arg_declarations = true,
+	paint_arg_usages = true,
+	performance = {
+		parse_delay = 1,
+		max_iterations = 400
+	}
+}
 
 -- }}}

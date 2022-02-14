@@ -21,6 +21,7 @@ cmd [[packadd! pears.nvim]]
 
 -- Tree-sitter
 cmd [[packadd! nvim-treesitter]]
+cmd [[packadd! hlargs.nvim]]
 
 -- Finder
 cmd [[packadd! LeaderF]]
@@ -92,4 +93,5 @@ return require('packer').startup(function()
 
 	-- Tree-sitter
 	use { 'nvim-treesitter/nvim-treesitter', opt = true }
+	use { 'm-demare/hlargs.nvim', opt = true }
 end)
