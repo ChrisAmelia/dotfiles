@@ -13,6 +13,7 @@ cmd [[packadd! nvim-cmp]]
 cmd [[packadd! vim-vsnip]]
 cmd [[packadd! vim-vsnip-integ]]
 cmd [[packadd! cmp-nvim-lsp]]
+cmd [[packadd! cmp-nvim-lsp-signature-help]]
 cmd [[packadd! cmp-nvim-lua]]
 cmd [[packadd! cmp-buffer]]
 cmd [[packadd! cmp-path]]
@@ -62,6 +63,7 @@ return require('packer').startup(function()
 			{ 'hrsh7th/cmp-buffer', opt = true },
 			{ 'hrsh7th/cmp-path', opt = true },
 			{ 'hrsh7th/cmp-nvim-lsp', opt = true },
+			{ 'hrsh7th/cmp-nvim-lsp-signature-help', opt = true },
 			{ 'hrsh7th/cmp-nvim-lua', opt = true },
 			{ 'hrsh7th/cmp-vsnip', opt = true },
 			{ 'hrsh7th/vim-vsnip', opt = true },
