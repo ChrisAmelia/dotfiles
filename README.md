@@ -67,6 +67,7 @@ are not installed by this script.
 | LSP         | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                      | Collection of common configurations for the Nvim LSP client.                                                    |
 | LSP         | [lsp-status.nvim](https://github.com/nvim-lua/lsp-status.nvim)                  | Neovim plugin/library for generating statusline components from the built-in LSP client.                        |
 | Parser      | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)           | Treesitter configurations and abstraction layer for Neovim.                                                     |
+| Parser      | [hlargs.nvim](https://github.com/m-demare/hlargs.nvim)                          | Highlight arguments' definitions and usages, asynchronously, using Treesitter.                                  |
 | Statusline  | [status-line.lua](nvim/lua/status-line.lua)                                     | Custom statusline, see screenshot                                                                               |
 | Tabs        | [barbar.nvim](https://github.com/romgrk/barbar.nvim)                            | Tabs, as understood by any other editor.                                                                        |
 
