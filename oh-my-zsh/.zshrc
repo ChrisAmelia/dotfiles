@@ -34,7 +34,7 @@ plugins=(
 
 	autojump
 	command-not-found
-	copydir
+	copypath
 	cp
 	debian
 	extract
