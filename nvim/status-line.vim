@@ -1,7 +1,7 @@
 set termguicolors
 
 set noshowmode
-set laststatus=2
+set laststatus=3
 
 function! ActiveLine()
     return luaeval("require'status-line'.activeLine()")
