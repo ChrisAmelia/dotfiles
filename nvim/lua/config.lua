@@ -269,7 +269,7 @@ end
 
 local cmp = require('cmp')
 
-local cmp_kinds = {
+local icons = {
 	Text          = ' ',
 	Method        = ' ',
 	Function      = ' ',
@@ -303,8 +303,12 @@ cmp.setup {
 	},
 
 	formatting = {
+		fields = { "kind", "abbr", "menu" },
+
 		format = function(_, vim_item)
-			vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
+			vim_item.menu = vim_item.kind
+			vim_item.kind = icons[vim_item.kind]
+
 			return vim_item
 		end,
 	},
