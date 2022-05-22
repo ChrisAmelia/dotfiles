@@ -35,6 +35,7 @@ createConfigsSymlinks() {
 	readonly SYMLINKS=(
 		init.vim
 		status-line.vim
+		winbar.vim
 	)
 
 	readonly SYMLINKS_FTDETECT=(
@@ -51,6 +52,7 @@ createConfigsSymlinks() {
 		plugins.lua
 		settings.lua
 		status-line.lua
+		winbar.lua
 	)
 
 	for symlink in "${SYMLINKS[@]}"; do

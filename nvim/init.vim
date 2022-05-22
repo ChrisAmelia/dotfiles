@@ -1,6 +1,7 @@
 execute 'luafile ' . stdpath('config') . '/lua/plugins.lua'
 
 source $HOME/.config/nvim/status-line.vim
+source $HOME/.config/nvim/winbar.vim
 luafile $HOME/.config/nvim/lua/settings.lua
 luafile $HOME/.config/nvim/lua/config.lua
 

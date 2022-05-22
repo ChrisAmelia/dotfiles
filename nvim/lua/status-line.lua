@@ -501,13 +501,13 @@ function Module.activeLine()
 	end
 
 	-- Current function
-	local currentFunction = getCurrentFunction()
+	-- local currentFunction = getCurrentFunction()
 
-	if currentFunction ~= "" then
-		api.nvim_command("hi " .. HIGHLIGHT_FUNCTION .. " guifg=" .. INCH_WORM .. " guibg=none gui=bold")
-		statusline = statusline .. "%#" .. HIGHLIGHT_FUNCTION .. "#"
-		statusline = statusline .. currentFunction
-	end
+	-- if currentFunction ~= "" then
+	-- 	api.nvim_command("hi " .. HIGHLIGHT_FUNCTION .. " guifg=" .. INCH_WORM .. " guibg=none gui=bold")
+	-- 	statusline = statusline .. "%#" .. HIGHLIGHT_FUNCTION .. "#"
+	-- 	statusline = statusline .. currentFunction
+	-- end
 
 	return statusline
 end
