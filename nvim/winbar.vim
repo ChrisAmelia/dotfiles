@@ -4,7 +4,7 @@ endfunction
 
 augroup Winbar
 	autocmd!
-	autocmd WinEnter,BufEnter * setlocal winbar=%!ActiveWinbar()
+	autocmd WinEnter,BufEnter * setglobal winbar=%!ActiveWinbar()
 augroup END
 
-set winbar=%!ActiveWinbar()
+setglobal winbar=%!ActiveWinbar()
