@@ -6,13 +6,6 @@ luafile $HOME/.config/nvim/lua/settings.lua
 luafile $HOME/.config/nvim/lua/config.lua
 luafile $HOME/.config/nvim/lua/autocommands.lua
 
-" Nvim highlight yank {{{
-augroup highlight_yank
-    autocmd!
-	au TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=250, on_visual=false}
-augroup END
-" }}}
-
 function!  QuickFixOpenAll()
     if empty(getqflist())
         return

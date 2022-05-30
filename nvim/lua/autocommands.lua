@@ -14,3 +14,8 @@ end})
 api.nvim_create_autocmd({ "InsertLeave" }, { callback = function ()
 	vim.diagnostic.setloclist({ open = false })
 end})
+
+-- Highlights the yanked text.
+api.nvim_create_autocmd({ "TextYankPost" }, { callback = function ()
+	vim.highlight.on_yank {higroup="IncSearch", timeout=250, on_visual=false}
+end})
