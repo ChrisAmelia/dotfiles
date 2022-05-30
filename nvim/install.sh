@@ -53,6 +53,7 @@ createConfigsSymlinks() {
 		settings.lua
 		status-line.lua
 		winbar.lua
+		autocommands.lua
 	)
 
 	for symlink in "${SYMLINKS[@]}"; do

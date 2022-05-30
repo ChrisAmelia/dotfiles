@@ -4,6 +4,7 @@ source $HOME/.config/nvim/status-line.vim
 source $HOME/.config/nvim/winbar.vim
 luafile $HOME/.config/nvim/lua/settings.lua
 luafile $HOME/.config/nvim/lua/config.lua
+luafile $HOME/.config/nvim/lua/autocommands.lua
 
 " LSP Diagnostics {{{
 augroup UPDATE_DIAGNOSTICS_LOCLIST

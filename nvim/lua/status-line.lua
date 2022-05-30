@@ -104,10 +104,7 @@ end
 
 --- Returns current branch name
 local getGitBranchName = function()
-	local handle = io.popen("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-	local branchName = handle:read("*a")
-
-	handle:close()
+	local branchName = vim.b.gitBranchName or ""
 
 	local icon = ""
 
