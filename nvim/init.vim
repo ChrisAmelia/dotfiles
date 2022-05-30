@@ -6,12 +6,6 @@ luafile $HOME/.config/nvim/lua/settings.lua
 luafile $HOME/.config/nvim/lua/config.lua
 luafile $HOME/.config/nvim/lua/autocommands.lua
 
-" LSP Diagnostics {{{
-augroup UPDATE_DIAGNOSTICS_LOCLIST
-	autocmd!
-	autocmd InsertLeave * lua vim.diagnostic.setloclist({open = false})
-augroup END
-" }}}
 " Nvim highlight yank {{{
 augroup highlight_yank
     autocmd!

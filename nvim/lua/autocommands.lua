@@ -9,3 +9,8 @@ api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, { callback = function ()
 
 	vim.b.gitBranchName = branchName
 end})
+
+-- Add buffer diagnostics to the location list.
+api.nvim_create_autocmd({ "InsertLeave" }, { callback = function ()
+	vim.diagnostic.setloclist({ open = false })
+end})
