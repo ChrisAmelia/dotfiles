@@ -1,3 +1,5 @@
+local Statusline = {}
+
 local api = vim.api
 local fn  = vim.fn
 
@@ -92,8 +94,6 @@ local extensions = {
 	zsh         = "",
 
 }
-
-local Module = {}
 
 --- Returns true if current directory is git repository, else false
 local isGitRepository = function()
@@ -373,7 +373,7 @@ local getGutter = function()
 end
 
 --- Statusline active
-function Module.activeLine()
+function Statusline.activeLine()
 	local statusline = ""
 
 	if isGitRepository() then
@@ -471,10 +471,10 @@ function Module.activeLine()
 end
 
 --- Statusline inactive
-function Module.inactiveLine()
+function Statusline.inactiveLine()
 	local filename = fn.expand("%F")
 
 	return filename
 end
 
-return Module
+return Statusline

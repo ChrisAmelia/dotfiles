@@ -1,4 +1,4 @@
-local Module = {}
+local Winbar = {}
 
 require('colors')
 
@@ -19,7 +19,7 @@ local getCurrentFunction = function()
 	return icon .. ":" ..  currentFunction
 end
 
-Module.eval = function ()
+Winbar.eval = function ()
 	local winbar = ""
 
 	local currentFunction = getCurrentFunction()
@@ -31,4 +31,4 @@ Module.eval = function ()
 	return winbar
 end
 
-return Module
+return Winbar
