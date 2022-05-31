@@ -2,8 +2,9 @@ local Module = {}
 
 require('colors')
 
-HIGHLIGHT_FUNCTION = "LSP_FUNCTION"
+local utils = require('utils')
 
+-- Retrieves current's function and returns it in a formatted string
 local getCurrentFunction = function()
 	local currentFunction = ""
 	local filename = vim.fn.expand("%:t:r")
@@ -24,9 +25,7 @@ Module.eval = function ()
 	local currentFunction = getCurrentFunction()
 
 	if currentFunction ~= "" then
-		vim.api.nvim_command("hi " .. HIGHLIGHT_FUNCTION .. " guifg=" .. INCH_WORM .. " guibg=none gui=bold")
-		winbar = winbar .. "%#" .. HIGHLIGHT_FUNCTION .. "#"
-		winbar = winbar .. currentFunction
+		winbar = winbar .. utils.buildElement("SEPARATOR_FUNCTION", "LSP_FUNCTION", ROSE, WHITE, currentFunction)
 	end
 
 	return winbar
