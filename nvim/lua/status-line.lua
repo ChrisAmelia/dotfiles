@@ -3,6 +3,7 @@ local fn  = vim.fn
 
 require('colors')
 local stringutil = require('stringutil')
+local component = require('component')
 
 -- Colors to set per filetype
 COLOR_FILE = ""
@@ -379,17 +380,7 @@ function Module.activeLine()
 		-- Git branch
 		local branchName = getGitBranchName()
 
-		api.nvim_command("hi " .. HIGHLIGHT_GIT .. " guifg=" .. BLUE_RIBBON  .. " guibg=none")
-		statusline = statusline .. "%#" .. HIGHLIGHT_GIT .. "#"
-		statusline = statusline .. SEPARATOR_LEFT
-
-		api.nvim_command("hi " .. HIGHLIGHT_GIT_NAME .. " guifg=" .. WHITE .. " guibg=" .. BLUE_RIBBON)
-		statusline = statusline .. "%#" .. HIGHLIGHT_GIT_NAME .. "#"
-		statusline = statusline .. branchName
-
-		api.nvim_command("hi " .. HIGHLIGHT_GIT .. " guifg=" .. BLUE_RIBBON .. " guibg=none")
-		statusline = statusline .. "%#" .. HIGHLIGHT_GIT .. "#"
-		statusline = statusline .. SEPARATOR_RIGHT
+		statusline = statusline .. component.buildElement(HIGHLIGHT_GIT, HIGHLIGHT_GIT_NAME, BLUE_RIBBON, WHITE, branchName)
 
 		statusline = statusline .. " "
 
@@ -397,17 +388,7 @@ function Module.activeLine()
 		local currentPath = getGitRelativePath()
 
 		if currentPath ~= "" then
-			api.nvim_command("hi " .. HIGHLIGHT_PATH .. " guifg=" .. GOLD  .. " guibg=none")
-			statusline = statusline .. "%#" .. HIGHLIGHT_PATH .. "#"
-			statusline = statusline .. SEPARATOR_LEFT
-
-			api.nvim_command("hi " .. HIGHLIGHT_CURRENT_PATH .. " guifg=" .. BLACK .. " guibg=" .. GOLD)
-			statusline = statusline .. "%#" .. HIGHLIGHT_CURRENT_PATH .. "#"
-			statusline = statusline .. currentPath
-
-			api.nvim_command("hi " .. HIGHLIGHT_PATH .. " guifg=" .. GOLD .. " guibg=none")
-			statusline = statusline .. "%#" .. HIGHLIGHT_PATH .. "#"
-			statusline = statusline .. SEPARATOR_RIGHT
+			statusline = statusline .. component.buildElement(HIGHLIGHT_PATH, HIGHLIGHT_CURRENT_PATH, GOLD, BLACK, currentPath)
 
 			statusline = statusline .. " "
 		end
@@ -422,17 +403,7 @@ function Module.activeLine()
 		local currentPath = getFullPath()
 
 		if currentPath ~= "" then
-			api.nvim_command("hi " .. HIGHLIGHT_PATH .. " guifg=" .. GOLD  .. " guibg=none")
-			statusline = statusline .. "%#" .. HIGHLIGHT_PATH .. "#"
-			statusline = statusline .. SEPARATOR_LEFT
-
-			api.nvim_command("hi " .. HIGHLIGHT_CURRENT_PATH .. " guifg=" .. BLACK .. " guibg=" .. GOLD)
-			statusline = statusline .. "%#" .. HIGHLIGHT_CURRENT_PATH .. "#"
-			statusline = statusline .. currentPath
-
-			api.nvim_command("hi " .. HIGHLIGHT_PATH .. " guifg=" .. GOLD .. " guibg=none")
-			statusline = statusline .. "%#" .. HIGHLIGHT_PATH .. "#"
-			statusline = statusline .. SEPARATOR_RIGHT
+			statusline = statusline .. component.buildElement(HIGHLIGHT_PATH, HIGHLIGHT_CURRENT_PATH, GOLD, BLACK, currentPath)
 
 			statusline = statusline .. " "
 		end
@@ -442,17 +413,8 @@ function Module.activeLine()
 	local currentFile = getFileName()
 
 	if currentFile ~= "" then
-		api.nvim_command("hi " .. HIGHLIGHT_FILE .. " guifg=" .. COLOR_FILE  .. " guibg=none")
-		statusline = statusline .. "%#" .. HIGHLIGHT_FILE .. "#"
-		statusline = statusline .. SEPARATOR_LEFT
+		statusline = statusline  .. component.buildElement(HIGHLIGHT_FILE, HIGHLIGHT_FILE_NAME, COLOR_FILE, COLOR_FILE_NAME, currentFile)
 
-		api.nvim_command("hi " .. HIGHLIGHT_FILE_NAME .. " guifg=" .. COLOR_FILE_NAME .. " guibg=" .. COLOR_FILE)
-		statusline = statusline .. "%#" .. HIGHLIGHT_FILE_NAME .. "#"
-		statusline = statusline .. currentFile
-
-		api.nvim_command("hi " .. HIGHLIGHT_FILE .. " guifg=" .. COLOR_FILE .. " guibg=none")
-		statusline = statusline .. "%#" .. HIGHLIGHT_FILE .. "#"
-		statusline = statusline .. SEPARATOR_RIGHT
 		statusline = statusline .. " "
 	end
 
@@ -471,7 +433,6 @@ function Module.activeLine()
 		api.nvim_command("hi " .. HIGHLIGHT_WARNING .. " guifg=" .. RIPE_LEMON .. " guibg=none")
 		statusline = statusline .. "%#" .. HIGHLIGHT_WARNING .. "#"
 		statusline = statusline .. warnings
-		-- statusline = statusline .. " "
 	end
 
 	-- LSP diagnostics errors

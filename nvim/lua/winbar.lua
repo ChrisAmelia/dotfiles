@@ -2,7 +2,7 @@ local Module = {}
 
 require('colors')
 
-local utils = require('utils')
+local component = require('component')
 
 -- Retrieves current's function and returns it in a formatted string
 local getCurrentFunction = function()
@@ -25,7 +25,7 @@ Module.eval = function ()
 	local currentFunction = getCurrentFunction()
 
 	if currentFunction ~= "" then
-		winbar = winbar .. utils.buildElement("SEPARATOR_FUNCTION", "LSP_FUNCTION", ROSE, WHITE, currentFunction)
+		winbar = winbar .. component.buildElement("SEPARATOR_FUNCTION", "LSP_FUNCTION", ROSE, WHITE, currentFunction)
 	end
 
 	return winbar
