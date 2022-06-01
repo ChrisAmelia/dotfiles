@@ -55,7 +55,7 @@ USER=``
 export DEFAULT_USER="$(whoami)"
 
 # Time
-#PROMPT='%{$fg[yellow]%}[%D{%L:%M:%S}] '$PROMPT
+PROMPT='%{$fg[yellow]%}[%D{%L:%M:%S}] '$PROMPT
 # }}}
 
 # ALIAS {{{
