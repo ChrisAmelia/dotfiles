@@ -1,4 +1,3 @@
-local protocol = require'vim.lsp.protocol'
 local lspconfig = require 'lspconfig'
 
 --- Document highlights
@@ -20,7 +19,12 @@ end
 --- Custom attach
 local on_attach_vim = function()
 	document_highlight()
+	vim.keymap.set("n", "<leader>dc", ":Telescope diagnostics bufnr=0<cr>")
+	vim.keymap.set('n', '<leader>gr', ":Telescope lsp_references<cr>", { buffer = 0 })
 end
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
