@@ -22,6 +22,7 @@ opt.clipboard   = "unnamedplus"               -- Register clipboard
 opt.completeopt = "menu,menuone,noselect" -- A comma separated list of options for Insert mode completion |ins-completion|
 opt.wildmenu = true -- Autocomplete commands using nice menu in place of window status. Enable CTRL-N and CTRL-P to scroll through matches.
 opt.wildmode = 'longest:full,full'-- For autocompletion, complete as much as you can.
+opt.mouse = ''
 
 
 opt.shiftwidth = 0 -- When indenting with '>', use spaces width
