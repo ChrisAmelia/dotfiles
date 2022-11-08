@@ -19,6 +19,9 @@ cmd [[packadd! cmp-buffer]]
 cmd [[packadd! cmp-path]]
 cmd [[packadd! cmp-vsnip]]
 cmd [[packadd! pears.nvim]]
+cmd [[packadd! LuaSnip]]
+cmd [[packadd! cmp_luasnip]]
+-- cmd [[packadd! nvim-autopairs]]
 
 -- Tree-sitter
 cmd [[packadd! nvim-treesitter]]
@@ -69,9 +72,12 @@ return require('packer').startup(function()
 			{ 'hrsh7th/cmp-vsnip', opt = true },
 			{ 'hrsh7th/vim-vsnip', opt = true },
 			{ 'hrsh7th/vim-vsnip-integ', opt = true},
+			{ 'L3MON4D3/LuaSnip', opt = true },
+			{ 'saadparwaiz1/cmp_luasnip', opt = true },
 		},
 	}
 	use { 'steelsojka/pears.nvim', opt = true }
+	use { 'windwp/nvim-autopairs', opt = true }
 
 	-- Git
 	use { 'tpope/vim-fugitive', opt = true }
