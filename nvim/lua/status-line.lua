@@ -47,9 +47,9 @@ local icons = setmetatable({
 	["s"]  = "",
 	["S"]  = "S·Line",
 	["^S"] = "S·Block",
-	["i"]  = "",
-	["ic"] = "",
-	["ix"] = "",
+	["i"]  = "理",
+	["ic"] = "理",
+	["ix"] = "理",
 	["R"]  = "",
 	["Rv"] = "",
 	["c"]  = "",
@@ -86,6 +86,7 @@ local extensions = {
 	lua         = "",
 	markdown    = "",
 	merge       = "",
+	rust        = "";
 	sh          = "",
 	sql         = "",
 	text        = "",
@@ -243,6 +244,10 @@ local getColorsPerFiletype = function(filetype)
 		separatorColor, fileNameColor = BLACK, WHITE
 	end
 
+	if filetype == 'rust' then
+		separatorColor, fileNameColor = DUST, BLACK
+	end
+
 	if filetype == 'sh' or filetype == 'zsh' then
 		separatorColor, fileNameColor = COD_GRAY, SULU
 	end
@@ -291,7 +296,7 @@ local redrawColors = function(mode)
 	local colors = {
 
 		n  = "hi Mode guibg=none guifg=none",
-		i  = "hi Mode guibg=none guifg=#AAA9AD",
+		i  = "hi Mode guibg=none guifg=" .. YELLOW,
 		ic = "hi Mode guibg=none guifg=#BE140E",
 		R  = "hi Mode guibg=none guifg=#FF8000",
 		v  = "hi Mode guibg=none guifg=#FFD700",
