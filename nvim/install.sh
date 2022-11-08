@@ -52,6 +52,7 @@ createConfigsSymlinks() {
 		plugins.lua
 		settings.lua
 		status-line.lua
+		stringutil.lua
 		winbar.lua
 		autocommands.lua
 		component.lua
