@@ -105,7 +105,7 @@ export ELECTRON_USE_UBUNTU_NOTIFIER=1
 
 # Configs for nvim's lspconfig
 export JDTLS_HOME=~/GitHub/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
+export JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-amd64/
 export WORKSPACE=$HOME/workspace
 # }}}
 
