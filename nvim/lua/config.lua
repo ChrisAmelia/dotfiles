@@ -298,6 +298,8 @@ local icons = {
 	TypeParameter = ' ',
 }
 
+local luasnip = require("luasnip")
+
 cmp.setup {
 	completion = {
 		completeopt = 'menu,menuone,noinsert',
@@ -316,7 +318,7 @@ cmp.setup {
 
 	snippet = {
 		expand = function(args)
-			vim.fn['vsnip#anonymous'](args.body)
+			require'luasnip'.lsp_expand(args.body)
 		end,
 	},
 
@@ -336,7 +338,7 @@ cmp.setup {
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif vim.fn["vsnip#available"]() == 1 then
-				feedkey("<Plug>(vsnip-expand-or-jump)", "")
+				luasnip.expand_or_jump()
 			elseif has_words_before() then
 				cmp.complete()
 			else
@@ -344,11 +346,13 @@ cmp.setup {
 			end
 		end, { "i", "s" }),
 
-		["<S-Tab>"] = cmp.mapping(function()
+		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
 			elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-				feedkey("<Plug>(vsnip-jump-prev)", "")
+				luasnip.jump(-1)
+			else
+				fallback()
 			end
 		end, { "i", "s" }),
 	},
