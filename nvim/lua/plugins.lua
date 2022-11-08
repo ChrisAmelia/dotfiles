@@ -46,6 +46,7 @@ cmd [[packadd! lsp-status.nvim]]
 
 -- Tabs
 cmd [[packadd! barbar.nvim]]
+cmd [[packadd! nvim-jdtls]]
 
 return require('packer').startup(function()
 	use 'wbthomason/packer.nvim'
@@ -89,6 +90,7 @@ return require('packer').startup(function()
 	-- LSP
 	use { 'neovim/nvim-lspconfig', opt = true }
 	use { 'nvim-lua/lsp-status.nvim', opt = true }
+	use { 'mfussenegger/nvim-jdtls', opt = true}
 
 	-- Tabs
 	use { 'romgrk/barbar.nvim', opt = true }
