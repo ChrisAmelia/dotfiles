@@ -479,3 +479,9 @@ local opts = {
 rt.setup(opts)
 
 -- }}}
+
+-- fidget {{{
+
+require"fidget".setup{}
+
+-- }}}
