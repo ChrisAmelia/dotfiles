@@ -436,3 +436,46 @@ require('hlargs').setup {
 }
 
 -- }}}
+
+-- rust-tools {{{
+
+local rt = require("rust-tools")
+
+local opts = {
+	tools = {
+		-- automatically call RustReloadWorkspace when writing to a Cargo.toml file.
+		reload_workspace_from_cargo_toml = true,
+
+		-- These apply to the default RustSetInlayHints command
+		inlay_hints = {
+			-- automatically set inlay hints (type hints)
+			-- default: true
+			auto = true,
+
+			-- whether to show parameter hints with the inlay hints or not
+			-- default: true
+			show_parameter_hints = true,
+
+			-- prefix for parameter hints
+			-- default: "<-"
+			parameter_hints_prefix = " ",
+
+			-- prefix for all the other hints (type, chaining)
+			-- default: "=>"
+			other_hints_prefix = " ",
+
+			-- The color of the hints
+			highlight = "StorageClass";
+		},
+	},
+
+	server = {
+		-- standalone file support
+		-- setting it to false may improve startup time
+		standalone = true,
+	},
+}
+
+rt.setup(opts)
+
+-- }}}
