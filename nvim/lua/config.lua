@@ -283,31 +283,31 @@ end
 local cmp = require('cmp')
 
 local icons = {
-	Text          = ' ',
-	Method        = ' ',
-	Function      = ' ',
-	Constructor   = ' ',
-	Field         = '識',
-	Variable      = '𝑋 ',
-	Class         = ' ',
-	Interface     = ' ',
-	Module        = ' ',
+	Class         = '  ',
+	Color         = ' ',
+	Constant      = '  ',
+	Constructor   = '  ',
+	Enum          = '  ',
+	EnumMember    = '  ',
+	Event         = ' ',
+	Field         = '  ',
+	File          = '  ',
+	Folder        = '  ',
+	Function      = '  ',
+	Interface     = '  ',
+	Keyword       = '  ',
+	Method        = '  ',
+	Module        = '  ',
+	Operator      = 'ﬦ' ,
 	Property      = ' ',
+	Reference     = ' ',
+	Snippet       = '  ',
+	Struct        = '  ',
+	Text          = '  ',
+	TypeParameter = ' ',
 	Unit          = ' ',
 	Value         = ' ',
-	Enum          = ' ',
-	Keyword       = ' ',
-	Snippet       = '﬌ ',
-	Color         = ' ',
-	File          = ' ',
-	Reference     = ' ',
-	Folder        = ' ',
-	EnumMember    = ' ',
-	Constant      = ' ',
-	Struct        = ' ',
-	Event         = ' ',
-	Operator      = 'ﬦ' ,
-	TypeParameter = ' ',
+	Variable      = ' 𝑋 ',
 }
 
 local luasnip = require("luasnip")
@@ -315,6 +315,14 @@ local luasnip = require("luasnip")
 cmp.setup {
 	completion = {
 		completeopt = 'menu,menuone,noinsert',
+	},
+
+	window = {
+		completion = {
+			winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+			col_offset = -3,
+			side_padding = 0,
+		},
 	},
 
 	formatting = {
@@ -337,19 +345,16 @@ cmp.setup {
 	mapping = {
 		['<C-p>'] = cmp.mapping.select_prev_item(),
 		['<C-n>'] = cmp.mapping.select_next_item(),
-		['<C-d>'] = cmp.mapping.scroll_docs(-4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4),
+		-- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+		-- ['<C-f>'] = cmp.mapping.scroll_docs(4),
 		['<C-Space>'] = cmp.mapping.complete(),
-		['<C-e>'] = cmp.mapping.close(),
-		['<CR>'] = cmp.mapping.confirm {
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
-		},
+		['<C-e>'] = cmp.mapping.abort(),
+		['<CR>'] = cmp.mapping.confirm({ select = false }),
 
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif vim.fn["vsnip#available"]() == 1 then
+			elseif luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
 			elseif has_words_before() then
 				cmp.complete()
@@ -361,7 +366,7 @@ cmp.setup {
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-			elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+			elseif luasnip.jumpable(-1) then
 				luasnip.jump(-1)
 			else
 				fallback()
@@ -384,21 +389,34 @@ cmp.setup {
 				end
 			}
 		},
-		{ name = 'vsnip'    },
+		{ name = 'luasnip' },
 	},
 }
 
-api.nvim_command(" highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080")
-api.nvim_command(" highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6")
-api.nvim_command(" highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6")
-api.nvim_command(" highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE")
-api.nvim_command(" highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE")
-api.nvim_command(" highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE")
-api.nvim_command(" highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0")
-api.nvim_command(" highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0")
-api.nvim_command(" highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4")
-api.nvim_command(" highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4")
-api.nvim_command(" highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4")
+api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = WHITE, bg = "NONE", strikethrough = true } )
+api.nvim_set_hl(0, "CmpItemAbbrMatch",      { fg = WHITE, bg = HAVELOCK_BLUE } )
+api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = WHITE, bg = HAVELOCK_BLUE } )
+
+api.nvim_set_hl(0, "CmpItemKindClass",       { fg = WHITE, bg = CRIMSON       } )
+api.nvim_set_hl(0, "CmpItemKindConstant",    { fg = WHITE, bg = RANGITOTO     } )
+api.nvim_set_hl(0, "CmpItemKindConstructor", { fg = BLACK, bg = WHITE         } )
+api.nvim_set_hl(0, "CmpItemKindEnum",        { fg = WHITE, bg = BLACK         } )
+api.nvim_set_hl(0, "CmpItemKindEnumMember",  { fg = WHITE, bg = BLACK         } )
+api.nvim_set_hl(0, "CmpItemKindField",       { fg = WHITE, bg = GREEN_HAZE    } )
+api.nvim_set_hl(0, "CmpItemKindFile",        { fg = WHITE, bg = BIG_STONE     } )
+api.nvim_set_hl(0, "CmpItemKindFolder",      { fg = WHITE, bg = BIG_STONE     } )
+api.nvim_set_hl(0, "CmpItemKindFunction",    { fg = WHITE, bg = MEDIUM_PURPLE } )
+api.nvim_set_hl(0, "CmpItemKindInterface",   { fg = WHITE, bg = BLUE_CHILL    } )
+api.nvim_set_hl(0, "CmpItemKindKeyword",     { fg = WHITE, bg = HOT_PINK      } )
+api.nvim_set_hl(0, "CmpItemKindMethod",      { fg = WHITE, bg = MEDIUM_PURPLE } )
+api.nvim_set_hl(0, "CmpItemKindModule",      { fg = WHITE, bg = LOTUS         } )
+api.nvim_set_hl(0, "CmpItemKindProperty",    { fg = WHITE, bg = ALTO          } )
+api.nvim_set_hl(0, "CmpItemKindSnippet",     { fg = WHITE, bg = SUNSET_ORANGE } )
+api.nvim_set_hl(0, "CmpItemKindStruct",      { fg = WHITE, bg = CAMARONE      } )
+api.nvim_set_hl(0, "CmpItemKindText",        { fg = WHITE, bg = BLUE_RIBBON   } )
+api.nvim_set_hl(0, "CmpItemKindUnit",        { fg = WHITE, bg = ALTO          } )
+api.nvim_set_hl(0, "CmpItemKindVariable",    { fg = WHITE, bg = FUSCOUS_GRAY  } )
+
 -- }}}
 
 -- indent_blankline {{{
