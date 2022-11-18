@@ -138,6 +138,27 @@ api.nvim_set_hl(0, "@variable.builtin"    , { fg = ROSE         })
 
 -- }}}
 
+-- nvim-ts-autotag {{{
+require("nvim-treesitter.parsers").list.xml = {
+	install_info = {
+		url = "https://github.com/Trivernis/tree-sitter-xml",
+		files = { "src/parser.c" },
+		generate_requires_npm = true,
+		branch = "main",
+	},
+	filetype = "xml",
+}
+
+
+require'nvim-treesitter.configs'.setup {
+	autotag = {
+		enable = true,
+		filetypes = { "xml" },
+	}
+}
+
+-- }}}
+
 -- LeaderF {{{
 
 vim.g.Lf_PreviewInPopup = 1

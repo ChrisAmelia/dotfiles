@@ -21,7 +21,7 @@ cmd [[packadd! cmp-vsnip]]
 cmd [[packadd! pears.nvim]]
 cmd [[packadd! LuaSnip]]
 cmd [[packadd! cmp_luasnip]]
--- cmd [[packadd! nvim-autopairs]]
+cmd [[packadd! nvim-ts-autotag]]
 
 -- Tree-sitter
 cmd [[packadd! nvim-treesitter]]
@@ -108,4 +108,5 @@ return require('packer').startup(function()
 	-- Tree-sitter
 	use { 'nvim-treesitter/nvim-treesitter', opt = true }
 	use { 'm-demare/hlargs.nvim', opt = true }
+	use { 'windwp/nvim-ts-autotag', opt = true}
 end)
