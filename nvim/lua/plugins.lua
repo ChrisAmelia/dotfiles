@@ -18,9 +18,9 @@ cmd [[packadd! cmp-nvim-lua]]
 cmd [[packadd! cmp-buffer]]
 cmd [[packadd! cmp-path]]
 cmd [[packadd! cmp-vsnip]]
-cmd [[packadd! pears.nvim]]
 cmd [[packadd! LuaSnip]]
 cmd [[packadd! cmp_luasnip]]
+cmd [[packadd! nvim-autopairs]]
 cmd [[packadd! nvim-ts-autotag]]
 
 -- Tree-sitter
@@ -78,7 +78,6 @@ return require('packer').startup(function()
 			{ 'saadparwaiz1/cmp_luasnip', opt = true },
 		},
 	}
-	use { 'steelsojka/pears.nvim', opt = true }
 	use { 'windwp/nvim-autopairs', opt = true }
 
 	-- Git

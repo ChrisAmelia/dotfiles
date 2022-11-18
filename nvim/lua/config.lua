@@ -459,13 +459,9 @@ require("indent_blankline").setup {
 
 -- }}}
 
--- pears.nvim {{{
+-- nvim-autopairs {{{
 
-require "pears".setup(function(conf)
-	conf.pair("{", "}")
-	conf.expand_on_enter(true)
-	conf.preset "tag_matching"
-end)
+require("nvim-autopairs").setup {}
 
 -- }}}
 
