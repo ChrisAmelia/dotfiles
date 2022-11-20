@@ -309,29 +309,29 @@ local cmp = require('cmp')
 
 local icons = {
 	Class         = '  ',
-	Color         = ' ',
+	Color         = '  ',
 	Constant      = '  ',
 	Constructor   = '  ',
-	Enum          = '  ',
-	EnumMember    = '  ',
-	Event         = ' ',
+	Enum          = ' 識',
+	EnumMember    = ' 識',
+	Event         = '  ',
 	Field         = '  ',
-	File          = '  ',
+	File          = '  ',
 	Folder        = '  ',
 	Function      = '  ',
 	Interface     = '  ',
 	Keyword       = '  ',
 	Method        = '  ',
 	Module        = '  ',
-	Operator      = 'ﬦ' ,
-	Property      = ' ',
-	Reference     = ' ',
+	Operator      = '  ',
+	Property      = '  ',
+	Reference     = '  ',
 	Snippet       = '  ',
 	Struct        = '  ',
 	Text          = '  ',
-	TypeParameter = ' ',
-	Unit          = ' ',
-	Value         = ' ',
+	TypeParameter = '  ',
+	Unit          = '  ',
+	Value         = '  ',
 	Variable      = ' 𝑋 ',
 }
 
@@ -418,29 +418,34 @@ cmp.setup {
 	},
 }
 
-api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = WHITE, bg = "NONE", strikethrough = true } )
-api.nvim_set_hl(0, "CmpItemAbbrMatch",      { fg = WHITE, bg = HAVELOCK_BLUE } )
-api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = WHITE, bg = HAVELOCK_BLUE } )
+api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = WHITE, bg = "NONE", strikethrough = true })
+api.nvim_set_hl(0, "CmpItemAbbrMatch",      { fg = WHITE, bg = HAVELOCK_BLUE })
+api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = WHITE, bg = HAVELOCK_BLUE })
 
-api.nvim_set_hl(0, "CmpItemKindClass",       { fg = WHITE, bg = CRIMSON       } )
-api.nvim_set_hl(0, "CmpItemKindConstant",    { fg = WHITE, bg = RANGITOTO     } )
-api.nvim_set_hl(0, "CmpItemKindConstructor", { fg = BLACK, bg = WHITE         } )
-api.nvim_set_hl(0, "CmpItemKindEnum",        { fg = WHITE, bg = BLACK         } )
-api.nvim_set_hl(0, "CmpItemKindEnumMember",  { fg = WHITE, bg = BLACK         } )
-api.nvim_set_hl(0, "CmpItemKindField",       { fg = WHITE, bg = GREEN_HAZE    } )
-api.nvim_set_hl(0, "CmpItemKindFile",        { fg = WHITE, bg = BIG_STONE     } )
-api.nvim_set_hl(0, "CmpItemKindFolder",      { fg = WHITE, bg = BIG_STONE     } )
-api.nvim_set_hl(0, "CmpItemKindFunction",    { fg = WHITE, bg = MEDIUM_PURPLE } )
-api.nvim_set_hl(0, "CmpItemKindInterface",   { fg = WHITE, bg = BLUE_CHILL    } )
-api.nvim_set_hl(0, "CmpItemKindKeyword",     { fg = WHITE, bg = HOT_PINK      } )
-api.nvim_set_hl(0, "CmpItemKindMethod",      { fg = WHITE, bg = MEDIUM_PURPLE } )
-api.nvim_set_hl(0, "CmpItemKindModule",      { fg = WHITE, bg = LOTUS         } )
-api.nvim_set_hl(0, "CmpItemKindProperty",    { fg = WHITE, bg = ALTO          } )
-api.nvim_set_hl(0, "CmpItemKindSnippet",     { fg = WHITE, bg = SUNSET_ORANGE } )
-api.nvim_set_hl(0, "CmpItemKindStruct",      { fg = WHITE, bg = CAMARONE      } )
-api.nvim_set_hl(0, "CmpItemKindText",        { fg = WHITE, bg = BLUE_RIBBON   } )
-api.nvim_set_hl(0, "CmpItemKindUnit",        { fg = WHITE, bg = ALTO          } )
-api.nvim_set_hl(0, "CmpItemKindVariable",    { fg = WHITE, bg = FUSCOUS_GRAY  } )
+api.nvim_set_hl(0, "CmpItemKindClass",         { fg = WHITE, bg = CRIMSON       })
+api.nvim_set_hl(0, "CmpItemKindConstant",      { fg = WHITE, bg = RANGITOTO     })
+api.nvim_set_hl(0, "CmpItemKindConstructor",   { fg = BLACK, bg = WHITE         })
+api.nvim_set_hl(0, "CmpItemKindEnum",          { fg = WHITE, bg = CONGO_BROWN   })
+api.nvim_set_hl(0, "CmpItemKindEnumMember",    { fg = WHITE, bg = CONGO_BROWN   })
+api.nvim_set_hl(0, "CmpItemKindEvent",         { fg = GOLD,  bg = BLACK         })
+api.nvim_set_hl(0, "CmpItemKindField",         { fg = WHITE, bg = GREEN_HAZE    })
+api.nvim_set_hl(0, "CmpItemKindFile",          { fg = WHITE, bg = BIG_STONE     })
+api.nvim_set_hl(0, "CmpItemKindFolder",        { fg = BLACK, bg = FLAX          })
+api.nvim_set_hl(0, "CmpItemKindFunction",      { fg = WHITE, bg = MEDIUM_PURPLE })
+api.nvim_set_hl(0, "CmpItemKindInterface",     { fg = WHITE, bg = BLUE_CHILL    })
+api.nvim_set_hl(0, "CmpItemKindKeyword",       { fg = WHITE, bg = HOT_PINK      })
+api.nvim_set_hl(0, "CmpItemKindMethod",        { fg = WHITE, bg = MEDIUM_PURPLE })
+api.nvim_set_hl(0, "CmpItemKindModule",        { fg = WHITE, bg = LOTUS         })
+api.nvim_set_hl(0, "CmpItemKindOperator",      { fg = WHITE, bg = "#A377BF"     })
+api.nvim_set_hl(0, "CmpItemKindProperty",      { fg = WHITE, bg = ALTO          })
+api.nvim_set_hl(0, "CmpItemKindReference",     { fg = WHITE, bg = RUST          })
+api.nvim_set_hl(0, "CmpItemKindSnippet",       { fg = WHITE, bg = SUNSET_ORANGE })
+api.nvim_set_hl(0, "CmpItemKindStruct",        { fg = WHITE, bg = CAMARONE      })
+api.nvim_set_hl(0, "CmpItemKindText",          { fg = WHITE, bg = BLUE_RIBBON   })
+api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = WHITE, bg = "#58B5A8"     })
+api.nvim_set_hl(0, "CmpItemKindUnit",          { fg = WHITE, bg = ALTO          })
+api.nvim_set_hl(0, "CmpItemKindVariable",      { fg = WHITE, bg = FUSCOUS_GRAY  })
+api.nvim_set_hl(0, "CmpItemKindValue",         { fg = WHITE, bg = WOODSMOKE     })
 
 -- }}}
 
