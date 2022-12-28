@@ -407,7 +407,16 @@ cmp.setup {
 	},
 
 	sources = {
-		{ name = 'nvim_lsp' },
+		{
+			name = 'nvim_lsp',
+			entry_filter = function (entry)
+				-- Disable snippet suggestions from LSP
+				if vim.bo.filetype == 'java' then
+					return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
+				end
+				return entry
+			end
+		},
 		{ name = 'nvim_lsp_signature_help' },
 		{ name = 'path'     },
 		{ name = 'buffer',
