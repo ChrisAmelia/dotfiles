@@ -554,3 +554,31 @@ rt.setup(opts)
 require"fidget".setup{}
 
 -- }}}
+
+
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+parser_config.gitcommit = {
+    install_info = {
+        url = "https://github.com/gbprod/tree-sitter-gitcommit",
+        files = { "src/parser.c", "src/scanner.c" },
+        branch = "main",
+    },
+    filetype = "gitcommit",
+    maintainers = {  "@gbprod" },
+}
+
+api.nvim_set_hl(0, "@attribute.diff", { fg = "#CDB9F2" })
+api.nvim_set_hl(0, "@function.diff", { fg = "#8fBFFC" })
+api.nvim_set_hl(0, "@text.diff.delete", { bg = "#FFEBE9", fg = "#82071E", })
+api.nvim_set_hl(0, "@text.diff.add", { bg = "#DAFBE1", fg = "#116329" })
+api.nvim_set_hl(0, "@function.diff", { bg = "#8FBFFC", fg = "#0550AE" })
+api.nvim_set_hl(0, "@text.reference.gitcommit", { bg = "#BFFC8F", fg = "#357503" })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local bufnr = args.buf
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		client.server_capabilities.semanticTokensProvider = nil
+	end,
+})
