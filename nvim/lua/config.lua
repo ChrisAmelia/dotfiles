@@ -528,6 +528,11 @@ local opts = {
 		-- standalone file support
 		-- setting it to false may improve startup time
 		standalone = true,
+
+		on_attach = function ()
+			vim.keymap.set("n", "<leader>dc", ":Telescope diagnostics bufnr=0<cr>")
+			vim.keymap.set('n', '<leader>gr', ":Telescope lsp_references<cr>", { buffer = 0 })
+		end,
 	},
 }
 
