@@ -83,6 +83,7 @@ local extensions = {
 	jproperties = "",
 	json        = "",
 	jsp         = "",
+	leaderf     = "",
 	lua         = "",
 	markdown    = "",
 	merge       = "",
@@ -234,6 +235,10 @@ local getColorsPerFiletype = function(filetype)
 
 	if filetype == 'jsp' then
 		separatorColor, fileNameColor = PIGMENT_INDIGO, WHITE
+	end
+
+	if filetype == 'leaderf' then
+		separatorColor, fileNameColor = FUSCOUS_GRAY, DUST
 	end
 
 	if filetype == 'lua' then
