@@ -172,7 +172,7 @@ local getFullPath = function()
 		-- From {"home", "user", "path", "to", "file.txt"}
 		-- to {"path", "to", "file.txt"} thus begin index at 3
 		local beginIndex = 3
-		local endIndex = table.getn(splitFullpath)
+		local endIndex = #splitFullpath
 		local slice = { unpack(splitFullpath, beginIndex, endIndex) }
 
 		-- Concatenate slice: "~/path/to/file.txt"
