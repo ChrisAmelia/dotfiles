@@ -259,8 +259,12 @@ vim.keymap.set("n" , "<Leader>rn" , vim.lsp.buf.rename          )
 
 -- barbar.nvim {{{
 
-local bufferline = {
-	icons = 'numbers',
+require'barbar'.setup {
+	icons = {
+		filetype = {
+			enabled = false,
+		}
+	},
 	animation = true,
 	semantic_letters = true,
 	clickable = false,
@@ -269,8 +273,6 @@ local bufferline = {
 	maximum_length = 50,
 	auto_hide = true,
 }
-
-vim.g.bufferline = bufferline
 
 api.nvim_command("hi BufferCurrent       guibg=" .. MAYA_BLUE)
 api.nvim_command("hi BufferCurrentMod    guibg=" .. MAYA_BLUE)
