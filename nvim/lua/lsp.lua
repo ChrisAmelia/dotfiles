@@ -23,6 +23,7 @@ local on_attach_vim = function(client, bufnr)
 	vim.keymap.set('n', '<leader>gr', ":Telescope lsp_references<cr>", { buffer = 0 })
 
 	if client.server_capabilities.inlayHintProvider then
+		vim.api.nvim_set_hl(0, "LspInlayHint", { bg = MAKO, fg = WHITE })
 		vim.lsp.inlay_hint(bufnr, true)
 	end
 end
