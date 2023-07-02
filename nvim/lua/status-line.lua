@@ -39,7 +39,7 @@ HIGHLIGHT_GUTTER_NAME = "STATUS_GUTTER"
 HIGHLIGHT_FUNCTION = "LSP_FUNCTION"
 
 local icons = setmetatable({
-	["n"]  = "",
+	["n"]  = " ",
 	["no"] = "N·Operator Pending",
 	["v"]  = "",
 	["V"]  = "",
@@ -47,9 +47,9 @@ local icons = setmetatable({
 	["s"]  = "",
 	["S"]  = "S·Line",
 	["^S"] = "S·Block",
-	["i"]  = "理",
-	["ic"] = "理",
-	["ix"] = "理",
+	["i"]  = "󰞇 ",
+	["ic"] = "󰞇 ",
+	["ix"] = "󰞇 ",
 	["R"]  = "",
 	["Rv"] = "",
 	["c"]  = "",
@@ -83,7 +83,7 @@ local extensions = {
 	jproperties = "",
 	json        = "",
 	jsp         = "",
-	leaderf     = "",
+	leaderf     = "󰈳",
 	lua         = "",
 	markdown    = "",
 	merge       = "",
@@ -302,11 +302,11 @@ local redrawColors = function(mode)
 
 		n  = "hi Mode guibg=none guifg=none",
 		i  = "hi Mode guibg=none guifg=" .. YELLOW,
-		ic = "hi Mode guibg=none guifg=#BE140E",
-		R  = "hi Mode guibg=none guifg=#FF8000",
-		v  = "hi Mode guibg=none guifg=#FFD700",
-		V  = "hi Mode guibg=none guifg=#FFD700",
-		c  = "hi Mode guibg=none guifg=#41F024",
+		ic = "hi Mode guibg=none guifg=" .. MILANO_RED,
+		R  = "hi Mode guibg=none guifg=" .. FLUSH_ORANGE,
+		v  = "hi Mode guibg=none guifg=" .. GOLD,
+		V  = "hi Mode guibg=none guifg=" .. GOLD,
+		c  = "hi Mode guibg=none guifg=" .. HARLEQUIN,
 
 	}
 
@@ -365,7 +365,7 @@ local getGutter = function()
 		return ""
 	end
 
-	local hunks = ":"
+	local hunks = "󰍉:"
 
 	if added ~= 0 then
 		hunks = hunks .. "+" .. added
