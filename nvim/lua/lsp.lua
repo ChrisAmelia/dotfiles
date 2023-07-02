@@ -17,10 +17,14 @@ local function document_highlight()
 end
 
 --- Custom attach
-local on_attach_vim = function()
+local on_attach_vim = function(client, bufnr)
 	document_highlight()
 	vim.keymap.set("n", "<leader>dc", ":Telescope diagnostics bufnr=0<cr>")
 	vim.keymap.set('n', '<leader>gr', ":Telescope lsp_references<cr>", { buffer = 0 })
+
+	if client.server_capabilities.inlayHintProvider then
+		vim.lsp.inlay_hint(bufnr, true)
+	end
 end
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
