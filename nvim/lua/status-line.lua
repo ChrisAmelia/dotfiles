@@ -39,22 +39,22 @@ HIGHLIGHT_GUTTER_NAME = "STATUS_GUTTER"
 HIGHLIGHT_FUNCTION = "LSP_FUNCTION"
 
 local icons = setmetatable({
-	["n"]  = " ",
+	["n"]  = " 󰘳 ",
 	["no"] = "N·Operator Pending",
-	["v"]  = "",
-	["V"]  = "",
-	["^V"] = "",
-	["s"]  = "",
+	["v"]  = " 󰈈 ",
+	["V"]  = " 󰈈 ",
+	["^V"] = " 󰈈 ",
+	["s"]  = "  ",
 	["S"]  = "S·Line",
 	["^S"] = "S·Block",
-	["i"]  = "󰞇 ",
-	["ic"] = "󰞇 ",
-	["ix"] = "󰞇 ",
-	["R"]  = "",
-	["Rv"] = "",
-	["c"]  = "",
-	["cv"] = "",
-	["ce"] = "",
+	["i"]  = " 󰞇 ",
+	["ic"] = " 󰞇 ",
+	["ix"] = " 󰞇 ",
+	["R"]  = "  ",
+	["Rv"] = "  ",
+	["c"]  = "  ",
+	["cv"] = "  ",
+	["ce"] = "  ",
 	["r"]  = "Prompt",
 	["rm"] = "More",
 	["r?"] = "Confirm",
@@ -63,7 +63,7 @@ local icons = setmetatable({
 }, {
 	-- fix weird issues
 	__index = function(_, _)
-		return "ﴳ" -- V-Block
+		return " 󰶹 " -- V-Block
 	end
 }
 )
@@ -111,7 +111,7 @@ local getGitBranchName = function()
 
 	local icon = ""
 
-	if branchName == "master" then
+	if branchName == "master" or branchName == "main" then
 		icon = ""
 	elseif string.find(string.lower(branchName), "fix") then
 		icon = ""
@@ -301,12 +301,12 @@ local redrawColors = function(mode)
 	local colors = {
 
 		n  = "hi Mode guibg=none guifg=none",
-		i  = "hi Mode guibg=none guifg=" .. YELLOW,
+		i  = "hi Mode guibg=none guifg=" .. HARLEQUIN,
 		ic = "hi Mode guibg=none guifg=" .. MILANO_RED,
 		R  = "hi Mode guibg=none guifg=" .. FLUSH_ORANGE,
-		v  = "hi Mode guibg=none guifg=" .. GOLD,
-		V  = "hi Mode guibg=none guifg=" .. GOLD,
-		c  = "hi Mode guibg=none guifg=" .. HARLEQUIN,
+		v  = "hi Mode guibg=none guifg=" .. HOT_PINK,
+		V  = "hi Mode guibg=none guifg=" .. HOT_PINK,
+		c  = "hi Mode guibg=none guifg=" .. MALIBU,
 
 	}
 
