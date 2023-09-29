@@ -170,13 +170,15 @@ require'nvim-treesitter.configs'.setup {
 
 vim.g.Lf_PreviewInPopup = 1
 vim.g.Lf_WindowPosition = 'popup'
+vim.g.Lf_PopupWidth = 0.70
+vim.g.Lf_PopupPreviewPosition = 'cursor'
 
 vim.keymap.set("n" , "<C-n>"      , ":Leaderf file<CR>"        )
 vim.keymap.set("n" , "<Leader>rg" , ":Leaderf rg -i -g '!git' ")
 vim.keymap.set("n" , "<Leader>rc" , ":LeaderfRgRecall<CR>"     )
 vim.keymap.set("n" , "<Leader>f"  , ":LeaderfFunction<CR>"     )
 
-vim.g.Lf_PreviewResult = { File = 0 }
+vim.g.Lf_PreviewResult = { File = 0, Rg = 0, Function = 0 }
 
 -- }}}
 
