@@ -85,7 +85,7 @@ return require('packer').startup(function()
 	use { 'airblade/vim-gitgutter', opt = true }
 
 	-- Interface
-	use { 'lukas-reineke/indent-blankline.nvim', branch = 'master', opt = true }
+	use { 'lukas-reineke/indent-blankline.nvim', opt = true }
 
 	-- Finder
 	use { 'Yggdroot/LeaderF', opt = true}
