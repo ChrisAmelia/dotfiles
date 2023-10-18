@@ -332,28 +332,22 @@ end
 --- Returns the number of errors
 local getErrors = function()
 	local errors = vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
-	local icon = ""
+	local lineIcon = "L"
+	local count = #errors
 
-	if #errors == 0 then
+	if count == 0 then
 		return ""
 	end
 
-	return "" .. icon .. " :" .. #errors .. ""
-end
+	local firstError = errors[1]
+	local firstErrorLine = firstError.lnum + 1
+	local firstErrorMessage =  firstError.message
 
---- Returns current function
-local getCurrentFunction = function()
-	local currentFunction = ""
-	local filename = fn.expand("%:t:r")
-	local icon = "ƒ"
-
-	if vim.b.lsp_current_function == nil or vim.b.lsp_current_function == "" or vim.b.lsp_current_function == filename  then
-		return ""
+	if count == 1 then
+		return "" .. lineIcon .. firstErrorLine .. " 󰄽" .. firstErrorMessage .. "󰄾" .. ""
+	else
+		return "" .. lineIcon .. firstErrorLine .. " 󰄽" .. firstErrorMessage .. "󰄾, #" .. count  .. ""
 	end
-
-	currentFunction = vim.b.lsp_current_function
-
-	return icon .. ":" ..  currentFunction
 end
 
 --- Returns added, changed, deleted lines
