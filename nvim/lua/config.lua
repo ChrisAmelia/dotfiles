@@ -215,6 +215,7 @@ require('telescope').setup{
 			preview_cutoff = 120,
 			prompt_position = "top",
 		},
+		initial_mode = "normal",
 		border = {},
 		borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰'},
 		color_devicons = true,
