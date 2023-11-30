@@ -99,7 +99,7 @@ return require('packer').startup(function()
 	use { 'nvim-lua/lsp-status.nvim', opt = true }
 	use { 'mfussenegger/nvim-jdtls', opt = true}
 	use { 'simrat39/rust-tools.nvim', opt = true }
-	use { 'j-hui/fidget.nvim', opt = true, branch ="legacy" }
+	use { 'j-hui/fidget.nvim', opt = true }
 
 	-- Tabs
 	use { 'romgrk/barbar.nvim', opt = true }
