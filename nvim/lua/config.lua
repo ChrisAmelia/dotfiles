@@ -112,36 +112,68 @@ api.nvim_set_hl(0, "@attribute"           , { fg = YELLOW       })
 api.nvim_set_hl(0, "@constant"            , { fg = RIPE_LEMON   })
 api.nvim_set_hl(0, "@constant.java"       , { fg = SOFT_AMBER, italic = true   })
 api.nvim_set_hl(0, "@definition.macro"    , { fg = MALIBU       })
-api.nvim_set_hl(0, "@exception"           , { fg = ROSE         })
-api.nvim_set_hl(0, "@field"               , { fg = SOFT_AMBER   })
+api.nvim_set_hl(0, "@exception"           , { fg = ROSE         }) -- to be deprecated for '@keyword.exception'
+api.nvim_set_hl(0, "@field"               , { fg = SOFT_AMBER   }) -- to be deprecated for '@variable.member'
 api.nvim_set_hl(0, "@function"            , { fg = INCH_WORM    })
 api.nvim_set_hl(0, "@function.macro"      , { fg = MALIBU       })
 api.nvim_set_hl(0, "@keyword.function"    , { fg = ROSE         })
 api.nvim_set_hl(0, "@keyword.return"      , { fg = ROSE         })
-api.nvim_set_hl(0, "@method"              , { fg = INCH_WORM })
-api.nvim_set_hl(0, "@namespace"           , { fg = "#FFDBAC"    })
-api.nvim_set_hl(0, "@parameter"           , { fg = MAYA_BLUE    })
-api.nvim_set_hl(0, "@parameter.reference" , { fg = MAYA_BLUE    })
+api.nvim_set_hl(0, "@method"              , { fg = INCH_WORM    }) -- to be deprecated for '@function.method'
+api.nvim_set_hl(0, "@namespace"           , { fg = NAVAJO_WHITE }) -- to be deprecated for '@module'
+api.nvim_set_hl(0, "@parameter"           , { fg = MAYA_BLUE    }) -- to be deprecated for '@variable.parameter'
+api.nvim_set_hl(0, "@parameter.reference" , { fg = MAYA_BLUE    }) -- to be deprecated for '@variable.parameter.reference'
 api.nvim_set_hl(0, "@punctuation.bracket" , { fg = WHITE        })
-api.nvim_set_hl(0, "@storageclass"        , { fg = MALIBU       })
+api.nvim_set_hl(0, "@string.regex"        , { fg = SKY_BLUE     }) -- to be deprecated for '@variable.regexp'
+api.nvim_set_hl(0, "@storageclass"        , { fg = MALIBU       }) -- to be deprecated for '@keyword.storage'
 api.nvim_set_hl(0, "@tag"                 , { fg = YELLOW       })
 api.nvim_set_hl(0, "@tag.attribute"       , { fg = YELLOW       })
 api.nvim_set_hl(0, "@tag.delimiter"       , { fg = YELLOW       })
-api.nvim_set_hl(0, "@text"                , { fg = YELLOW       })
-api.nvim_set_hl(0, "@text.uri"            , { fg = YELLOW       })
+api.nvim_set_hl(0, "@text"                , { fg = YELLOW       }) -- to be deprecated for '@markup.*'
+api.nvim_set_hl(0, "@text.uri"            , { fg = YELLOW       }) -- to be deprecated for '@markup.link.url'
 api.nvim_set_hl(0, "@type.builtin"        , { fg = MALIBU       })
 api.nvim_set_hl(0, "@type.qualifier"      , { fg = ROSE         })
 api.nvim_set_hl(0, "@variable"            , { fg = SOFT_AMBER   })
 api.nvim_set_hl(0, "@variable.builtin"    , { fg = ROSE         })
 
+api.nvim_set_hl(0, "@text.reference.markdown_inline"    , { fg = ROSE         })
 
 api.nvim_set_hl(0, "@method.java"         , { fg = INCH_WORM, bold = true})
 
-api.nvim_set_hl(0, "@exception.rust"      , { fg = SANDY_BROWN  })
-api.nvim_set_hl(0, "@field.rust"          , { fg = GREEN_YELLOW })
-api.nvim_set_hl(0, "@function.rust"            , { fg = INCH_WORM, bold = true    })
-api.nvim_set_hl(0, "@function.call.rust"            , { fg = INCH_WORM    })
-api.nvim_set_hl(0, "@storageclass.lifetime.rust" , { fg = HOT_PINK       })
+-- rust
+api.nvim_set_hl(0, "@exception.rust"            , { fg = SANDY_BROWN            }) -- to be deprecated for '@keyword.exception.rust'
+api.nvim_set_hl(0, "@field.rust"                , { fg = GREEN_YELLOW           }) -- to be deprecated for '@variable.member.rust'
+api.nvim_set_hl(0, "@function.rust"             , { fg = INCH_WORM, bold = true })
+api.nvim_set_hl(0, "@function.call.rust"        , { fg = INCH_WORM              })
+api.nvim_set_hl(0, "@storageclass.lifetime.rust", { fg = HOT_PINK               }) -- to be deprecated for '@keyword.storage.lifetime.rust'
+
+-- Git
+api.nvim_set_hl(0, "diffAdded",   { bg = SCANDAL, fg = JEWEL     })
+api.nvim_set_hl(0, "diffFile",    { bg = ENDEAVOUR, fg = WHITE   })
+api.nvim_set_hl(0, "diffLine",    { fg = HOT_PINK                })
+api.nvim_set_hl(0, "diffOldFile", { fg = CROCODILE               })
+api.nvim_set_hl(0, "diffRemoved", { bg = FAIR_PINK, fg = MONARCH })
+api.nvim_set_hl(0, "diffSubname", { fg = WHITE                   })
+
+-- https://github.com/nvim-treesitter/nvim-treesitter/commit/1ae9b0e4558fe7868f8cda2db65239cfb14836d0
+api.nvim_set_hl(0, "@diff.delta"                      , { bg = FLAX, fg = FUSCOUS_GRAY })
+api.nvim_set_hl(0, "@diff.minus"                      , { bg = FAIR_PINK, fg = MONARCH })
+api.nvim_set_hl(0, "@diff.plus"                       , { bg = SCANDAL, fg = JEWEL     })
+api.nvim_set_hl(0, "@function.method"                 , { fg = INCH_WORM               })
+api.nvim_set_hl(0, "@keyword.exception"               , { fg = ROSE                    })
+api.nvim_set_hl(0, "@keyword.storage"                 , { fg = MALIBU                  })
+api.nvim_set_hl(0, "@markup"                          , { fg = YELLOW                  })
+api.nvim_set_hl(0, "@markup.link.url"                 , { fg = YELLOW                  })
+api.nvim_set_hl(0, "@markup.reference.markdown_inline", { fg = ROSE                    })
+api.nvim_set_hl(0, "@module"                          , { fg = NAVAJO_WHITE            })
+api.nvim_set_hl(0, "@string.regexp"                   , { fg = SKY_BLUE                })
+api.nvim_set_hl(0, "@string.special.url"              , { fg = YELLOW                  })
+api.nvim_set_hl(0, "@variable.member"                 , { fg = SOFT_AMBER              })
+api.nvim_set_hl(0, "@variable.parameter"              , { fg = MAYA_BLUE               })
+api.nvim_set_hl(0, "@variable.parameter.reference"    , { fg = MAYA_BLUE               })
+
+api.nvim_set_hl(0, "@variable.member.rust"         , { fg = SANDY_BROWN })
+api.nvim_set_hl(0, "@keyword.exception.rust"       , { fg = SANDY_BROWN })
+api.nvim_set_hl(0, "@keyword.storage.lifetime.rust", { fg = HOT_PINK    })
 
 -- }}}
 
