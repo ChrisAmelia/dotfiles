@@ -45,7 +45,7 @@ plugins=(
 
 )
 
-source $ZSH/oh-my-zsh.sh
+#source $ZSH/oh-my-zsh.sh
 # }}}
 
 # PROMPT {{{
@@ -59,7 +59,7 @@ PROMPT='%{$fg[yellow]%}[%D{%L:%M:%S}] '$PROMPT
 # }}}
 
 # ALIAS {{{
-alias ls='colorls -lX --color=auto'
+alias ls='lsd'
 alias ll='colorls -lArth --color=auto'
 alias pdf='evince'
 alias nv='nvim'
@@ -108,5 +108,3 @@ export JDTLS_HOME=~/GitHub/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repo
 export JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-amd64/
 export WORKSPACE=$HOME/workspace
 # }}}
-
-source $(dirname $(gem which colorls))/tab_complete.sh
