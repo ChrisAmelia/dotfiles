@@ -24,7 +24,7 @@ local on_attach_vim = function(client, bufnr)
 
 	if client.server_capabilities.inlayHintProvider then
 		vim.api.nvim_set_hl(0, "LspInlayHint", { bg = MAKO, fg = WHITE })
-		vim.lsp.inlay_hint(bufnr, true)
+		vim.lsp.inlay_hint.enable(bufnr, true)
 	end
 end
 
