@@ -154,6 +154,10 @@ api.nvim_set_hl(0, "diffOldFile", { fg = CROCODILE               })
 api.nvim_set_hl(0, "diffRemoved", { bg = FAIR_PINK, fg = MONARCH })
 api.nvim_set_hl(0, "diffSubname", { fg = WHITE                   })
 
+api.nvim_set_hl(0, "gitcommitBranch", { bg = JEWEL, fg = INCH_WORM })
+api.nvim_set_hl(0, "gitcommitSelectedFile", { bg = MEDIUM_PURPLE, fg = WHITE })
+api.nvim_set_hl(0, "gitcommitUntrackedFile", { bg = GRAY, fg = NAVAJO_WHITE })
+
 -- https://github.com/nvim-treesitter/nvim-treesitter/commit/1ae9b0e4558fe7868f8cda2db65239cfb14836d0
 api.nvim_set_hl(0, "@diff.delta"                      , { bg = FLAX, fg = FUSCOUS_GRAY })
 api.nvim_set_hl(0, "@diff.minus"                      , { bg = FAIR_PINK, fg = MONARCH })
