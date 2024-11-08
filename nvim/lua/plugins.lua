@@ -53,6 +53,8 @@ cmd [[packadd! fidget.nvim]]
 cmd [[packadd! barbar.nvim]]
 cmd [[packadd! nvim-jdtls]]
 
+cmd [[packadd nvim-spectre]]
+
 return require('packer').startup(function()
 	use 'wbthomason/packer.nvim'
 
@@ -90,6 +92,8 @@ return require('packer').startup(function()
 	-- Finder
 	use { 'Yggdroot/LeaderF', opt = true}
 	use { 'nvim-telescope/telescope.nvim', opt = true, requires = { {'nvim-lua/popup.nvim', opt = true}, {'nvim-lua/plenary.nvim', opt = true} } }
+
+	use { 'nvim-pack/nvim-spectre', opt = true, requires = { { "nvim-lua/plenary.nvim", opt = true } } }
 
 	-- Formatting
 	use { 'junegunn/vim-easy-align', opt = true }

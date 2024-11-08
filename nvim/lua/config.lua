@@ -647,3 +647,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		client.server_capabilities.semanticTokensProvider = nil
 	end,
 })
+
+require('spectre').setup()
