@@ -3,6 +3,9 @@ local Component = {}
 SEPARATOR_LEFT = ""
 SEPARATOR_RIGHT = ""
 
+vim.api.nvim_command("hi StatusLine guibg=none gui=nocombine")
+vim.api.nvim_command("hi WinBar guibg=none gui=nocombine")
+
 Component.buildElement = function (separatorHighlight, mainHighlight, backgroundColor, textColor, value)
 	local buffer = ""
 
