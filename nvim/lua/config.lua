@@ -326,11 +326,11 @@ require'barbar'.setup {
 	auto_hide = true,
 }
 
-api.nvim_command("hi BufferCurrent       guibg=" .. MAYA_BLUE)
-api.nvim_command("hi BufferCurrentMod    guibg=" .. MAYA_BLUE)
-api.nvim_command("hi BufferCurrentIndex  guibg=" .. MAYA_BLUE)
-api.nvim_command("hi BufferCurrentSign   guibg=" .. MAYA_BLUE)
-api.nvim_command("hi BufferCurrentTarget guibg=" .. MAYA_BLUE)
+api.nvim_command("hi BufferCurrent       guibg=" .. MAYA_BLUE .. " guifg=WHITE")
+api.nvim_command("hi BufferCurrentMod    guibg=" .. MAYA_BLUE .. " guifg=WHITE")
+api.nvim_command("hi BufferCurrentIndex  guibg=" .. MAYA_BLUE .. " guifg=WHITE")
+api.nvim_command("hi BufferCurrentSign   guibg=" .. MAYA_BLUE .. " guifg=WHITE")
+api.nvim_command("hi BufferCurrentTarget guibg=" .. MAYA_BLUE .. " guifg=WHITE")
 api.nvim_command("hi BufferInactive      guibg=none guifg=" .. WHITE)
 api.nvim_command("hi BufferInactiveIndex guibg=none guifg=" .. WHITE)
 api.nvim_command("hi BufferInactiveSign  guibg=none guifg=" .. WHITE)
