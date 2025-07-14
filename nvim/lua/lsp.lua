@@ -28,9 +28,6 @@ local on_attach_vim = function(client, bufnr)
 	end
 end
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.preselectSupport = true
@@ -46,13 +43,6 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 		'additionalTextEdits',
 	}
 }
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-vim.lsp.diagnostic.on_publish_diagnostics, {
-	underline = false, -- Enable underline, use default values
-	virtual_text = false -- Enable virtual text only on Warning or above, override spacing to 2
-}
-)
 
 -- JDTLS {{{
 -- local root_pattern = lspconfig.util.root_pattern
