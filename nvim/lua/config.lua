@@ -227,6 +227,9 @@ vim.g.Lf_PreviewInPopup = 1
 vim.g.Lf_WindowPosition = 'popup'
 vim.g.Lf_PopupWidth = 0.70
 vim.g.Lf_PopupPreviewPosition = 'cursor'
+vim.g.Lf_WildIgnore = {
+	dir = { 'target', 'bin' }
+}
 
 vim.keymap.set("n" , "<C-n>"      , ":Leaderf file<CR>"        )
 vim.keymap.set("n" , "<Leader>rg" , ":Leaderf rg -i -g '!git' ")
