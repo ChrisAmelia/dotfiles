@@ -1,28 +1,19 @@
-# Path to your oh-my-zsh installation.
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+# Path to your Oh My Zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
 # Source .zprofile to get 'NVIM_INIT' and 'ZSHRC_CONFIG'
 . ~/.zprofile
 
-# THEME {{{
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time Oh My Zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="agnoster"
-# }}}
-
-# ZSH SETTINGS {{{
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-#}}}
 
 # PLUGINS {{{
 # Which plugins would you like to load?
@@ -44,8 +35,6 @@ plugins=(
 	zsh-syntax-highlighting
 
 )
-
-#source $ZSH/oh-my-zsh.sh
 # }}}
 
 # PROMPT {{{
@@ -58,28 +47,8 @@ export DEFAULT_USER="$(whoami)"
 PROMPT='%{$fg[yellow]%}[%D{%L:%M:%S}] '$PROMPT
 # }}}
 
-# ALIAS {{{
-alias ls='lsd'
-alias ll='colorls -lArth --color=auto'
-alias pdf='evince'
-alias nv='nvim'
-alias zshconfig="nvim $ZSHRC_CONFIG"
-alias neoconfig="nvim $NVIM_INIT"
-alias :q=exit
-alias gcf="git clean -f"
-alias gsf="gco . && gcf" # git super clean
-alias moo="fortune | cowsay"
-# }}}
-
-# CUSTOM COMMANDS {{{
-
-# ls after cd
-function cd {
-	builtin cd "$@" && ls
-}
 
 # ls on startup
-ls
 # }}}
 
 # ZSH-AUTOSUGGESTIONS {{{
@@ -108,3 +77,28 @@ export JDTLS_HOME=~/GitHub/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repo
 export JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-amd64/
 export WORKSPACE=$HOME/workspace
 # }}}
+
+source $ZSH/oh-my-zsh.sh
+PROMPT='%{$fg[yellow]%}[%D{%L:%M:%S}] '$PROMPT
+
+# ALIAS {{{
+alias ls='lsd'
+alias ll='lsd -lArth --color=auto'
+alias pdf='evince'
+alias nv='nvim'
+alias zshconfig="nvim $ZSHRC_CONFIG"
+alias neoconfig="nvim $NVIM_INIT"
+alias :q=exit
+alias gcf="git clean -f"
+alias gsf="gco . && gcf" # git super clean
+alias moo="fortune | cowsay"
+# }}}
+
+# CUSTOM COMMANDS {{{
+
+# ls after cd
+function cd {
+	builtin cd "$@" && ls
+}
+
+ls
