@@ -63,7 +63,10 @@ api.nvim_command("hi DiagnosticUnderlineWarn  guifg=NONE gui=underline")
 api.nvim_command("hi DiagnosticUnderlineInfo  guifg=NONE gui=underline")
 api.nvim_command("hi DiagnosticUnderlineHint  guifg=NONE gui=underline")
 
-vim.keymap.set("n" , "<Leader>e"  , vim.diagnostic.open_float)
+vim.keymap.set('n', '<Leader>e', function()
+	local new_config = not vim.diagnostic.config().virtual_lines
+	vim.diagnostic.config({ virtual_lines = new_config })
+end, { desc = 'Toggle diagnostic virtual_lines' })
 
 -- }}}
 
