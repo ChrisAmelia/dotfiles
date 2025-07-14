@@ -149,6 +149,11 @@ api.nvim_set_hl(0, "@type.qualifier"      , { fg = ROSE         })
 api.nvim_set_hl(0, "@variable"            , { fg = SOFT_AMBER   })
 api.nvim_set_hl(0, "@variable.builtin"    , { fg = ROSE         })
 
+api.nvim_set_hl(0 , "@operator.html"      , { fg = GREEN_YELLOW })
+api.nvim_set_hl(0 , "@tag.html"           , { fg = ROSE         })
+api.nvim_set_hl(0 , "@tag.attribute.html" , { fg = GREEN_YELLOW })
+api.nvim_set_hl(0 , "@tag.delimiter.html" , { fg = WHITE        })
+
 api.nvim_set_hl(0, "@text.reference.markdown_inline"    , { fg = ROSE         })
 
 api.nvim_set_hl(0, "@method.java"         , { fg = INCH_WORM, bold = true})
@@ -156,7 +161,7 @@ api.nvim_set_hl(0, "@method.java"         , { fg = INCH_WORM, bold = true})
 -- rust
 api.nvim_set_hl(0, "@exception.rust"            , { fg = SANDY_BROWN            }) -- to be deprecated for '@keyword.exception.rust'
 api.nvim_set_hl(0, "@field.rust"                , { fg = GREEN_YELLOW           }) -- to be deprecated for '@variable.member.rust'
-api.nvim_set_hl(0, "@function.rust"             , { fg = INCH_WORM, bold = true })
+api.nvim_set_hl(0, "@function.rust"             , { fg = INCH_WORM, })
 api.nvim_set_hl(0, "@function.call.rust"        , { fg = INCH_WORM              })
 api.nvim_set_hl(0, "@storageclass.lifetime.rust", { fg = HOT_PINK               }) -- to be deprecated for '@keyword.storage.lifetime.rust'
 
