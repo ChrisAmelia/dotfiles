@@ -46,8 +46,8 @@ cmd [[packadd! indent-blankline.nvim]]
 -- LSP
 cmd [[packadd! nvim-lspconfig]]
 cmd [[packadd! lsp-status.nvim]]
-cmd [[packadd! rust-tools.nvim]]
 cmd [[packadd! fidget.nvim]]
+cmd [[packadd! rustaceanvim]]
 
 -- Tabs
 cmd [[packadd! barbar.nvim]]
@@ -102,8 +102,8 @@ return require('packer').startup(function()
 	use { 'neovim/nvim-lspconfig', opt = true }
 	use { 'nvim-lua/lsp-status.nvim', opt = true }
 	use { 'mfussenegger/nvim-jdtls', opt = true}
-	use { 'simrat39/rust-tools.nvim', opt = true }
 	use { 'j-hui/fidget.nvim', opt = true }
+	use { 'mrcjkb/rustaceanvim', opt = true }
 
 	-- Tabs
 	use { 'romgrk/barbar.nvim', opt = true }
