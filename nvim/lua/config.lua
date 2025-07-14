@@ -624,6 +624,27 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 require('spectre').setup()
 
+require('render-markdown').setup({
+	checkbox = {
+		enabled = true,
+		render_modes = false,
+		right_pad = 1,
+		unchecked = {
+			icon = '󰄱 ',
+			highlight = 'RenderMarkdownUnchecked',
+			scope_highlight = nil,
+		},
+		checked = {
+			icon = '󰱒 ',
+			highlight = 'RenderMarkdownChecked',
+			scope_highlight = nil,
+		},
+		custom = {
+			todo = { raw = '[-]', rendered = '󰥔 ', highlight = 'RenderMarkdownTodo', scope_highlight = nil },
+		},
+	},
+})
+
 -- default settings
 require("lsp-endhints").setup {
 	icons = {

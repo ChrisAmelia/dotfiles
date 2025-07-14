@@ -56,6 +56,8 @@ cmd [[packadd! nvim-jdtls]]
 
 cmd [[packadd nvim-spectre]]
 
+cmd [[packadd! render-markdown.nvim]]
+
 return require('packer').startup(function()
 	use 'wbthomason/packer.nvim'
 
@@ -98,6 +100,7 @@ return require('packer').startup(function()
 
 	-- Formatting
 	use { 'junegunn/vim-easy-align', opt = true }
+	use { 'MeanderingProgrammer/render-markdown.nvim', opt = true}
 
 	-- LSP
 	use { 'neovim/nvim-lspconfig', opt = true }
