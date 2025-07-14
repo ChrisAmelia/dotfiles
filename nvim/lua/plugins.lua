@@ -56,6 +56,8 @@ cmd [[packadd! nvim-jdtls]]
 
 cmd [[packadd nvim-spectre]]
 
+cmd [[packadd! codecompanion.nvim]]
+
 cmd [[packadd! render-markdown.nvim]]
 
 return require('packer').startup(function()
@@ -84,6 +86,14 @@ return require('packer').startup(function()
 		},
 	}
 	use { 'windwp/nvim-autopairs', opt = true }
+	use ({ "olimorris/codecompanion.nvim",
+	config = function()
+	end,
+	requires = {
+		"nvim-lua/plenary.nvim",
+		"nvim-treesitter/nvim-treesitter",
+	}
+	})
 
 	-- Git
 	use { 'tpope/vim-fugitive', opt = true }

@@ -626,6 +626,39 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 require('spectre').setup()
 
+require("codecompanion").setup({
+	strategies = {
+		chat = {
+			adapter = "gemini",
+		},
+		inline = {
+			adapter = "gemini",
+		},
+	},
+
+	adapters = {
+		gemini = function()
+			local file = io.open(os.getenv("HOME") .. "/.config/gemini/key", "r")
+			local api_key = ""
+			if file ~= nil then
+				api_key = file:read()
+				file:close()
+			end
+
+			return require("codecompanion.adapters").extend("gemini", {
+				schema = {
+					model = {
+						-- default = "gemini-2.5-pro-exp-03-25"
+					},
+				},
+				env = {
+					api_key = api_key
+				},
+			})
+		end,
+	},
+})
+
 require('render-markdown').setup({
 	checkbox = {
 		enabled = true,
