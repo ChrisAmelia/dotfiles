@@ -50,26 +50,42 @@ are not installed by this script.
 
 ## :bookmark_tabs: (Neo)Vim Plugins
 
-| Category    | Plugin                                                                          | Description                                                                                                     |
-| :-          | :-                                                                              | :-                                                                                                              |
-| Colors      | [nvim-colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua)            | A high-performance color highlighter for Neovim which has no external dependencies!                             |
-| Colorscheme | [vim-sublime-monokai](https://github.com/ErichDonGubler/vim-sublime-monokai)    | vim-sublime-monokai is a refined Monokai color scheme for vim tries to look like Sublime's default color scheme |
-| Completion  | [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                                 | A completion plugin for neovim coded in Lua.                                                                    |
-| Completion  | [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)                               | VSCode(LSP)'s snippet feature in vim.                                                                           |
-| Completion  | [vim-vsnip-integ](https://github.com/hrsh7th/vim-vsnip-integ)                   | Snippet completion/expansion.                                                                                   |
-| Completion  | [pears.nvim](https://github.com/steelsojka/pears.nvim)                          | Auto pair plugin for neovim                                                                                     |
-| Finder      | [LeaderF](https://github.com/Yggdroot/LeaderF)                                  | An efficient fuzzy finder that helps to locate files, buffers, mrus, gtags, etc. on the fly.                    |
-| Finder      | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)              | Telescope.nvim is a next generation library for creating floating pickers with advanced features..              |
-| Formatting  | [vim-easy-align](https://github.com/junegunn/vim-easy-align)                    | A simple, easy-to-use Vim alignment plugin.                                                                     |
-| Git         | [fugitive.vim](https://github.com/tpope/vim-fugitive)                           | Git wrapper                                                                                                     |
-| Git         | [vim-gitgutter](https://github.com/airblade/vim-gitgutter)                      | A Vim plugin which shows a git diff in the sign column.                                                         |
-| Interface   | [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) | Indent guides on blank lines for Neovim                                                                         |
-| LSP         | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                      | Collection of common configurations for the Nvim LSP client.                                                    |
-| LSP         | [lsp-status.nvim](https://github.com/nvim-lua/lsp-status.nvim)                  | Neovim plugin/library for generating statusline components from the built-in LSP client.                        |
-| Parser      | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)           | Treesitter configurations and abstraction layer for Neovim.                                                     |
-| Parser      | [hlargs.nvim](https://github.com/m-demare/hlargs.nvim)                          | Highlight arguments' definitions and usages, asynchronously, using Treesitter.                                  |
-| Statusline  | [status-line.lua](nvim/lua/status-line.lua)                                     | Custom statusline, see screenshot                                                                               |
-| Tabs        | [barbar.nvim](https://github.com/romgrk/barbar.nvim)                            | Tabs, as understood by any other editor.                                                                        |
+| Category    | Plugin                                                                                | Description                                                                                                     |
+| :-          | :-                                                                                    | :-                                                                                                              |
+| Colors      | [nvim-colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua)                  | A high-performance color highlighter for Neovim which has no external dependencies!                             |
+| Colorscheme | [vim-sublime-monokai](https://github.com/ErichDonGubler/vim-sublime-monokai)          | vim-sublime-monokai is a refined Monokai color scheme for vim tries to look like Sublime's default color scheme |
+| Completion  | [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                                        | Snippet Engine for Neovim written in Lua.                                                                       |
+| Completion  | [cmp-buffer](https://github.com/hrsh7th/cmp-buffer)                                   | nvim-cmp source for buffer words.                                                                               |
+| Completion  | [cmp-nvim-lsp-signature-help](https://github.com/hrsh7th/cmp-nvim-lsp-signature-help) | nvim-cmp source for displaying function signatures with the current parameter emphasized.                       |
+| Completion  | [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)                               | nvim-cmp source for neovim's built-in language server client.                                                   |
+| Completion  | [cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)                               | nvim-cmp source for neovim Lua API.                                                                             |
+| Completion  | [cmp-path](https://github.com/hrsh7th/cmp-path)                                       | nvim-cmp source for filesystem paths.                                                                           |
+| Completion  | [cmp-vsnip](https://github.com/hrsh7th/cmp-vsnip)                                     | nvim-cmp source for vim-vsnip.                                                                                  |
+| Completion  | [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)                            | luasnip completion source for nvim-cmp                                                                          |
+| Completion  | [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim)                 | AI-powered coding, seamlessly in Neovim                                                                         |
+| Completion  | [nvim-autopairs](https://github.com/windwp/nvim-autopairs)                            | A super powerful autopair plugin for Neovim that supports multiple characters.                                  |
+| Completion  | [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                                       | A completion plugin for neovim coded in Lua.                                                                    |
+| Completion  | [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)                          | Use treesitter to auto close and auto rename html tag                                                           |
+| Completion  | [vim-vsnip-integ](https://github.com/hrsh7th/vim-vsnip-integ)                         | Snippet completion/expansion.                                                                                   |
+| Completion  | [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)                                     | VSCode(LSP)'s snippet feature in vim.                                                                           |
+| Finder      | [LeaderF](https://github.com/Yggdroot/LeaderF)                                        | An efficient fuzzy finder that helps to locate files, buffers, mrus, gtags, etc. on the fly.                    |
+| Finder      | [nvim-spectre](https://github.com/nvim-pack/nvim-spectre)                             | Find the enemy and replace them with dark power.                                                                |
+| Finder      | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)                    | Telescope.nvim is a next generation library for creating floating pickers with advanced features..              |
+| Formatting  | [vim-easy-align](https://github.com/junegunn/vim-easy-align)                          | A simple, easy-to-use Vim alignment plugin.                                                                     |
+| Git         | [fugitive.vim](https://github.com/tpope/vim-fugitive)                                 | Git wrapper                                                                                                     |
+| Git         | [vim-gitgutter](https://github.com/airblade/vim-gitgutter)                            | A Vim plugin which shows a git diff in the sign column.                                                         |
+| Interface   | [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)       | Indent guides on blank lines for Neovim                                                                         |
+| Interface   | [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)  | Plugin to improve viewing Markdown files in Neovim                                                              |
+| LSP         | [fidget.nvim](https://github.com/j-hui/fidget.nvim)                                   | Extensible UI for Neovim notifications and LSP progress messages.                                               |
+| LSP         | [lsp-status.nvim](https://github.com/nvim-lua/lsp-status.nvim)                        | Neovim plugin/library for generating statusline components from the built-in LSP client.                        |
+| LSP         | [nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls)                              | Extensions for the built-in LSP support in Neovim for `eclipse.jdt.ls`                                          |
+| LSP         | [nvim-lsp-endhints](https://github.com/chrisgrieser/nvim-lsp-endhints)                | Display LSP inlay hints at the end of the line, rather than within the line.                                    |
+| LSP         | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                            | Collection of common configurations for the Nvim LSP client.                                                    |
+| LSP         | [rustaceanvim](https://github.com/mrcjkb/rustaceanvim)                                | Supercharge your Rust experience in Neovim!                                                                     |
+| Parser      | [hlargs.nvim](https://github.com/m-demare/hlargs.nvim)                                | Highlight arguments' definitions and usages, asynchronously, using Treesitter.                                  |
+| Parser      | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)                 | Treesitter configurations and abstraction layer for Neovim.                                                     |
+| Statusline  | [status-line.lua](nvim/lua/status-line.lua)                                           | Custom statusline, see screenshot                                                                               |
+| Tabs        | [barbar.nvim](https://github.com/romgrk/barbar.nvim)                                  | Tabs, as understood by any other editor.                                                                        |
 
 ## :bookmark_tabs: Other interesting plugins
 
