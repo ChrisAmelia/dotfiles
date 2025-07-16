@@ -40,7 +40,7 @@ sudo chmod +x install.sh
 ./install.sh
 ```
 
-Note: [colorls](https://github.com/athityakumar/colorls) and [FiraCode](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode)
+Note: [lsd](https://github.com/lsd-rs/lsd) and [FiraCode](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode)
 are not installed by this script.
 
 ## :art: Screenshots
@@ -118,9 +118,9 @@ are not installed by this script.
 
 | Project                                                | Description                                                                                  |
 | :-                                                     | :-                                                                                           |
-| [colorls](https://github.com/athityakumar/colorls)     | A Ruby script that colorizes the `ls` output with color and icons..                          |
 | [Neovim](https://github.com/neovim/neovim)             | Vim-fork focused on extensibility and usability.                                             |
 | [Oh-My-Zsh](https://github.com/robbyrussell/oh-my-zsh) | Oh My Zsh is an open source, community-driven framework for managing your zsh configuration. |
+| [lsd](https://github.com/lsd-rs/lsd)                   | The next gen ls command                                                                      |
 
 ## :link: Reddit
 
