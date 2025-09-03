@@ -637,25 +637,27 @@ require("codecompanion").setup({
 	},
 
 	adapters = {
-		gemini = function()
-			local file = io.open(os.getenv("HOME") .. "/.config/gemini/key", "r")
-			local api_key = ""
-			if file ~= nil then
-				api_key = file:read()
-				file:close()
-			end
+		http ={
+			gemini = function()
+				local file = io.open(os.getenv("HOME") .. "/.config/gemini/key", "r")
+				local api_key = ""
+				if file ~= nil then
+					api_key = file:read()
+					file:close()
+				end
 
-			return require("codecompanion.adapters").extend("gemini", {
-				schema = {
-					model = {
-						-- default = "gemini-2.5-pro-exp-03-25"
+				return require("codecompanion.adapters").extend("gemini", {
+					schema = {
+						model = {
+							-- default = "gemini-2.5-pro-exp-03-25"
+						},
 					},
-				},
-				env = {
-					api_key = api_key
-				},
-			})
-		end,
+					env = {
+						api_key = api_key
+					},
+				})
+			end,
+		},
 	},
 })
 
