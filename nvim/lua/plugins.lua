@@ -29,9 +29,8 @@ cmd [[packadd! hlargs.nvim]]
 
 -- Finder
 cmd [[packadd! LeaderF]]
-cmd [[packadd! popup.nvim]]
 cmd [[packadd! plenary.nvim]]
-cmd [[packadd! telescope.nvim]]
+cmd [[packadd! fzf-lua]]
 
 -- Formatting
 cmd [[packadd! vim-easy-align]]
@@ -105,7 +104,7 @@ return require('packer').startup(function()
 
 	-- Finder
 	use { 'Yggdroot/LeaderF', opt = true}
-	use { 'nvim-telescope/telescope.nvim', opt = true, requires = { {'nvim-lua/popup.nvim', opt = true}, {'nvim-lua/plenary.nvim', opt = true} } }
+	use { 'ibhagwan/fzf-lua', opt = true}
 
 	use { 'nvim-pack/nvim-spectre', opt = true, requires = { { "nvim-lua/plenary.nvim", opt = true } } }
 

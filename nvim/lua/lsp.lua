@@ -19,7 +19,7 @@ end
 --- Custom attach
 local on_attach_vim = function(client, bufnr)
 	document_highlight()
-	vim.keymap.set("n", "<leader>dc", ":Telescope diagnostics bufnr=0<cr>")
+	vim.keymap.set("n", "<leader>dc", "<cmd>FzfLua diagnostics_document<cr>")
 	vim.keymap.set('n', '<leader>gr', ":Telescope lsp_references<cr>", { buffer = 0 })
 
 	if client.server_capabilities.inlayHintProvider then
