@@ -566,15 +566,6 @@ api.nvim_set_hl(0, "@text.reference.gitcommit", { bg = "#BFFC8F", fg = "#357503"
 
 -- }}}
 
-
-vim.api.nvim_create_autocmd("LspAttach", {
-	callback = function(args)
-		local bufnr = args.buf
-		local client = vim.lsp.get_client_by_id(args.data.client_id)
-		client.server_capabilities.semanticTokensProvider = nil
-	end,
-})
-
 -- spectre {{{{
 
 require('spectre').setup()

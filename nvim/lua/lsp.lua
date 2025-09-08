@@ -44,6 +44,16 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 	}
 }
 
+--- Disable semantic tokens
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local bufnr = args.buf
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		client.server_capabilities.semanticTokensProvider = nil
+	end,
+})
+
+
 -- JDTLS {{{
 -- local root_pattern = lspconfig.util.root_pattern
 -- 
