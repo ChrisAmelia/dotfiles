@@ -594,6 +594,7 @@ require"fidget".setup{}
 
 -- }}}
 
+-- gitcommit tree-sitter {{{
 
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 
@@ -613,6 +614,8 @@ api.nvim_set_hl(0, "@text.diff.delete", { bg = "#FFEBE9", fg = "#82071E", })
 api.nvim_set_hl(0, "@text.diff.add", { bg = "#DAFBE1", fg = "#116329" })
 api.nvim_set_hl(0, "@function.diff", { bg = "#8FBFFC", fg = "#0550AE" })
 api.nvim_set_hl(0, "@text.reference.gitcommit", { bg = "#BFFC8F", fg = "#357503" })
+
+-- }}}
 
 api.nvim_set_hl(0, "CurSearch", { bg = BLUE_RIBBON, fg = WHITE })
 
