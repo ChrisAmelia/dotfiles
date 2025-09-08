@@ -633,6 +633,8 @@ require('spectre').setup()
 
 -- }}}
 
+-- codecompanion {{{
+
 require("codecompanion").setup({
 	strategies = {
 		chat = {
@@ -667,6 +669,8 @@ require("codecompanion").setup({
 		},
 	},
 })
+
+-- }}}
 
 require('render-markdown').setup({
 	checkbox = {
