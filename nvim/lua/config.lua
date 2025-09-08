@@ -697,7 +697,8 @@ require('render-markdown').setup({
 
 -- }}}
 
--- default settings
+-- lsp-endhints {{{
+
 require("lsp-endhints").setup {
 	icons = {
 		type = " ",
@@ -717,6 +718,8 @@ require("lsp-endhints").setup {
 	autoEnableHints = true,
 }
 vim.api.nvim_set_hl(0, "LspInlayHint", { bg = MAKO, fg = WHITE })
+
+-- }}}
 
 -- nvim-eldoc {{{
 
