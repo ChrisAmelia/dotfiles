@@ -627,7 +627,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
+-- spectre {{{{
+
 require('spectre').setup()
+
+-- }}}
 
 require("codecompanion").setup({
 	strategies = {
