@@ -719,6 +719,8 @@ require("lsp-endhints").setup {
 vim.api.nvim_set_hl(0, "LspInlayHint", { bg = MAKO, fg = WHITE })
 
 -- nvim-eldoc {{{
+
 require("nvim-eldoc").setup()
 api.nvim_set_hl(0, "EldocCur",  { fg = GOLD })
+
 -- }}}
