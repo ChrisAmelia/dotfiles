@@ -672,6 +672,8 @@ require("codecompanion").setup({
 
 -- }}}
 
+-- render-markdown {{{
+
 require('render-markdown').setup({
 	checkbox = {
 		enabled = true,
@@ -692,6 +694,8 @@ require('render-markdown').setup({
 		},
 	},
 })
+
+-- }}}
 
 -- default settings
 require("lsp-endhints").setup {
