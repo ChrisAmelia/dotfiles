@@ -54,6 +54,7 @@ api.nvim_command("hi SignColumn  guibg=none"               ) -- Sign column high
 api.nvim_command("hi Visual      guibg=#00FA9A guifg=BLACK") -- Visual highlight
 api.nvim_command("hi PMenu guibg=#191f22 guifg=#C0C0C0")
 api.nvim_command("hi PMenuSel guibg=NONE guifg=NONE")
+api.nvim_set_hl(0, "CurSearch", { bg = BLUE_RIBBON, fg = WHITE })
 
 
 -- Quick mappings

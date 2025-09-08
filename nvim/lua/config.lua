@@ -566,7 +566,6 @@ api.nvim_set_hl(0, "@text.reference.gitcommit", { bg = "#BFFC8F", fg = "#357503"
 
 -- }}}
 
-api.nvim_set_hl(0, "CurSearch", { bg = BLUE_RIBBON, fg = WHITE })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
