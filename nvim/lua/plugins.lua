@@ -49,6 +49,7 @@ cmd [[packadd! lsp-status.nvim]]
 cmd [[packadd! fidget.nvim]]
 cmd [[packadd! rustaceanvim]]
 cmd [[packadd! nvim-lsp-endhints]]
+cmd [[packadd! nvim-eldoc]]
 
 -- Tabs
 cmd [[packadd! barbar.nvim]]
@@ -119,6 +120,7 @@ return require('packer').startup(function()
 	use { 'j-hui/fidget.nvim', opt = true }
 	use { 'mrcjkb/rustaceanvim', opt = true }
 	use { 'chrisgrieser/nvim-lsp-endhints', opt = true }
+	use { 'sj2tpgk/nvim-eldoc', opt = true }
 
 	-- Tabs
 	use { 'romgrk/barbar.nvim', opt = true }
