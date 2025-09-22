@@ -9,28 +9,30 @@ cmd [[packadd! nvim-colorizer.lua]]
 cmd [[packadd! vim-sublime-monokai]]
 
 -- Completion
-cmd [[packadd! nvim-cmp]]
-cmd [[packadd! vim-vsnip]]
-cmd [[packadd! vim-vsnip-integ]]
-cmd [[packadd! cmp-nvim-lsp]]
-cmd [[packadd! cmp-nvim-lsp-signature-help]]
-cmd [[packadd! cmp-nvim-lua]]
+cmd [[packadd! LuaSnip]]
 cmd [[packadd! cmp-buffer]]
+cmd [[packadd! cmp-nvim-lsp-signature-help]]
+cmd [[packadd! cmp-nvim-lsp]]
+cmd [[packadd! cmp-nvim-lua]]
 cmd [[packadd! cmp-path]]
 cmd [[packadd! cmp-vsnip]]
-cmd [[packadd! LuaSnip]]
 cmd [[packadd! cmp_luasnip]]
+cmd [[packadd! codecompanion.nvim]]
 cmd [[packadd! nvim-autopairs]]
-cmd [[packadd! nvim-ts-autotag]]
+cmd [[packadd! nvim-cmp]]
+cmd [[packadd! vim-vsnip-integ]]
+cmd [[packadd! vim-vsnip]]
 
 -- Tree-sitter
-cmd [[packadd! nvim-treesitter]]
 cmd [[packadd! hlargs.nvim]]
+cmd [[packadd! nvim-treesitter]]
+cmd [[packadd! nvim-ts-autotag]]
 
 -- Finder
 cmd [[packadd! LeaderF]]
-cmd [[packadd! plenary.nvim]]
 cmd [[packadd! fzf-lua]]
+cmd [[packadd! nvim-spectre]]
+cmd [[packadd! plenary.nvim]]
 
 -- Formatting
 cmd [[packadd! vim-easy-align]]
@@ -41,24 +43,19 @@ cmd [[packadd! vim-gitgutter]]
 
 -- Interface
 cmd [[packadd! indent-blankline.nvim]]
+cmd [[packadd! render-markdown.nvim]]
 
 -- LSP
-cmd [[packadd! nvim-lspconfig]]
-cmd [[packadd! lsp-status.nvim]]
 cmd [[packadd! fidget.nvim]]
-cmd [[packadd! rustaceanvim]]
-cmd [[packadd! nvim-lsp-endhints]]
+cmd [[packadd! lsp-status.nvim]]
 cmd [[packadd! nvim-eldoc]]
+cmd [[packadd! nvim-jdtls]]
+cmd [[packadd! nvim-lsp-endhints]]
+cmd [[packadd! nvim-lspconfig]]
+cmd [[packadd! rustaceanvim]]
 
 -- Tabs
 cmd [[packadd! barbar.nvim]]
-cmd [[packadd! nvim-jdtls]]
-
-cmd [[packadd nvim-spectre]]
-
-cmd [[packadd! codecompanion.nvim]]
-
-cmd [[packadd! render-markdown.nvim]]
 
 return require('packer').startup(function()
 	use 'wbthomason/packer.nvim'
@@ -70,22 +67,22 @@ return require('packer').startup(function()
 	use { 'ErichDonGubler/vim-sublime-monokai', opt = true }
 
 	-- Completion
+	use { 'windwp/nvim-autopairs', opt = true }
 	use { 'hrsh7th/nvim-cmp',
 		opt = true,
 		requires = {
+			{ 'L3MON4D3/LuaSnip', opt = true },
 			{ 'hrsh7th/cmp-buffer', opt = true },
-			{ 'hrsh7th/cmp-path', opt = true },
 			{ 'hrsh7th/cmp-nvim-lsp', opt = true },
 			{ 'hrsh7th/cmp-nvim-lsp-signature-help', opt = true },
 			{ 'hrsh7th/cmp-nvim-lua', opt = true },
+			{ 'hrsh7th/cmp-path', opt = true },
 			{ 'hrsh7th/cmp-vsnip', opt = true },
 			{ 'hrsh7th/vim-vsnip', opt = true },
 			{ 'hrsh7th/vim-vsnip-integ', opt = true},
-			{ 'L3MON4D3/LuaSnip', opt = true },
 			{ 'saadparwaiz1/cmp_luasnip', opt = true },
 		},
 	}
-	use { 'windwp/nvim-autopairs', opt = true }
 	use ({ "olimorris/codecompanion.nvim",
 	config = function()
 	end,
@@ -101,6 +98,7 @@ return require('packer').startup(function()
 
 	-- Interface
 	use { 'lukas-reineke/indent-blankline.nvim', opt = true }
+	use { 'MeanderingProgrammer/render-markdown.nvim', opt = true}
 
 	-- Finder
 	use { 'Yggdroot/LeaderF', opt = true}
@@ -110,7 +108,6 @@ return require('packer').startup(function()
 
 	-- Formatting
 	use { 'junegunn/vim-easy-align', opt = true }
-	use { 'MeanderingProgrammer/render-markdown.nvim', opt = true}
 
 	-- LSP
 	use { 'neovim/nvim-lspconfig', opt = true }
