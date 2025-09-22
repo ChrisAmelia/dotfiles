@@ -1,3 +1,5 @@
+require('colors')
+
 local api = vim.api
 local cmd = vim.cmd
 local opt = vim.opt
