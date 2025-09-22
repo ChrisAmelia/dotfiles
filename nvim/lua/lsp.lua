@@ -1,5 +1,3 @@
-local lspconfig = require 'lspconfig'
-
 --- Document highlights
 local function document_highlight()
 	vim.api.nvim_exec([[
