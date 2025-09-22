@@ -171,27 +171,27 @@ vim.lsp.enable('lua_ls')
 -- }}}
 
 -- GOPLS {{{
-lspconfig.gopls.setup{
-	on_attach = on_attach_vim,
-	capabilities = capabilities,
-	cmd = {"gopls", "serve"},
-	settings = {
-		gopls = {
-			analyses = {
-				unusedparams = true,
-			},
-			staticcheck = true,
-			linksInHover = false,
-			codelenses = {
-				generate = true,
-				gc_details = true,
-				regenerate_cgo = true,
-				tidy = true,
-				upgrade_depdendency = true,
-				vendor = true,
-			},
-			usePlaceholders = true,
-		},
-	},
-}
+-- lspconfig.gopls.setup{
+-- 	on_attach = on_attach_vim,
+-- 	capabilities = capabilities,
+-- 	cmd = {"gopls", "serve"},
+-- 	settings = {
+-- 		gopls = {
+-- 			analyses = {
+-- 				unusedparams = true,
+-- 			},
+-- 			staticcheck = true,
+-- 			linksInHover = false,
+-- 			codelenses = {
+-- 				generate = true,
+-- 				gc_details = true,
+-- 				regenerate_cgo = true,
+-- 				tidy = true,
+-- 				upgrade_depdendency = true,
+-- 				vendor = true,
+-- 			},
+-- 			usePlaceholders = true,
+-- 		},
+-- 	},
+-- }
 -- }}}
