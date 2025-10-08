@@ -444,6 +444,7 @@ cmp.setup {
 				end
 			}
 		},
+		{ name = 'nvim_lua '},
 		{ name = 'vsnip' },
 	},
 }
