@@ -667,3 +667,7 @@ require("nvim-eldoc").setup()
 api.nvim_set_hl(0, "EldocCur",  { fg = GOLD })
 
 -- }}}
+
+-- FzfLua {{{{
+vim.keymap.set("n", "<leader>dc", "<cmd>FzfLua diagnostics_document<cr>")
+-- }}}
