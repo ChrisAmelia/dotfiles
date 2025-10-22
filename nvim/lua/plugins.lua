@@ -1,128 +1,62 @@
-local cmd = vim.cmd
-
-cmd [[packadd! packer.nvim]]
-
--- Colors
-cmd [[packadd! nvim-colorizer.lua]]
-
--- Colorscheme
-cmd [[packadd! vim-sublime-monokai]]
-
--- Completion
-cmd [[packadd! LuaSnip]]
-cmd [[packadd! cmp-buffer]]
-cmd [[packadd! cmp-nvim-lsp-signature-help]]
-cmd [[packadd! cmp-nvim-lsp]]
-cmd [[packadd! cmp-nvim-lua]]
-cmd [[packadd! cmp-path]]
-cmd [[packadd! cmp-vsnip]]
-cmd [[packadd! cmp_luasnip]]
-cmd [[packadd! codecompanion.nvim]]
-cmd [[packadd! nvim-autopairs]]
-cmd [[packadd! nvim-cmp]]
-cmd [[packadd! vim-vsnip-integ]]
-cmd [[packadd! vim-vsnip]]
-
--- Tree-sitter
-cmd [[packadd! hlargs.nvim]]
-cmd [[packadd! nvim-treesitter]]
-cmd [[packadd! nvim-ts-autotag]]
-
--- Finder
-cmd [[packadd! LeaderF]]
-cmd [[packadd! fzf-lua]]
-cmd [[packadd! nvim-spectre]]
-cmd [[packadd! plenary.nvim]]
-
--- Formatting
-cmd [[packadd! vim-easy-align]]
-
--- Git
-cmd [[packadd! vim-fugitive]]
-cmd [[packadd! vim-gitgutter]]
-
--- Interface
-cmd [[packadd! indent-blankline.nvim]]
-cmd [[packadd! render-markdown.nvim]]
-
--- LSP
-cmd [[packadd! fidget.nvim]]
-cmd [[packadd! lsp-status.nvim]]
-cmd [[packadd! nvim-eldoc]]
-cmd [[packadd! nvim-jdtls]]
-cmd [[packadd! nvim-lsp-endhints]]
-cmd [[packadd! nvim-lspconfig]]
-cmd [[packadd! rustaceanvim]]
-
--- Tabs
-cmd [[packadd! barbar.nvim]]
-
-return require('packer').startup(function()
-	use 'wbthomason/packer.nvim'
+vim.pack.add({
+	'https://github.com/wbthomason/packer.nvim',
 
 	-- Colors
-	use { 'norcalli/nvim-colorizer.lua', opt = true }
+	'https://github.com/norcalli/nvim-colorizer.lua',
 
 	-- Colorscheme
-	use { 'ErichDonGubler/vim-sublime-monokai', opt = true }
+	'https://github.comErichDonGubler/vim-sublime-monokai',
 
 	-- Completion
-	use { 'windwp/nvim-autopairs', opt = true }
-	use { 'hrsh7th/nvim-cmp',
-		opt = true,
-		requires = {
-			{ 'L3MON4D3/LuaSnip', opt = true },
-			{ 'hrsh7th/cmp-buffer', opt = true },
-			{ 'hrsh7th/cmp-nvim-lsp', opt = true },
-			{ 'hrsh7th/cmp-nvim-lsp-signature-help', opt = true },
-			{ 'hrsh7th/cmp-nvim-lua', opt = true },
-			{ 'hrsh7th/cmp-path', opt = true },
-			{ 'hrsh7th/cmp-vsnip', opt = true },
-			{ 'hrsh7th/vim-vsnip', opt = true },
-			{ 'hrsh7th/vim-vsnip-integ', opt = true},
-			{ 'saadparwaiz1/cmp_luasnip', opt = true },
-		},
-	}
-	use ({ "olimorris/codecompanion.nvim",
-	config = function()
-	end,
-	requires = {
-		"nvim-lua/plenary.nvim",
-		"nvim-treesitter/nvim-treesitter",
-	}
-	})
+	'https://github.com/windwp/nvim-autopairs',
+	'https://github.com/hrsh7th/nvim-cmp',
+	'https://github.com/L3MON4D3/LuaSnip',
+	'https://github.com/hrsh7th/cmp-buffer',
+	'https://github.com/hrsh7th/cmp-nvim-lsp',
+	'https://github.com/hrsh7th/cmp-nvim-lsp-signature-help',
+	'https://github.com/hrsh7th/cmp-nvim-lua',
+	'https://github.com/hrsh7th/cmp-path',
+	'https://github.com/hrsh7th/cmp-vsnip',
+	'https://github.com/hrsh7th/vim-vsnip',
+	'https://github.com/hrsh7th/vim-vsnip-integ',
+	'https://github.com/saadparwaiz1/cmp_luasnip',
+	'https//github.com/olimorris/codecompanion.nvim',
+		--- dependencies
+		'https://github.com/nvim-lua/plenary.nvim',
+		'https://github.com/nvim-treesitter/nvim-treesitter',
 
 	-- Git
-	use { 'tpope/vim-fugitive', opt = true }
-	use { 'airblade/vim-gitgutter', opt = true }
+	'https://github.com/tpope/vim-fugitive',
+	'https://github.com/airblade/vim-gitgutter',
 
 	-- Interface
-	use { 'lukas-reineke/indent-blankline.nvim', opt = true }
-	use { 'MeanderingProgrammer/render-markdown.nvim', opt = true}
+	'https://github.com/lukas-reineke/indent-blankline.nvim',
+	'https://github.com/MeanderingProgrammer/render-markdown.nvim',
 
 	-- Finder
-	use { 'Yggdroot/LeaderF', opt = true}
-	use { 'ibhagwan/fzf-lua', opt = true}
-
-	use { 'nvim-pack/nvim-spectre', opt = true, requires = { { "nvim-lua/plenary.nvim", opt = true } } }
+	'https://github.com/Yggdroot/LeaderF',
+	'https://github.com/ibhagwan/fzf-lua',
+	'https://github.com/nvim-pack/nvim-spectre',
+		--- dependencies
+		'https://github.com/nvim-pack/nvim-spectre',
 
 	-- Formatting
-	use { 'junegunn/vim-easy-align', opt = true }
+	'https://github.com/junegunn/vim-easy-align',
 
 	-- LSP
-	use { 'neovim/nvim-lspconfig', opt = true }
-	use { 'nvim-lua/lsp-status.nvim', opt = true }
-	use { 'mfussenegger/nvim-jdtls', opt = true}
-	use { 'j-hui/fidget.nvim', opt = true }
-	use { 'mrcjkb/rustaceanvim', opt = true }
-	use { 'chrisgrieser/nvim-lsp-endhints', opt = true }
-	use { 'sj2tpgk/nvim-eldoc', opt = true }
+	'https://github.com/neovim/nvim-lspconfig',
+	'https://github.com/nvim-lua/lsp-status.nvim',
+	'https://github.com/mfussenegger/nvim-jdtls',
+	'https://github.com/j-hui/fidget.nvim',
+	'https://github.com/mrcjkb/rustaceanvim',
+	'https://github.com/chrisgrieser/nvim-lsp-endhints',
+	'https://github.com/sj2tpgk/nvim-eldoc',
 
 	-- Tabs
-	use { 'romgrk/barbar.nvim', opt = true }
+	'https://github.com/romgrk/barbar.nvim',
 
 	-- Tree-sitter
-	use { 'nvim-treesitter/nvim-treesitter', opt = true }
-	use { 'm-demare/hlargs.nvim', opt = true }
-	use { 'windwp/nvim-ts-autotag', opt = true}
-end)
+	'https://github.com/nvim-treesitter/nvim-treesitter',
+	'https://github.com/m-demare/hlargs.nvim',
+	'https://github.com/windwp/nvim-ts-autotag',
+})
