@@ -12,6 +12,8 @@ echo -e "${BACKGROUND_GREEN}Executing install script in '${PWD##*/}'${NC}"
 readonly CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 readonly LOCAL_BIN="/usr/local/bin"
 readonly NVIM_DIRECTORY=$HOME/.config/nvim
+readonly NVIM_LUA_DIRECTORY=$HOME/.config/nvim/lua
+readonly NVIM_FTDETECT_DIRECTORY=$HOME/.config/nvim/ftdetect
 
 #-------------------------------------------------------------------
 # @description nvim
@@ -21,11 +23,21 @@ readonly NVIM_APPIMAGE="nvim.appimage"
 #------------------------------------------------------------------
 # @description Create nvim directory
 #------------------------------------------------------------------
-createNvimDirectory() {
+createNvimDirectories() {
 	readonly MESSAGE_CREATE_NVIM_DIRECTORY="Creating nvim's config directory if does not exist."
 	readonly COMMAND_CREATE_NVIM_DIRECTORY="mkdir -p $NVIM_DIRECTORY"
 
 	evaluateCommand "$MESSAGE_CREATE_NVIM_DIRECTORY" "$COMMAND_CREATE_NVIM_DIRECTORY"
+
+	readonly MESSAGE_CREATE_LUA_DIRECTORY="Creating nvim's lua directory if does not exist."
+	readonly COMMAND_CREATE_LUA_DIRECTORY="mkdir -p $NVIM_LUA_DIRECTORY"
+
+	evaluateCommand "$MESSAGE_CREATE_LUA_DIRECTORY" "$COMMAND_CREATE_LUA_DIRECTORY"
+
+	readonly MESSAGE_CREATE_FTDETECT_DIRECTORY="Creating nvim's ftdetect directory if does not exist."
+	readonly COMMAND_CREATE_FTDETECT_DIRECTORY="mkdir -p $NVIM_FTDETECT_DIRECTORY"
+
+	evaluateCommand "$MESSAGE_CREATE_LUA_DIRECTORY" "$COMMAND_CREATE_FTDETECT_DIRECTORY"
 }
 
 #------------------------------------------------------------------
@@ -145,7 +157,7 @@ createNvimSylink() {
 
 if [ "${PWD##*/}" == "nvim" ]
 then
-	createNvimDirectory
+	createNvimDirectories
 	echo
 	createConfigsSymlinks
 	echo
