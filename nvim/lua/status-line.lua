@@ -97,45 +97,47 @@ local extensions = {
 
 }
 
---- Returns true if current directory is git repository, else false
-local isGitRepository = function()
-	local currentDirectory = fn.expand("%:p:h")
-	local gitRoot = fn.finddir(".git/", currentDirectory .. ";")
+--- If value is not `nil`, then is a git repository,
+--- especially check the presence of a .git directory.
+---@see string.find
+local is_git_repository = function()
+	local current_dir = fn.expand("%:p:h")
+	local git_root = fn.finddir(".git/", current_dir .. ";")
 
-	return string.find(gitRoot, ".git")
+	return string.find(git_root, ".git")
 end
 
---- Returns current branch name
-local getGitBranchName = function()
-	local branchName = vim.b.gitBranchName or ""
+--- @return string # current branch name
+local get_git_branch_name = function()
+	local branch_name = vim.b.gitBranchName or ""
 
 	local icon = ""
 
-	if branchName == "master" or branchName == "main" then
+	if branch_name == "master" or branch_name == "main" then
 		icon = ""
-	elseif string.find(string.lower(branchName), "fix") then
+	elseif string.find(string.lower(branch_name), "fix") then
 		icon = ""
-		branchName = branchName:sub(5, -1)
-	elseif string.find(string.lower(branchName), "feat") then
+		branch_name = branch_name:sub(5, -1)
+	elseif string.find(string.lower(branch_name), "feat") then
 		icon = ""
-		branchName = branchName:sub(6, -1)
+		branch_name = branch_name:sub(6, -1)
 	else
 		icon = ""
 	end
 
-	return icon .. " " .. branchName
+	return icon .. " " .. branch_name
 end
 
---- Returns git relative path of current file
-local getGitRelativePath = function()
+--- @return string # git relative path of current file
+local get_git_relative_path = function()
 	local icon = ""
 	local filename = fn.expand("%:t") -- file's name with extension: "file.txt"
-	local fullPath = fn.expand("%:p") -- path to file: "/home/user/git_repo/path/to/file.txt"
-	local currentDirectory = fn.expand("%:p:h")
-	local gitDirectory = fn.finddir(".git/..", currentDirectory .. ";") -- "/home/user/git_repo"
+	local fullpath = fn.expand("%:p") -- path to file: "/home/user/git_repo/path/to/file.txt"
+	local current_dir = fn.expand("%:p:h")
+	local git_directory = fn.finddir(".git/..", current_dir .. ";") -- "/home/user/git_repo"
 
 	-- When opening an empty buffer
-	if fullPath == "" then
+	if fullpath == "" then
 		return ""
 	end
 
@@ -143,50 +145,52 @@ local getGitRelativePath = function()
 	--       ^^^^^^^^^^^^^^^^^^^         ^^^^^^^^^
 	--       len(gitDirectory)           len(filename)
 	-- to "path/to"
-	local beginIndex = string.len(gitDirectory) + 2
-	local endIndex = string.len(fullPath) - string.len(filename) - 1
-	local path = string.sub(fullPath, beginIndex, endIndex)
+	local begin_index = string.len(git_directory) + 2
+	local end_index = string.len(fullpath) - string.len(filename) - 1
+	local path = string.sub(fullpath, begin_index, end_index)
 
 	return icon .. " " .. path
 end
 
---- Returns full path to current file
-local getFullPath = function()
+--- considering the fullpath of the current file being `/home/user/project/file`,
+--- this returns `~/user/project`.
+--- @return string # full path to current file
+local get_fullpath = function()
 	local icon = ""
 	local filename = fn.expand("%:t") -- file's name with extension: "file.txt"
-	local fullPath = fn.expand("%:p") -- path to file: "/home/user/path/to/file.txt"
+	local fullpath = fn.expand("%:p") -- path to file: "/home/user/path/to/file.txt"
 
 	-- When opening an empty buffer
-	if fullPath == "" then
+	if fullpath == "" then
 		return ""
 	end
 
-	local splitFullpath = stringutil.split(fullPath, "/") -- {"home", "user", "path", "to", "file.txt"}
-	local shortenPath = nil
+	local split_fullpath = stringutil.split(fullpath, "/") -- {"home", "user", "path", "to", "file.txt"}
+	local shorten_path = nil
 	local shift; -- remove the last '/' from "~/project/" (HOME) or "/usr/lib/" (ROOT)
 
 	-- Replace "/home/user/" with "~"
-	if splitFullpath[1] == "home" then
-		shortenPath = "~/"
+	if split_fullpath[1] == "home" then
+		shorten_path = "~/"
 		shift = 2; -- introducing the tilde '~' shifts the last '/' from 1 to the right thus removing the two last chars
 
 		-- From {"home", "user", "path", "to", "file.txt"}
 		-- to {"path", "to", "file.txt"} thus begin index at 3
 		local beginIndex = 3
-		local endIndex = #splitFullpath
-		local slice = { unpack(splitFullpath, beginIndex, endIndex) }
+		local endIndex = #split_fullpath
+		local slice = { unpack(split_fullpath, beginIndex, endIndex) }
 
 		-- Concatenate slice: "~/path/to/file.txt"
 		for _, value in pairs(slice) do
-			shortenPath = shortenPath .. value .. "/"
+			shorten_path = shorten_path .. value .. "/"
 		end
 	else
 		shift = 1;
 	end
 
-	-- shortenPath: current directory is at $HOME
-	-- fullPath: current directory is at root "/"
-	local path = shortenPath or fullPath
+	-- shorten_path: current directory is at $HOME
+	-- fullpath: current directory is at root "/"
+	local path = shorten_path or fullpath
 
 	-- Strip the last '/' and the file's name
 	-- path is "~/home/user/path/to"
@@ -195,89 +199,90 @@ local getFullPath = function()
 	return icon .. " :" .. path
 end
 
---- Returns separators and filename's color for given filetype
-local getColorsPerFiletype = function(filetype)
-	local separatorColor, fileNameColor
+--- @return string bg the background color.
+--- @return string fg the foreground color.
+local get_colors_per_filetype = function(filetype)
+	local separator_color, filename_color
 
-	separatorColor, fileNameColor = WHITE, BLACK
+	separator_color, filename_color = WHITE, BLACK
 
 	if filetype == 'css' then
-		separatorColor, fileNameColor = ENDEAVOUR, WHITE
+		separator_color, filename_color = ENDEAVOUR, WHITE
 	end
 
 	if filetype == 'go' then
-		separatorColor, fileNameColor = CORNFLOWER_BLUE, WHITE
+		separator_color, filename_color = CORNFLOWER_BLUE, WHITE
 	end
 
 	if filetype == 'help' then
-		separatorColor, fileNameColor = FERN_GREEN, WHITE
+		separator_color, filename_color = FERN_GREEN, WHITE
 	end
 
 	if filetype == 'html' then
-		separatorColor, fileNameColor = DEEP_RED, WHITE
+		separator_color, filename_color = DEEP_RED, WHITE
 	end
 
 	if filetype == 'java' then
-		separatorColor, fileNameColor = ALIZARIN_CRIMSON, WHITE
+		separator_color, filename_color = ALIZARIN_CRIMSON, WHITE
 	end
 
 	if filetype == 'javascript' then
-		separatorColor, fileNameColor = COD_GRAY, GOLD
+		separator_color, filename_color = COD_GRAY, GOLD
 	end
 
 	if filetype == 'json' then
-		separatorColor, fileNameColor = CAMARONE, GREEN_YELLOW
+		separator_color, filename_color = CAMARONE, GREEN_YELLOW
 	end
 
 	if filetype == 'jproperties' then
-		separatorColor, fileNameColor = BLEACHED_CEDAR, WHITE
+		separator_color, filename_color = BLEACHED_CEDAR, WHITE
 	end
 
 	if filetype == 'jsp' then
-		separatorColor, fileNameColor = PIGMENT_INDIGO, WHITE
+		separator_color, filename_color = PIGMENT_INDIGO, WHITE
 	end
 
 	if filetype == 'leaderf' then
-		separatorColor, fileNameColor = FUSCOUS_GRAY, DUST
+		separator_color, filename_color = FUSCOUS_GRAY, DUST
 	end
 
 	if filetype == 'lua' then
-		separatorColor, fileNameColor = MARINER, WHITE
+		separator_color, filename_color = MARINER, WHITE
 	end
 
 	if filetype == 'markdown' then
-		separatorColor, fileNameColor = BLACK, WHITE
+		separator_color, filename_color = BLACK, WHITE
 	end
 
 	if filetype == 'rust' then
-		separatorColor, fileNameColor = DUST, BLACK
+		separator_color, filename_color = DUST, BLACK
 	end
 
 	if filetype == 'sh' or filetype == 'zsh' then
-		separatorColor, fileNameColor = COD_GRAY, SULU
+		separator_color, filename_color = COD_GRAY, SULU
 	end
 
 	if filetype == 'sql' then
-		separatorColor, fileNameColor = BIG_STONE, WHITE
+		separator_color, filename_color = BIG_STONE, WHITE
 	end
 
 	if filetype == 'text' then
-		separatorColor, fileNameColor = WHITE, BLACK
+		separator_color, filename_color = WHITE, BLACK
 	end
 
 	if filetype == 'vim' then
-		separatorColor, fileNameColor = FOREST_GREEN, WHITE
+		separator_color, filename_color = FOREST_GREEN, WHITE
 	end
 
 	if filetype == 'xml' then
-		separatorColor, fileNameColor = MAKO, WHITE
+		separator_color, filename_color = MAKO, WHITE
 	end
 
-	return separatorColor, fileNameColor
+	return separator_color, filename_color
 end
 
---- Returns file name
-local getFileName = function()
+--- @return string # A string containing the icon and the filename.
+local build_filename_component = function()
 	local file = fn.expand("%:t")
 	local icon = extensions[vim.bo.filetype]
 
@@ -291,13 +296,13 @@ local getFileName = function()
 	end
 
 	-- Initialize colors for separators and file's name
-	COLOR_FILE, COLOR_FILE_NAME = getColorsPerFiletype(vim.bo.filetype)
+	COLOR_FILE, COLOR_FILE_NAME = get_colors_per_filetype(vim.bo.filetype)
 
 	return icon .. " " .. file
 end
 
 --- Set highlight for given mode
-local redrawColors = function(mode)
+local draw_colors = function(mode)
 	local colors = {
 
 		n  = "hi Mode guibg=none guifg=none",
@@ -317,8 +322,8 @@ local redrawColors = function(mode)
 	end
 end
 
---- Returns the number of warnings
-local getWarnings = function()
+--- @return string # the warnings
+local build_warnings_component = function()
 	local warns = vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
 	local icon = ""
 
@@ -329,29 +334,29 @@ local getWarnings = function()
 	return "" .. icon .. " :" .. #warns.. ""
 end
 
---- Returns the number of errors
-local getErrors = function()
+--- @return string # the first error found
+local build_errors_component = function()
 	local errors = vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
-	local lineIcon = "L"
+	local line_icon = "L"
 	local count = #errors
 
 	if count == 0 then
 		return ""
 	end
 
-	local firstError = errors[1]
-	local firstErrorLine = firstError.lnum + 1
-	local firstErrorMessage =  firstError.message
+	local first_error = errors[1]
+	local first_error_line = first_error.lnum + 1
+	local first_error_message =  first_error.message
 
 	if count == 1 then
-		return "" .. lineIcon .. firstErrorLine .. " 󰄽" .. firstErrorMessage .. "󰄾" .. ""
+		return "" .. line_icon .. first_error_line .. " 󰄽" .. first_error_message .. "󰄾" .. ""
 	else
-		return "" .. lineIcon .. firstErrorLine .. " 󰄽" .. firstErrorMessage .. "󰄾, #" .. count  .. ""
+		return "" .. line_icon .. first_error_line .. " 󰄽" .. first_error_message .. "󰄾, #" .. count  .. ""
 	end
 end
 
 --- Returns added, changed, deleted lines
-local getGutter = function()
+local build_gutter_component = function()
 	local gutter = fn.GitGutterGetHunkSummary()
 	local added, changed, deleted = gutter[1], gutter[2], gutter[3]
 
@@ -380,19 +385,31 @@ end
 function Statusline.activeLine()
 	local statusline = ""
 
-	if isGitRepository() then
+	if is_git_repository() then
 		-- Git branch
-		local branchName = getGitBranchName()
+		local branch_name = get_git_branch_name()
 
-		statusline = statusline .. component.buildElement(HIGHLIGHT_GIT, HIGHLIGHT_GIT_NAME, BLUE_RIBBON, WHITE, branchName)
+		statusline = statusline .. component.build_element({
+			separator_hl = HIGHLIGHT_GIT,
+			main_hl = HIGHLIGHT_GIT_NAME,
+			bg = BLUE_RIBBON,
+			fg = WHITE,
+			value = branch_name
+		})
 
 		statusline = statusline .. " "
 
 		-- Current directory
-		local currentPath = getGitRelativePath()
+		local current_path = get_git_relative_path()
 
-		if currentPath ~= "" then
-			statusline = statusline .. component.buildElement(HIGHLIGHT_PATH, HIGHLIGHT_CURRENT_PATH, GOLD, BLACK, currentPath)
+		if current_path ~= "" then
+			statusline = statusline .. component.build_element({
+				separator_hl = HIGHLIGHT_PATH,
+				main_hl = HIGHLIGHT_CURRENT_PATH,
+				bg = GOLD,
+				fg = BLACK,
+				value = current_path
+			})
 
 			statusline = statusline .. " "
 		end
@@ -404,20 +421,32 @@ function Statusline.activeLine()
 		statusline = statusline .. " "
 
 		-- Directory
-		local currentPath = getFullPath()
+		local currentPath = get_fullpath()
 
 		if currentPath ~= "" then
-			statusline = statusline .. component.buildElement(HIGHLIGHT_PATH, HIGHLIGHT_CURRENT_PATH, GOLD, BLACK, currentPath)
+			statusline = statusline .. component.build_element({
+				separator_hl = HIGHLIGHT_PATH,
+				main_hl = HIGHLIGHT_CURRENT_PATH,
+				bg = GOLD,
+				fg = BLACK,
+				value = currentPath
+			})
 
 			statusline = statusline .. " "
 		end
 	end
 
 	-- Current file
-	local currentFile = getFileName()
+	local current_file = build_filename_component()
 
-	if currentFile ~= "" then
-		statusline = statusline  .. component.buildElement(HIGHLIGHT_FILE, HIGHLIGHT_FILE_NAME, COLOR_FILE, COLOR_FILE_NAME, currentFile)
+	if current_file ~= "" then
+		statusline = statusline  .. component.build_element({
+			separator_hl = HIGHLIGHT_FILE,
+			main_hl = HIGHLIGHT_FILE_NAME,
+			bg = COLOR_FILE,
+			fg = COLOR_FILE_NAME,
+			value = current_file
+		})
 
 		statusline = statusline .. " "
 	end
@@ -425,13 +454,13 @@ function Statusline.activeLine()
 	-- Mode
 	local mode = api.nvim_get_mode()['mode']
 
-	redrawColors(mode)
+	draw_colors(mode)
 
 	statusline = statusline .. "%#Mode#" .. icons[mode]
 	statusline = statusline .. " "
 
 	-- LSP diagnostics warnings
-	local warnings = getWarnings()
+	local warnings = build_warnings_component()
 
 	if warnings ~= "" then
 		api.nvim_command("hi " .. HIGHLIGHT_WARNING .. " guifg=" .. RIPE_LEMON .. " guibg=none")
@@ -440,7 +469,7 @@ function Statusline.activeLine()
 	end
 
 	-- LSP diagnostics errors
-	local errors = getErrors()
+	local errors = build_errors_component()
 
 	if errors ~= "" then
 		api.nvim_command("hi " .. HIGHLIGHT_ERROR .. " guifg=" .. SALMON .. " guibg=none")
@@ -453,7 +482,7 @@ function Statusline.activeLine()
 	statusline = statusline .."%="
 
 	-- Gutter
-	local gutters = getGutter()
+	local gutters = build_gutter_component()
 
 	if gutters ~= "" then
 		api.nvim_command("hi " .. HIGHLIGHT_GUTTER_NAME .. " guifg=" .. GOLD .. " guibg=none")
@@ -461,15 +490,6 @@ function Statusline.activeLine()
 		statusline = statusline .. gutters
 		statusline = statusline .. " "
 	end
-
-	-- Current function
-	-- local currentFunction = getCurrentFunction()
-
-	-- if currentFunction ~= "" then
-	-- 	api.nvim_command("hi " .. HIGHLIGHT_FUNCTION .. " guifg=" .. INCH_WORM .. " guibg=none gui=bold")
-	-- 	statusline = statusline .. "%#" .. HIGHLIGHT_FUNCTION .. "#"
-	-- 	statusline = statusline .. currentFunction
-	-- end
 
 	return statusline
 end

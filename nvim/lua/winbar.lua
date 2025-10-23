@@ -5,8 +5,8 @@ require('colors')
 local component = require('component')
 
 -- Retrieves current's function and returns it in a formatted string
-local getCurrentFunction = function()
-	local currentFunction = ""
+local get_current_function = function()
+	local current_function = ""
 	local filename = vim.fn.expand("%:t:r")
 	local icon = "ƒ"
 
@@ -14,18 +14,24 @@ local getCurrentFunction = function()
 		return ""
 	end
 
-	currentFunction = vim.b.lsp_current_function
+	current_function = vim.b.lsp_current_function
 
-	return icon .. ":" ..  currentFunction
+	return icon .. ":" ..  current_function
 end
 
 Winbar.eval = function ()
 	local winbar = ""
 
-	local currentFunction = getCurrentFunction()
+	local current_function = get_current_function()
 
-	if currentFunction ~= "" then
-		winbar = winbar .. component.buildElement("SEPARATOR_FUNCTION", "LSP_FUNCTION", ROSE, WHITE, currentFunction)
+	if current_function ~= "" then
+		winbar = winbar .. component.build_element({
+			separator_hl = "SEPARATOR_FUNCTION",
+			main_hl = "LSP_FUNCTION",
+			bg = ROSE,
+			fg = WHITE,
+			value = current_function
+		})
 	end
 
 	return winbar
