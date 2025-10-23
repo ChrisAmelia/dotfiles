@@ -128,7 +128,7 @@ end
 
 --- Returns git relative path of current file
 local getGitRelativePath = function()
-	local icon = ""
+	local icon = ""
 	local filename = fn.expand("%:t") -- file's name with extension: "file.txt"
 	local fullPath = fn.expand("%:p") -- path to file: "/home/user/git_repo/path/to/file.txt"
 	local currentDirectory = fn.expand("%:p:h")
