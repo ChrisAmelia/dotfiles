@@ -352,7 +352,7 @@ local icons = {
 	Text          = '  ',
 	TypeParameter = '  ',
 	Unit          = '  ',
-	Value         = '  ',
+	Value         = ' 󰰫 ',
 	Variable      = ' 𝑋 ',
 }
 
