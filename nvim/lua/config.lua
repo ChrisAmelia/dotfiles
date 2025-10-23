@@ -575,30 +575,32 @@ require('spectre').setup()
 
 -- codecompanion {{{
 
+local adapter = "mistral"
+
 require("codecompanion").setup({
+
 	strategies = {
 		chat = {
-			adapter = "gemini",
+			adapter = adapter,
 		},
 		inline = {
-			adapter = "gemini",
+			adapter = adapter,
 		},
 	},
 
 	adapters = {
-		http ={
-			gemini = function()
-				local file = io.open(os.getenv("HOME") .. "/.config/gemini/key", "r")
+		http = {
+			mistral = function()
+				local file = io.open(os.getenv("HOME") .. "/.config/" .. adapter .. "/key", "r")
 				local api_key = ""
 				if file ~= nil then
 					api_key = file:read()
 					file:close()
 				end
 
-				return require("codecompanion.adapters").extend("gemini", {
+				return require("codecompanion.adapters").extend(adapter, {
 					schema = {
 						model = {
-							-- default = "gemini-2.5-pro-exp-03-25"
 						},
 					},
 					env = {
