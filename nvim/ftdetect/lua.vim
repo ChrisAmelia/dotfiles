@@ -3,4 +3,6 @@ augroup filetype_lua
 	autocmd!
 	autocmd FileType lua setlocal foldmethod=marker
 augroup END
+set tabstop=2
+set expandtab
 " }}}

@@ -6,27 +6,27 @@ local api = vim.api
 
 -- Built-in plugins {{{
 local disabledPlugins = {
-    "netrw",
-    "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
-    "gzip",
-    "zip",
-    "zipPlugin",
-    "tar",
-    "tarPlugin",
-    "getscript",
-    "getscriptPlugin",
-    "vimball",
-    "vimballPlugin",
-    "2html_plugin",
-    "logipat",
-    "rrhelper",
-    "spellfile_plugin",
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
+  "gzip",
+  "zip",
+  "zipPlugin",
+  "tar",
+  "tarPlugin",
+  "getscript",
+  "getscriptPlugin",
+  "vimball",
+  "vimballPlugin",
+  "2html_plugin",
+  "logipat",
+  "rrhelper",
+  "spellfile_plugin",
 }
 
 for _, plugin in pairs(disabledPlugins) do
-	vim.g["loaded_" .. plugin] = 1
+  vim.g["loaded_" .. plugin] = 1
 end
 
 -- }}}
@@ -34,16 +34,16 @@ end
 -- Diagnostics {{{
 
 vim.diagnostic.config {
-	signs = {
-		text = {
-			[vim.diagnostic.severity.ERROR] = "",
-			[vim.diagnostic.severity.HINT] = "",
-			[vim.diagnostic.severity.INFO] = " ",
-			[vim.diagnostic.severity.WARN] = " ",
-		}
-	},
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.HINT] = "",
+      [vim.diagnostic.severity.INFO] = " ",
+      [vim.diagnostic.severity.WARN] = " ",
+    }
+  },
 
-	virtual_text = false,
+  virtual_text = false,
 }
 
 api.nvim_command("hi DiagnosticError guifg=" .. CONIFER)
@@ -64,8 +64,8 @@ api.nvim_command("hi DiagnosticUnderlineInfo  guifg=NONE gui=underline")
 api.nvim_command("hi DiagnosticUnderlineHint  guifg=NONE gui=underline")
 
 vim.keymap.set('n', '<Leader>e', function()
-	local new_config = not vim.diagnostic.config().virtual_lines
-	vim.diagnostic.config({ virtual_lines = new_config })
+  local new_config = not vim.diagnostic.config().virtual_lines
+  vim.diagnostic.config({ virtual_lines = new_config })
 end, { desc = 'Toggle diagnostic virtual_lines' })
 
 -- }}}
@@ -73,12 +73,12 @@ end, { desc = 'Toggle diagnostic virtual_lines' })
 -- nvim-colorizer {{{
 
 require 'colorizer'.setup {
-	'css';
-	'javascript';
-	'lua';
-	html = {
-		mode = 'background';
-	}
+  'css';
+  'javascript';
+  'lua';
+  html = {
+    mode = 'background';
+  }
 }
 
 -- }}}
@@ -91,10 +91,10 @@ vim.keymap.set("n", "ga", "<Plug>(EasyAlign)")
 -- Tree-sitter {{{
 
 require'nvim-treesitter.configs'.setup {
-	ensure_installed = "java", "lua", "go", -- one of "all", "language", or a list of languages
-	highlight = {
-		enable = true,                -- false will disable the whole extension
-	},
+  ensure_installed = "java", "lua", "go", -- one of "all", "language", or a list of languages
+  highlight = {
+    enable = true,                -- false will disable the whole extension
+  },
 }
 
 api.nvim_set_hl(0, "Annotation"        ,  { fg = YELLOW     })
@@ -202,21 +202,21 @@ api.nvim_set_hl(0, "@keyword.storage.lifetime.rust", { fg = HOT_PINK    })
 
 -- nvim-ts-autotag {{{
 require("nvim-treesitter.parsers").list.xml = {
-	install_info = {
-		url = "https://github.com/Trivernis/tree-sitter-xml",
-		files = { "src/parser.c" },
-		generate_requires_npm = true,
-		branch = "main",
-	},
-	filetype = "xml",
+  install_info = {
+    url = "https://github.com/Trivernis/tree-sitter-xml",
+    files = { "src/parser.c" },
+    generate_requires_npm = true,
+    branch = "main",
+  },
+  filetype = "xml",
 }
 
 
 require'nvim-treesitter.configs'.setup {
-	autotag = {
-		enable = true,
-		filetypes = { "xml" },
-	}
+  autotag = {
+    enable = true,
+    filetypes = { "xml" },
+  }
 }
 
 -- }}}
@@ -228,7 +228,7 @@ vim.g.Lf_WindowPosition = 'popup'
 vim.g.Lf_PopupWidth = 0.70
 vim.g.Lf_PopupPreviewPosition = 'cursor'
 vim.g.Lf_WildIgnore = {
-	dir = { 'target', 'bin' }
+  dir = { 'target', 'bin' }
 }
 
 vim.keymap.set("n" , "<C-n>"      , ":Leaderf file<CR>"        )
@@ -272,18 +272,18 @@ vim.keymap.set("n" , "<Leader>rn" , vim.lsp.buf.rename          )
 -- barbar.nvim {{{
 
 require'barbar'.setup {
-	icons = {
-		filetype = {
-			enabled = false,
-		}
-	},
-	animation = true,
-	semantic_letters = true,
-	clickable = false,
-	letters = 'asdfjkl;ghnmxcbziowerutyqpASDFJKLGHNMXCBZIOWERUTYQP',
-	maximum_padding = 4,
-	maximum_length = 50,
-	auto_hide = true,
+  icons = {
+    filetype = {
+      enabled = false,
+    }
+  },
+  animation = true,
+  semantic_letters = true,
+  clickable = false,
+  letters = 'asdfjkl;ghnmxcbziowerutyqpASDFJKLGHNMXCBZIOWERUTYQP',
+  maximum_padding = 4,
+  maximum_length = 50,
+  auto_hide = true,
 }
 
 api.nvim_command("hi BufferCurrent       guibg=" .. MAYA_BLUE .. " guifg=WHITE")
@@ -315,138 +315,136 @@ vim.keymap.set("n", "<Tab>", ":BufferNext<CR>")
 -- nvim-cmp {{{
 
 local has_words_before = function()
-	if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
-		return false
-	end
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+    return false
+  end
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 local feedkey = function(key, mode)
-	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
 local cmp = require('cmp')
 
 local icons = {
-	Class         = '  ',
-	Color         = '  ',
-	Constant      = '  ',
-	Constructor   = '  ',
-	Enum          = '  ',
-	EnumMember    = '  ',
-	Event         = '  ',
-	Field         = '  ',
-	File          = '  ',
-	Folder        = '  ',
-	Function      = ' ƒ ',
-	Interface     = '  ',
-	Keyword       = ' 󰌆 ',
-	Method        = ' ƒ ',
-	Module        = ' 󰕳 ',
-	Operator      = '  ',
-	Property      = '  ',
-	Reference     = '  ',
-	Snippet       = '  ',
-	Struct        = '  ',
-	Text          = '  ',
-	TypeParameter = '  ',
-	Unit          = '  ',
-	Value         = ' 󰰫 ',
-	Variable      = ' 𝑋 ',
+  Class         = '  ',
+  Color         = '  ',
+  Constant      = '  ',
+  Constructor   = '  ',
+  Enum          = '  ',
+  EnumMember    = '  ',
+  Event         = '  ',
+  Field         = '  ',
+  File          = '  ',
+  Folder        = '  ',
+  Function      = ' ƒ ',
+  Interface     = '  ',
+  Keyword       = ' 󰌆 ',
+  Method        = ' ƒ ',
+  Module        = ' 󰕳 ',
+  Operator      = '  ',
+  Property      = '  ',
+  Reference     = '  ',
+  Snippet       = '  ',
+  Struct        = '  ',
+  Text          = '  ',
+  TypeParameter = '  ',
+  Unit          = '  ',
+  Value         = ' 󰰫 ',
+  Variable      = ' 𝑋 ',
 }
 
-local luasnip = require("luasnip")
-
 cmp.setup {
-	completion = {
-		completeopt = 'menu,menuone,noinsert',
-	},
+  completion = {
+    completeopt = 'menu,menuone,noinsert',
+  },
 
-	window = {
-		completion = {
-			winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-			col_offset = -3,
-			side_padding = 0,
-		},
-	},
+  window = {
+    completion = {
+      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+      col_offset = -3,
+      side_padding = 0,
+    },
+  },
 
-	formatting = {
-		fields = { "kind", "abbr", "menu" },
+  formatting = {
+    fields = { "kind", "abbr", "menu" },
 
-		format = function(_, vim_item)
-			vim_item.menu = vim_item.kind
-			vim_item.kind = icons[vim_item.kind]
+    format = function(_, vim_item)
+      vim_item.menu = vim_item.kind
+      vim_item.kind = icons[vim_item.kind]
 
-			return vim_item
-		end,
-	},
+      return vim_item
+    end,
+  },
 
-	snippet = {
-		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body)
-		end,
-	},
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
 
-	mapping = {
-		['<C-p>'] = cmp.mapping.select_prev_item(),
-		['<C-n>'] = cmp.mapping.select_next_item(),
-		-- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-		-- ['<C-f>'] = cmp.mapping.scroll_docs(4),
-		['<C-Space>'] = cmp.mapping.complete(),
-		['<C-e>'] = cmp.mapping.abort(),
-		['<CR>'] = cmp.mapping.confirm({ select = false }),
+  mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
 
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif vim.fn["vsnip#available"](1) == 1 then
-				feedkey("<Plug>(vsnip-expand-or-jump)", "")
-			elseif has_words_before() then
-				cmp.complete()
-			else
-				fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-			end
-		end, { "i", "s" }),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif vim.fn["vsnip#available"](1) == 1 then
+        feedkey("<Plug>(vsnip-expand-or-jump)", "")
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+      end
+    end, { "i", "s" }),
 
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-				feedkey("<Plug>(vsnip-jump-prev)", "")
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-	},
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+        feedkey("<Plug>(vsnip-jump-prev)", "")
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+  },
 
-	sources = {
-		{
-			name = 'nvim_lsp',
-			entry_filter = function (entry)
-				-- Disable snippet suggestions from LSP
-				if vim.bo.filetype == 'java' then
-					return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
-				end
-				return entry
-			end
-		},
-		{ name = 'nvim_lsp_signature_help' },
-		{ name = 'path'     },
-		{ name = 'buffer',
-			option = {
-				get_bufnrs = function()
-					local bufs = {}
-					for _, win in ipairs(vim.api.nvim_list_wins()) do
-						bufs[vim.api.nvim_win_get_buf(win)] = true
-					end
-					return vim.tbl_keys(bufs)
-				end
-			}
-		},
-		{ name = 'nvim_lua '},
-		{ name = 'vsnip' },
-	},
+  sources = {
+      {
+        name = 'nvim_lsp',
+        entry_filter = function (entry)
+          -- Disable snippet suggestions from LSP
+          if vim.bo.filetype == 'java' then
+            return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
+          end
+          return entry
+        end
+      },
+      { name = 'nvim_lsp_signature_help' },
+      { name = 'path'     },
+      { name = 'buffer',
+      option = {
+        get_bufnrs = function()
+          local bufs = {}
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            bufs[vim.api.nvim_win_get_buf(win)] = true
+          end
+          return vim.tbl_keys(bufs)
+        end
+      }
+    },
+    { name = 'nvim_lua '},
+    { name = 'vsnip' },
+  },
 }
 
 api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = WHITE, bg = "NONE", strikethrough = true })
@@ -483,31 +481,31 @@ api.nvim_set_hl(0, "CmpItemKindValue",         { fg = WHITE, bg = WOODSMOKE     
 -- indent_blankline {{{
 
 local highlight = {
-    "RainbowRed",
-    "RainbowYellow",
-    "RainbowBlue",
-    "RainbowOrange",
-    "RainbowGreen",
-    "RainbowViolet",
-    "RainbowCyan",
+  "RainbowRed",
+  "RainbowYellow",
+  "RainbowBlue",
+  "RainbowOrange",
+  "RainbowGreen",
+  "RainbowViolet",
+  "RainbowCyan",
 }
 
 local hooks = require "ibl.hooks"
 -- create the highlight groups in the highlight setup hook, so they are reset
 -- every time the colorscheme changes
 hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-    vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
-    vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
-    vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
-    vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
-    vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
-    vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
-    vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+  vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+  vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+  vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+  vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+  vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+  vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+  vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
 end)
 
 require("ibl").setup {
-	indent = { highlight = highlight },
-	scope = { char = "▍", highlight = highlight }
+  indent = { highlight = highlight },
+  scope = { char = "▍", highlight = highlight }
 }
 
 -- }}}
@@ -526,14 +524,14 @@ cmp.event:on(
 -- hlargs {{{
 
 require('hlargs').setup {
-	color = MAYA_BLUE,
-	excluded_filetypes = {},
-	paint_arg_declarations = true,
-	paint_arg_usages = true,
-	performance = {
-		parse_delay = 1,
-		max_iterations = 400
-	}
+  color = MAYA_BLUE,
+  excluded_filetypes = {},
+  paint_arg_declarations = true,
+  paint_arg_usages = true,
+  performance = {
+    parse_delay = 1,
+    max_iterations = 400
+  }
 }
 
 -- }}}
@@ -549,13 +547,13 @@ require"fidget".setup{}
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 
 parser_config.gitcommit = {
-    install_info = {
-        url = "https://github.com/gbprod/tree-sitter-gitcommit",
-        files = { "src/parser.c", "src/scanner.c" },
-        branch = "main",
-    },
-    filetype = "gitcommit",
-    maintainers = {  "@gbprod" },
+  install_info = {
+    url = "https://github.com/gbprod/tree-sitter-gitcommit",
+    files = { "src/parser.c", "src/scanner.c" },
+    branch = "main",
+  },
+  filetype = "gitcommit",
+  maintainers = {  "@gbprod" },
 }
 
 api.nvim_set_hl(0, "@attribute.diff", { fg = "#CDB9F2" })
@@ -579,37 +577,37 @@ local adapter = "mistral"
 
 require("codecompanion").setup({
 
-	strategies = {
-		chat = {
-			adapter = adapter,
-		},
-		inline = {
-			adapter = adapter,
-		},
-	},
+  strategies = {
+    chat = {
+      adapter = adapter,
+    },
+    inline = {
+      adapter = adapter,
+    },
+  },
 
-	adapters = {
-		http = {
-			mistral = function()
-				local file = io.open(os.getenv("HOME") .. "/.config/" .. adapter .. "/key", "r")
-				local api_key = ""
-				if file ~= nil then
-					api_key = file:read()
-					file:close()
-				end
+  adapters = {
+    http = {
+      mistral = function()
+        local file = io.open(os.getenv("HOME") .. "/.config/" .. adapter .. "/key", "r")
+        local api_key = ""
+        if file ~= nil then
+          api_key = file:read()
+          file:close()
+        end
 
-				return require("codecompanion.adapters").extend(adapter, {
-					schema = {
-						model = {
-						},
-					},
-					env = {
-						api_key = api_key
-					},
-				})
-			end,
-		},
-	},
+        return require("codecompanion.adapters").extend(adapter, {
+          schema = {
+            model = {
+            },
+          },
+          env = {
+            api_key = api_key
+          },
+        })
+      end,
+    },
+  },
 })
 
 -- }}}
@@ -617,24 +615,24 @@ require("codecompanion").setup({
 -- render-markdown {{{
 
 require('render-markdown').setup({
-	checkbox = {
-		enabled = true,
-		render_modes = false,
-		right_pad = 1,
-		unchecked = {
-			icon = '󰄱 ',
-			highlight = 'RenderMarkdownUnchecked',
-			scope_highlight = nil,
-		},
-		checked = {
-			icon = '󰱒 ',
-			highlight = 'RenderMarkdownChecked',
-			scope_highlight = nil,
-		},
-		custom = {
-			todo = { raw = '[-]', rendered = '󰥔 ', highlight = 'RenderMarkdownTodo', scope_highlight = nil },
-		},
-	},
+  checkbox = {
+    enabled = true,
+    render_modes = false,
+    right_pad = 1,
+    unchecked = {
+      icon = '󰄱 ',
+      highlight = 'RenderMarkdownUnchecked',
+      scope_highlight = nil,
+    },
+    checked = {
+      icon = '󰱒 ',
+      highlight = 'RenderMarkdownChecked',
+      scope_highlight = nil,
+    },
+    custom = {
+      todo = { raw = '[-]', rendered = '󰥔 ', highlight = 'RenderMarkdownTodo', scope_highlight = nil },
+    },
+  },
 })
 
 -- }}}
@@ -642,22 +640,22 @@ require('render-markdown').setup({
 -- lsp-endhints {{{
 
 require("lsp-endhints").setup {
-	icons = {
-		type = " ",
-		parameter = "󰏪 ",
-		offspec = " ", -- hint kind not defined in official LSP spec
-		unknown = " ", -- hint kind is nil
-	},
-	label = {
-		truncateAtChars = 20,
-		padding = 1,
-		marginLeft = 0,
-		sameKindSeparator = ", ",
-	},
-	extmark = {
-		priority = 50,
-	},
-	autoEnableHints = true,
+  icons = {
+    type = " ",
+    parameter = "󰏪 ",
+    offspec = " ", -- hint kind not defined in official LSP spec
+    unknown = " ", -- hint kind is nil
+  },
+  label = {
+    truncateAtChars = 20,
+    padding = 1,
+    marginLeft = 0,
+    sameKindSeparator = ", ",
+  },
+  extmark = {
+    priority = 50,
+  },
+  autoEnableHints = true,
 }
 vim.api.nvim_set_hl(0, "LspInlayHint", { bg = MAKO, fg = WHITE })
 

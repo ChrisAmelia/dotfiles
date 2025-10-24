@@ -15,21 +15,21 @@ vim.api.nvim_command("hi WinBar guibg=none gui=nocombine")
 --- @param params table
 --- @return string
 function Component.build_element(params)
-	local buffer = ""
+  local buffer = ""
 
-	vim.api.nvim_command("hi " .. params.separator_hl .. " guifg=" .. params.bg  .. " guibg=none")
-	buffer = buffer .. "%#" .. params.separator_hl .. "#"
-	buffer = buffer .. SEPARATOR_LEFT
+  vim.api.nvim_command("hi " .. params.separator_hl .. " guifg=" .. params.bg  .. " guibg=none")
+  buffer = buffer .. "%#" .. params.separator_hl .. "#"
+  buffer = buffer .. SEPARATOR_LEFT
 
-	vim.api.nvim_command("hi " .. params.main_hl .. " guifg=" .. params.fg .. " guibg=" .. params.bg)
-	buffer = buffer .. "%#" .. params.main_hl .. "#"
-	buffer = buffer .. params.value
+  vim.api.nvim_command("hi " .. params.main_hl .. " guifg=" .. params.fg .. " guibg=" .. params.bg)
+  buffer = buffer .. "%#" .. params.main_hl .. "#"
+  buffer = buffer .. params.value
 
-	vim.api.nvim_command("hi " .. params.separator_hl .. " guifg=" .. params.bg  .. " guibg=none")
-	buffer = buffer .. "%#" .. params.separator_hl .. "#"
-	buffer = buffer .. SEPARATOR_RIGHT
+  vim.api.nvim_command("hi " .. params.separator_hl .. " guifg=" .. params.bg  .. " guibg=none")
+  buffer = buffer .. "%#" .. params.separator_hl .. "#"
+  buffer = buffer .. SEPARATOR_RIGHT
 
-	return buffer
+  return buffer
 end
 
 return Component

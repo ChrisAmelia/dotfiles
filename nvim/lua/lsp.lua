@@ -1,29 +1,29 @@
 --- Document highlights
 local function document_highlight()
-	vim.api.nvim_exec([[
-		hi LspReferenceRead  guibg=#121111 guifg=#FFFF00
-		hi LspReferenceText  guibg=#121111 guifg=#FFFF00
-		hi LspReferenceWrite guibg=#121111 guifg=#FFFF00
+  vim.api.nvim_exec([[
+  hi LspReferenceRead  guibg=#121111 guifg=#FFFF00
+  hi LspReferenceText  guibg=#121111 guifg=#FFFF00
+  hi LspReferenceWrite guibg=#121111 guifg=#FFFF00
 
-		augroup lsp_document_highlight
-			autocmd!
-			autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
-			autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-			autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-		augroup END
-	]], false)
+  augroup lsp_document_highlight
+  autocmd!
+  autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
+  autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+  autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+  augroup END
+  ]], false)
 end
 
 --- Custom attach
 local on_attach_vim = function(client, bufnr)
-	document_highlight()
-	vim.keymap.set("n", "<leader>dc", "<cmd>FzfLua diagnostics_document<cr>")
-	vim.keymap.set('n', '<leader>gr', ":Telescope lsp_references<cr>", { buffer = 0 })
+  document_highlight()
+  vim.keymap.set("n", "<leader>dc", "<cmd>FzfLua diagnostics_document<cr>")
+  vim.keymap.set('n', '<leader>gr', ":Telescope lsp_references<cr>", { buffer = 0 })
 
-	if client.server_capabilities.inlayHintProvider then
-		vim.api.nvim_set_hl(0, "LspInlayHint", { bg = MAKO, fg = WHITE })
-		vim.lsp.inlay_hint.enable(true, nil)
-	end
+  if client.server_capabilities.inlayHintProvider then
+    vim.api.nvim_set_hl(0, "LspInlayHint", { bg = MAKO, fg = WHITE })
+    vim.lsp.inlay_hint.enable(true, nil)
+  end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -35,20 +35,20 @@ capabilities.textDocument.completion.completionItem.deprecatedSupport = true
 capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
 capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
 capabilities.textDocument.completion.completionItem.resolveSupport = {
-	properties = {
-		'documentation',
-		'detail',
-		'additionalTextEdits',
-	}
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
 }
 
 --- Disable semantic tokens
 vim.api.nvim_create_autocmd("LspAttach", {
-	callback = function(args)
-		local bufnr = args.buf
-		local client = vim.lsp.get_client_by_id(args.data.client_id)
-		client.server_capabilities.semanticTokensProvider = nil
-	end,
+  callback = function(args)
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    client.server_capabilities.semanticTokensProvider = nil
+  end,
 })
 
 
@@ -128,42 +128,42 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- LUA_LS {{{
 vim.lsp.config('lua_ls', {
-	on_init = function(client)
-		if client.workspace_folders then
-			local path = client.workspace_folders[1].name
-			if
-				path ~= vim.fn.stdpath('config')
-				and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
-				then
-					return
-				end
-			end
-	end,
+  on_init = function(client)
+    if client.workspace_folders then
+      local path = client.workspace_folders[1].name
+      if
+        path ~= vim.fn.stdpath('config')
+        and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
+        then
+          return
+        end
+      end
+    end,
 
-	settings = {
-		Lua = {
-			hint = {
-				enable = true
-			},
-			runtime = {
-				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-				version = 'LuaJIT',
-			},
-			diagnostics = {
-				-- Get the language server to recognize the `vim` global
-				globals = {'vim'},
-			},
-			workspace = {
-				checkThirdParty = false,
-				-- Make the server aware of Neovim runtime files
-				library = vim.api.nvim_get_runtime_file("", true)
-			},
-			-- Do not send telemetry data containing a randomized but unique identifier
-			telemetry = {
-				enable = false,
-			},
-		},
-	}
+    settings = {
+      Lua = {
+        hint = {
+          enable = true
+        },
+        runtime = {
+          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+          version = 'LuaJIT',
+        },
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = {'vim'},
+        },
+        workspace = {
+          checkThirdParty = false,
+          -- Make the server aware of Neovim runtime files
+          library = vim.api.nvim_get_runtime_file("", true)
+        },
+        -- Do not send telemetry data containing a randomized but unique identifier
+        telemetry = {
+          enable = false,
+        },
+      },
+    }
 });
 
 vim.lsp.enable('lua_ls')
