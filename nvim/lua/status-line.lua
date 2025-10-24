@@ -7,14 +7,6 @@ require('colors')
 local stringutil = require('stringutil')
 local component = require('component')
 
--- Colors to set per filetype
-COLOR_FILE = ""
-COLOR_FILE_NAME = ""
-
--- Separators
-SEPARATOR_LEFT = ""
-SEPARATOR_RIGHT = ""
-
 -- Git branch highlight
 HIGHLIGHT_GIT = "SEPARATOR_GIT"
 HIGHLIGHT_GIT_NAME = "BRANCH_NAME"
@@ -39,7 +31,7 @@ HIGHLIGHT_GUTTER_NAME = "STATUS_GUTTER"
 HIGHLIGHT_FUNCTION = "LSP_FUNCTION"
 
 local icons = setmetatable({
-  ["n"]  = " 󰘳 ",
+  ["n"]  = "  ",
   ["no"] = "N·Operator Pending",
   ["v"]  = " 󰈈 ",
   ["V"]  = " 󰈈 ",
@@ -99,16 +91,16 @@ local extensions = {
 
 --- If value is not `nil`, then is a git repository,
 --- especially check the presence of a .git directory.
----@see string.find
+--- @see string.find
 local is_git_repository = function()
-  local current_dir = fn.expand("%:p:h")
-  local git_root = fn.finddir(".git/", current_dir .. ";")
+  local current_directory = fn.expand("%:p:h")
+  local git_root = fn.finddir(".git/", current_directory .. ";")
 
   return string.find(git_root, ".git")
 end
 
 --- @return string # current branch name
-local get_git_branch_name = function()
+local build_git_branch_component = function()
   local branch_name = vim.b.gitBranchName or ""
 
   local icon = ""
@@ -125,16 +117,22 @@ local get_git_branch_name = function()
     icon = ""
   end
 
-  return icon .. " " .. branch_name
+  return component.build_element({
+      separator_hl = HIGHLIGHT_GIT,
+      main_hl = HIGHLIGHT_GIT_NAME,
+      bg = BLUE_RIBBON,
+      fg = WHITE,
+      value = icon .. " " .. branch_name
+    })
 end
 
 --- @return string # git relative path of current file
-local get_git_relative_path = function()
+local build_git_relative_path_component = function()
   local icon = ""
   local filename = fn.expand("%:t") -- file's name with extension: "file.txt"
   local fullpath = fn.expand("%:p") -- path to file: "/home/user/git_repo/path/to/file.txt"
-  local current_dir = fn.expand("%:p:h")
-  local git_directory = fn.finddir(".git/..", current_dir .. ";") -- "/home/user/git_repo"
+  local current_directory = fn.expand("%:p:h")
+  local git_directory = fn.finddir(".git/..", current_directory .. ";") -- "/home/user/git_repo"
 
   -- When opening an empty buffer
   if fullpath == "" then
@@ -149,14 +147,20 @@ local get_git_relative_path = function()
   local end_index = string.len(fullpath) - string.len(filename) - 1
   local path = string.sub(fullpath, begin_index, end_index)
 
-  return icon .. " " .. path
+  return component.build_element({
+    separator_hl = HIGHLIGHT_PATH,
+    main_hl = HIGHLIGHT_CURRENT_PATH,
+    bg = GOLD,
+    fg = BLACK,
+    value = icon .. " " .. path
+  })
 end
 
 --- considering the fullpath of the current file being `/home/user/project/file`,
 --- this returns `~/user/project`.
 --- @return string # full path to current file
 local get_fullpath = function()
-  local icon = ""
+  local icon = ""
   local filename = fn.expand("%:t") -- file's name with extension: "file.txt"
   local fullpath = fn.expand("%:p") -- path to file: "/home/user/path/to/file.txt"
 
@@ -176,9 +180,9 @@ local get_fullpath = function()
 
     -- From {"home", "user", "path", "to", "file.txt"}
     -- to {"path", "to", "file.txt"} thus begin index at 3
-    local beginIndex = 3
-    local endIndex = #split_fullpath
-    local slice = { unpack(split_fullpath, beginIndex, endIndex) }
+    local begin_index = 3
+    local end_index = #split_fullpath
+    local slice = { unpack(split_fullpath, begin_index, end_index) }
 
     -- Concatenate slice: "~/path/to/file.txt"
     for _, value in pairs(slice) do
@@ -196,11 +200,16 @@ local get_fullpath = function()
   -- path is "~/home/user/path/to"
   path = string.sub(path, 0, string.len(path) - string.len(filename) - shift)
 
-  return icon .. " :" .. path
+  return component.build_element({
+    separator_hl = HIGHLIGHT_PATH,
+    main_hl = HIGHLIGHT_CURRENT_PATH,
+    bg = GOLD,
+    fg = BLACK,
+    value = icon .. " " .. path
+  })
 end
 
---- @return string bg the background color.
---- @return string fg the foreground color.
+--- @return table `bg` and `fg`
 local get_colors_per_filetype = function(filetype)
   local separator_color, filename_color
 
@@ -278,10 +287,11 @@ local get_colors_per_filetype = function(filetype)
     separator_color, filename_color = MAKO, WHITE
   end
 
-  return separator_color, filename_color
+  return { bg = separator_color, fg = filename_color }
 end
 
---- @return string # A string containing the icon and the filename.
+--- @return string # A string containing the icon and the filename
+---                  following this format `"[ file.txt ]"`
 local build_filename_component = function()
   local file = fn.expand("%:t")
   local icon = extensions[vim.bo.filetype]
@@ -295,10 +305,13 @@ local build_filename_component = function()
     icon = ""
   end
 
-  -- Initialize colors for separators and file's name
-  COLOR_FILE, COLOR_FILE_NAME = get_colors_per_filetype(vim.bo.filetype)
-
-  return icon .. " " .. file
+  return component.build_element({
+    separator_hl = HIGHLIGHT_FILE,
+    main_hl = HIGHLIGHT_FILE_NAME,
+    bg = get_colors_per_filetype(vim.bo.filetype).bg,
+    fg = get_colors_per_filetype(vim.bo.filetype).fg,
+    value = icon .. " " .. file
+  })
 end
 
 --- Set highlight for given mode
@@ -331,7 +344,14 @@ local build_warnings_component = function()
     return ""
   end
 
-  return "" .. icon .. " :" .. #warns.. ""
+  return component.build_element({
+      has_separator_left = false,
+      has_separator_right = false,
+      main_hl = HIGHLIGHT_WARNING,
+      bg = "none",
+      fg = RIPE_LEMON,
+      value = "" .. icon .. " :" .. #warns.. ""
+    })
 end
 
 --- @return string # the first error found
@@ -348,11 +368,14 @@ local build_errors_component = function()
   local first_error_line = first_error.lnum + 1
   local first_error_message =  first_error.message
 
-  if count == 1 then
-    return "" .. line_icon .. first_error_line .. " 󰄽" .. first_error_message .. "󰄾" .. ""
-  else
-    return "" .. line_icon .. first_error_line .. " 󰄽" .. first_error_message .. "󰄾, #" .. count  .. ""
-  end
+  return component.build_element({
+    has_separator_left = false,
+    has_separator_right = false,
+    main_hl = HIGHLIGHT_ERROR,
+    bg = "none",
+    fg = SALMON,
+    value = "" .. line_icon .. first_error_line .. " 󰄽" .. first_error_message .. "󰄾" .. (count == 1 and "" or ", #" .. count) .. ""
+  })
 end
 
 --- Returns added, changed, deleted lines
@@ -378,59 +401,51 @@ local build_gutter_component = function()
     hunks = hunks .. "-" .. deleted
   end
 
-  return hunks
+  return component.build_element({
+    has_separator_left = false,
+    has_separator_right = false,
+    main_hl = HIGHLIGHT_GUTTER_NAME,
+    bg = "none",
+    fg = GOLD,
+    value = hunks
+  })
+end
+
+local build_nvim_component = function()
+  return component.build_element({
+    has_separator_left = false,
+    has_separator_right = false,
+    main_hl = HIGHLIGHT_GIT_NAME,
+    bg = "none",
+    fg = FOREST_GREEN,
+    value = "  "
+  })
 end
 
 --- Statusline active
-function Statusline.activeLine()
+function Statusline.activate()
   local statusline = ""
 
   if is_git_repository() then
     -- Git branch
-    local branch_name = get_git_branch_name()
-
-    statusline = statusline .. component.build_element({
-      separator_hl = HIGHLIGHT_GIT,
-      main_hl = HIGHLIGHT_GIT_NAME,
-      bg = BLUE_RIBBON,
-      fg = WHITE,
-      value = branch_name
-    })
-
-    statusline = statusline .. " "
+    statusline = statusline .. build_git_branch_component() .. " "
 
     -- Current directory
-    local current_path = get_git_relative_path()
+    local current_path = build_git_relative_path_component()
 
     if current_path ~= "" then
-      statusline = statusline .. component.build_element({
-        separator_hl = HIGHLIGHT_PATH,
-        main_hl = HIGHLIGHT_CURRENT_PATH,
-        bg = GOLD,
-        fg = BLACK,
-        value = current_path
-      })
-
+      statusline = statusline .. current_path
       statusline = statusline .. " "
     end
   else
-    -- GitHub icon
-    api.nvim_command("hi " .. HIGHLIGHT_GIT_NAME .. " guifg=" .. WHITE  .. " guibg=none")
-    statusline = statusline .. "%#" .. HIGHLIGHT_GIT_NAME .. "#"
-    statusline = statusline .. "  "
-    statusline = statusline .. " "
+    -- Default
+    statusline = statusline .. build_nvim_component()
 
     -- Directory
     local currentPath = get_fullpath()
 
     if currentPath ~= "" then
-      statusline = statusline .. component.build_element({
-        separator_hl = HIGHLIGHT_PATH,
-        main_hl = HIGHLIGHT_CURRENT_PATH,
-        bg = GOLD,
-        fg = BLACK,
-        value = currentPath
-      })
+      statusline = statusline .. currentPath
 
       statusline = statusline .. " "
     end
@@ -440,13 +455,7 @@ function Statusline.activeLine()
   local current_file = build_filename_component()
 
   if current_file ~= "" then
-    statusline = statusline  .. component.build_element({
-      separator_hl = HIGHLIGHT_FILE,
-      main_hl = HIGHLIGHT_FILE_NAME,
-      bg = COLOR_FILE,
-      fg = COLOR_FILE_NAME,
-      value = current_file
-    })
+    statusline = statusline  .. current_file
 
     statusline = statusline .. " "
   end
@@ -463,8 +472,6 @@ function Statusline.activeLine()
   local warnings = build_warnings_component()
 
   if warnings ~= "" then
-    api.nvim_command("hi " .. HIGHLIGHT_WARNING .. " guifg=" .. RIPE_LEMON .. " guibg=none")
-    statusline = statusline .. "%#" .. HIGHLIGHT_WARNING .. "#"
     statusline = statusline .. warnings
   end
 
@@ -472,10 +479,7 @@ function Statusline.activeLine()
   local errors = build_errors_component()
 
   if errors ~= "" then
-    api.nvim_command("hi " .. HIGHLIGHT_ERROR .. " guifg=" .. SALMON .. " guibg=none")
-    statusline = statusline .. "%#" .. HIGHLIGHT_ERROR .. "#"
     statusline = statusline .. errors
-    statusline = statusline .. " "
   end
 
   -- Right side items
@@ -485,17 +489,14 @@ function Statusline.activeLine()
   local gutters = build_gutter_component()
 
   if gutters ~= "" then
-    api.nvim_command("hi " .. HIGHLIGHT_GUTTER_NAME .. " guifg=" .. GOLD .. " guibg=none")
-    statusline = statusline .. "%#" .. HIGHLIGHT_GUTTER_NAME .. "#"
     statusline = statusline .. gutters
-    statusline = statusline .. " "
   end
 
   return statusline
 end
 
 --- Statusline inactive
-function Statusline.inactiveLine()
+function Statusline.inactivate()
   local filename = fn.expand("%F")
 
   return filename

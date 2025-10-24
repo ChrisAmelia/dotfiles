@@ -3,7 +3,9 @@
 ---@field main_hl      string The value's separator highlight.
 ---@field bg           string The background color.
 ---@field fg           string The foreground color.
----@field value        any The value.
+---@field value        string The value.
+---@field has_separator_left  boolean|nil false to not add the separator on the left
+---@field has_separator_right boolean|nil false to not add the separator on the right
 local Component = {}
 
 SEPARATOR_LEFT = ""
@@ -17,17 +19,21 @@ vim.api.nvim_command("hi WinBar guibg=none gui=nocombine")
 function Component.build_element(params)
   local buffer = ""
 
-  vim.api.nvim_command("hi " .. params.separator_hl .. " guifg=" .. params.bg  .. " guibg=none")
-  buffer = buffer .. "%#" .. params.separator_hl .. "#"
-  buffer = buffer .. SEPARATOR_LEFT
+  if params.has_separator_left ~= false then
+    vim.api.nvim_command("hi " .. params.separator_hl .. " guifg=" .. params.bg  .. " guibg=none")
+    buffer = buffer .. "%#" .. params.separator_hl .. "#"
+    buffer = buffer .. SEPARATOR_LEFT
+  end
 
   vim.api.nvim_command("hi " .. params.main_hl .. " guifg=" .. params.fg .. " guibg=" .. params.bg)
   buffer = buffer .. "%#" .. params.main_hl .. "#"
   buffer = buffer .. params.value
 
-  vim.api.nvim_command("hi " .. params.separator_hl .. " guifg=" .. params.bg  .. " guibg=none")
-  buffer = buffer .. "%#" .. params.separator_hl .. "#"
-  buffer = buffer .. SEPARATOR_RIGHT
+  if params.has_separator_right ~= false then
+    vim.api.nvim_command("hi " .. params.separator_hl .. " guifg=" .. params.bg  .. " guibg=none")
+    buffer = buffer .. "%#" .. params.separator_hl .. "#"
+    buffer = buffer .. SEPARATOR_RIGHT
+  end
 
   return buffer
 end

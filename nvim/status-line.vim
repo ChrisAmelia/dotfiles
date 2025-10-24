@@ -4,11 +4,11 @@ set noshowmode
 set laststatus=3
 
 function! ActiveLine()
-    return luaeval("require'status-line'.activeLine()")
+    return luaeval("require'status-line'.activate()")
 endfunction
 
 function! InactiveLine()
-	return luaeval("require'status-line'.inactiveLine()")
+	return luaeval("require'status-line'.inactivate()")
 endfunction
 
 augroup Statusline
