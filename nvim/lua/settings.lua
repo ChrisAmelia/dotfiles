@@ -12,11 +12,9 @@ opt.ignorecase  = true    -- Ignore case when searching
 opt.incsearch   = true    -- Enable highlighted case-insensitive incremential search.
 opt.modeline    = false   -- Don't parse modelines (google vim modeline vulnerability).
 opt.modifiable  = true    -- Make buffer modifiable
-opt.shiftwidth  = 4       -- When indenting with '>', use spaces width
 opt.showcmd     = true    -- Show the size of block one selected in visual mode
 opt.showmatch   = true    -- The cursor will briefly jump to the matching brace when you insert one.
 opt.splitright  = true    -- When on, splitting a window will put the new window right of the current one.
-opt.tabstop     = 4       -- Show existing tab with spaces width
 opt.ttimeoutlen = 50      -- Allow for mappings including Esc, while preserving zero timeout after pressing it manually
 opt.updatetime  = 100     -- Update time in ms
 opt.wildoptions = 'pum'   -- List of words that change how |cmdline-completion| is done.
@@ -27,7 +25,7 @@ opt.wildmode = 'longest:full,full'-- For autocompletion, complete as much as you
 opt.mouse = ''
 
 
-opt.shiftwidth = 0 -- When indenting with '>', use spaces width
+opt.shiftwidth = 4 -- When indenting with '>', use spaces width
 opt.tabstop    = 4 -- Show existing tab with spaces width
 
 
