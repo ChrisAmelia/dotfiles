@@ -38,7 +38,7 @@ vim.pack.add({
   'https://github.com/ibhagwan/fzf-lua',
   'https://github.com/nvim-pack/nvim-spectre',
     --- dependencies
-    'https://github.com/nvim-pack/nvim-spectre',
+    'https://github.com/nvim-lua/plenary.nvim',
 
   -- Formatting
   'https://github.com/junegunn/vim-easy-align',
