@@ -21,9 +21,9 @@ vim.pack.add({
   'https://github.com/hrsh7th/vim-vsnip-integ',
   'https://github.com/saadparwaiz1/cmp_luasnip',
   'https//github.com/olimorris/codecompanion.nvim',
-  --- dependencies
-  'https://github.com/nvim-lua/plenary.nvim',
-  'https://github.com/nvim-treesitter/nvim-treesitter',
+    --- dependencies
+    'https://github.com/nvim-lua/plenary.nvim',
+    'https://github.com/nvim-treesitter/nvim-treesitter',
 
   -- Git
   'https://github.com/tpope/vim-fugitive',
@@ -37,8 +37,8 @@ vim.pack.add({
   'https://github.com/Yggdroot/LeaderF',
   'https://github.com/ibhagwan/fzf-lua',
   'https://github.com/nvim-pack/nvim-spectre',
-  --- dependencies
-  'https://github.com/nvim-pack/nvim-spectre',
+    --- dependencies
+    'https://github.com/nvim-pack/nvim-spectre',
 
   -- Formatting
   'https://github.com/junegunn/vim-easy-align',
