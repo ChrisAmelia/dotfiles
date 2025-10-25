@@ -26,8 +26,8 @@ Winbar.eval = function ()
 
   if current_function ~= "" then
     winbar = winbar .. component.build_element({
-      separator_hl = "SEPARATOR_FUNCTION",
-      main_hl = "LSP_FUNCTION",
+      separator_hl = "HlStatuslineSeparatorFunction",
+      main_hl = "HlStatuslineFunction",
       bg = ROSE,
       fg = WHITE,
       value = current_function

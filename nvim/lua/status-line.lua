@@ -7,29 +7,6 @@ require('colors')
 local stringutil = require('stringutil')
 local component = require('component')
 
--- Git branch highlight
-HIGHLIGHT_GIT = "SEPARATOR_GIT"
-HIGHLIGHT_GIT_NAME = "BRANCH_NAME"
-
--- Current path highlight
-HIGHLIGHT_PATH = "SEPARATOR_CURRENT"
-HIGHLIGHT_CURRENT_PATH = "CURRENT_PATH"
-
--- Current file highlight
-HIGHLIGHT_FILE = "SEPARATOR_FILE"
-HIGHLIGHT_FILE_NAME = "CURRENT_FILE"
-
--- Warning, errors highlights
-HIGHLIGHT_WARNING = "LSP_WARNING"
-HIGHLIGHT_ERROR = "LSP_ERROR"
-
--- Gutters
-HIGHLIGHT_GUTTER = "SEPARATOR_GUTTER"
-HIGHLIGHT_GUTTER_NAME = "STATUS_GUTTER"
-
--- Function highlight
-HIGHLIGHT_FUNCTION = "LSP_FUNCTION"
-
 local icons = setmetatable({
   ["n"]  = "  ",
   ["no"] = "N·Operator Pending",
@@ -63,29 +40,30 @@ local icons = setmetatable({
 -- Extensions icon
 local extensions = {
 
-  commit      = "",
-  css         = "",
-  edit        = "",
-  fugitive    = "",
-  go          = "",
-  html        = "",
-  help        = "",
-  java        = "",
-  javascript  = "",
-  jproperties = "",
-  json        = "",
-  jsp         = "",
-  leaderf     = "󰈳",
-  lua         = "",
-  markdown    = "",
-  merge       = "",
-  rust        = "";
-  sh          = "",
-  sql         = "",
-  text        = "",
-  vim         = "",
-  xml         = "",
-  zsh         = "",
+  codecompanion = { icon = "󰚩", bg = BLACK           , fg = ELECTRIC_BLUE },
+  commit        = { icon = "", bg = CORAL_RED       , fg = WHITE         },
+  css           = { icon = "", bg = ENDEAVOUR       , fg = WHITE         },
+  edit          = { icon = "", bg = CORAL_RED       , fg = WHITE         },
+  fugitive      = { icon = "", bg = CORAL_RED       , fg = WHITE         },
+  go            = { icon = "", bg = CORNFLOWER_BLUE , fg = WHITE         },
+  html          = { icon = "", bg = DEEP_RED        , fg = WHITE         },
+  help          = { icon = "", bg = FERN_GREEN      , fg = WHITE         },
+  java          = { icon = "", bg = ALIZARIN_CRIMSON, fg = WHITE         },
+  javascript    = { icon = "", bg = COD_GRAY        , fg = GOLD          },
+  jproperties   = { icon = "", bg = BLEACHED_CEDAR  , fg = WHITE         },
+  json          = { icon = "", bg = CAMARONE        , fg = GREEN_YELLOW  },
+  jsp           = { icon = "󰬷", bg = PIGMENT_INDIGO  , fg = WHITE         },
+  leaderf       = { icon = "󰈳", bg = FUSCOUS_GRAY    , fg = DUST          },
+  lua           = { icon = "", bg = MARINER         , fg = WHITE         },
+  markdown      = { icon = "", bg = BLACK           , fg = WHITE         },
+  merge         = { icon = "", bg = CORAL_RED       , fg = WHITE         },
+  rust          = { icon = "", bg = DUST            , fg = BLACK         };
+  sh            = { icon = "", bg = COD_GRAY        , fg = SULU          },
+  sql           = { icon = "", bg = BIG_STONE       , fg = WHITE         },
+  text          = { icon = "", bg = WHITE           , fg = BLACK         },
+  vim           = { icon = "", bg = FOREST_GREEN    , fg = WHITE         },
+  xml           = { icon = "", bg = MAKO            , fg = WHITE         },
+  zsh           = { icon = "", bg = COD_GRAY        , fg = SULU          },
 
 }
 
@@ -118,8 +96,8 @@ local build_git_branch_component = function()
   end
 
   return component.build_element({
-      separator_hl = HIGHLIGHT_GIT,
-      main_hl = HIGHLIGHT_GIT_NAME,
+      separator_hl = "HlStatuslineSeparatorBranch",
+      main_hl = "HlStatuslineBranch",
       bg = BLUE_RIBBON,
       fg = WHITE,
       value = icon .. " " .. branch_name
@@ -148,8 +126,8 @@ local build_git_relative_path_component = function()
   local path = string.sub(fullpath, begin_index, end_index)
 
   return component.build_element({
-    separator_hl = HIGHLIGHT_PATH,
-    main_hl = HIGHLIGHT_CURRENT_PATH,
+    separator_hl = "HlStatuslineSeparatorGitPath",
+    main_hl = "HlStatuslineGitPath",
     bg = GOLD,
     fg = BLACK,
     value = icon .. " " .. path
@@ -159,7 +137,7 @@ end
 --- considering the fullpath of the current file being `/home/user/project/file`,
 --- this returns `~/user/project`.
 --- @return string # full path to current file
-local get_fullpath = function()
+local build_fullpath_component = function()
   local icon = ""
   local filename = fn.expand("%:t") -- file's name with extension: "file.txt"
   local fullpath = fn.expand("%:p") -- path to file: "/home/user/path/to/file.txt"
@@ -201,115 +179,43 @@ local get_fullpath = function()
   path = string.sub(path, 0, string.len(path) - string.len(filename) - shift)
 
   return component.build_element({
-    separator_hl = HIGHLIGHT_PATH,
-    main_hl = HIGHLIGHT_CURRENT_PATH,
+    separator_hl = "HlStatuslineSeparatorFullPath",
+    main_hl = "HlStatuslineFullPath",
     bg = GOLD,
     fg = BLACK,
     value = icon .. " " .. path
   })
 end
 
---- @return table `bg` and `fg`
-local get_colors_per_filetype = function(filetype)
-  local separator_color, filename_color
-
-  separator_color, filename_color = WHITE, BLACK
-
-  if filetype == 'css' then
-    separator_color, filename_color = ENDEAVOUR, WHITE
-  end
-
-  if filetype == 'go' then
-    separator_color, filename_color = CORNFLOWER_BLUE, WHITE
-  end
-
-  if filetype == 'help' then
-    separator_color, filename_color = FERN_GREEN, WHITE
-  end
-
-  if filetype == 'html' then
-    separator_color, filename_color = DEEP_RED, WHITE
-  end
-
-  if filetype == 'java' then
-    separator_color, filename_color = ALIZARIN_CRIMSON, WHITE
-  end
-
-  if filetype == 'javascript' then
-    separator_color, filename_color = COD_GRAY, GOLD
-  end
-
-  if filetype == 'json' then
-    separator_color, filename_color = CAMARONE, GREEN_YELLOW
-  end
-
-  if filetype == 'jproperties' then
-    separator_color, filename_color = BLEACHED_CEDAR, WHITE
-  end
-
-  if filetype == 'jsp' then
-    separator_color, filename_color = PIGMENT_INDIGO, WHITE
-  end
-
-  if filetype == 'leaderf' then
-    separator_color, filename_color = FUSCOUS_GRAY, DUST
-  end
-
-  if filetype == 'lua' then
-    separator_color, filename_color = MARINER, WHITE
-  end
-
-  if filetype == 'markdown' then
-    separator_color, filename_color = BLACK, WHITE
-  end
-
-  if filetype == 'rust' then
-    separator_color, filename_color = DUST, BLACK
-  end
-
-  if filetype == 'sh' or filetype == 'zsh' then
-    separator_color, filename_color = COD_GRAY, SULU
-  end
-
-  if filetype == 'sql' then
-    separator_color, filename_color = BIG_STONE, WHITE
-  end
-
-  if filetype == 'text' then
-    separator_color, filename_color = WHITE, BLACK
-  end
-
-  if filetype == 'vim' then
-    separator_color, filename_color = FOREST_GREEN, WHITE
-  end
-
-  if filetype == 'xml' then
-    separator_color, filename_color = MAKO, WHITE
-  end
-
-  return { bg = separator_color, fg = filename_color }
-end
-
 --- @return string # A string containing the icon and the filename
 ---                  following this format `"[ file.txt ]"`
 local build_filename_component = function()
   local file = fn.expand("%:t")
-  local icon = extensions[vim.bo.filetype]
 
   if file == "" then
     return ""
   end
 
-  -- No icon for current filetype
-  if icon == nil then
-    icon = ""
+  -- Default case, filetype not handled
+  if extensions[vim.bo.filetype] == nil then
+    return component.build_element({
+      separator_hl = "HlDefaultSeparatorFile",
+      main_hl = "HlDefaultFile",
+      bg = WHITE,
+      fg = BLACK,
+      value = "" .. " " .. file
+    })
   end
 
+  local icon = extensions[vim.bo.filetype].icon
+  local bg = extensions[vim.bo.filetype].bg
+  local fg = extensions[vim.bo.filetype].fg
+
   return component.build_element({
-    separator_hl = HIGHLIGHT_FILE,
-    main_hl = HIGHLIGHT_FILE_NAME,
-    bg = get_colors_per_filetype(vim.bo.filetype).bg,
-    fg = get_colors_per_filetype(vim.bo.filetype).fg,
+    separator_hl = "HlStatuslineSeparatorFile",
+    main_hl = "HlStatuslineFile",
+    bg = bg,
+    fg = fg,
     value = icon .. " " .. file
   })
 end
@@ -347,7 +253,7 @@ local build_warnings_component = function()
   return component.build_element({
       has_separator_left = false,
       has_separator_right = false,
-      main_hl = HIGHLIGHT_WARNING,
+      main_hl = "HlStatuslineWarning",
       bg = "none",
       fg = RIPE_LEMON,
       value = "" .. icon .. " :" .. #warns.. ""
@@ -371,7 +277,7 @@ local build_errors_component = function()
   return component.build_element({
     has_separator_left = false,
     has_separator_right = false,
-    main_hl = HIGHLIGHT_ERROR,
+    main_hl = "HlStatuslineErrors",
     bg = "none",
     fg = SALMON,
     value = "" .. line_icon .. first_error_line .. " 󰄽" .. first_error_message .. "󰄾" .. (count == 1 and "" or ", #" .. count) .. ""
@@ -379,6 +285,7 @@ local build_errors_component = function()
 end
 
 --- Returns added, changed, deleted lines
+--- @return string
 local build_gutter_component = function()
   local gutter = fn.GitGutterGetHunkSummary()
   local added, changed, deleted = gutter[1], gutter[2], gutter[3]
@@ -404,18 +311,20 @@ local build_gutter_component = function()
   return component.build_element({
     has_separator_left = false,
     has_separator_right = false,
-    main_hl = HIGHLIGHT_GUTTER_NAME,
+    main_hl = "HlStatuslineGutter",
     bg = "none",
     fg = GOLD,
     value = hunks
   })
 end
 
+--- Default nvim icon  
+--- @return string
 local build_nvim_component = function()
   return component.build_element({
     has_separator_left = false,
     has_separator_right = false,
-    main_hl = HIGHLIGHT_GIT_NAME,
+    main_hl = "HlNvimIcon",
     bg = "none",
     fg = FOREST_GREEN,
     value = "  "
@@ -442,7 +351,7 @@ function Statusline.activate()
     statusline = statusline .. build_nvim_component()
 
     -- Directory
-    local currentPath = get_fullpath()
+    local currentPath = build_fullpath_component()
 
     if currentPath ~= "" then
       statusline = statusline .. currentPath
