@@ -8,7 +8,7 @@ local stringutil = require('stringutil')
 local component = require('component')
 
 local icons = setmetatable({
-  ["n"]  = "  ",
+  ["n"]  = " 󰊴 ",
   ["no"] = "N·Operator Pending",
   ["v"]  = " 󰈈 ",
   ["V"]  = " 󰈈 ",
@@ -21,9 +21,9 @@ local icons = setmetatable({
   ["ix"] = " 󰭟 ",
   ["R"]  = "  ",
   ["Rv"] = "  ",
-  ["c"]  = " 󰊴 ",
-  ["cv"] = " 󰊴 ",
-  ["ce"] = " 󰊴 ",
+  ["c"]  = "  ",
+  ["cv"] = "  ",
+  ["ce"] = "  ",
   ["r"]  = "Prompt",
   ["rm"] = "More",
   ["r?"] = "Confirm",
@@ -224,13 +224,13 @@ end
 local draw_colors = function(mode)
   local colors = {
 
-    n  = "hi Mode guibg=none guifg=" .. INCH_WORM,
+    n  = "hi Mode guibg=none guifg=" .. BLACK,
     i  = "hi Mode guibg=none guifg=" .. WHITE,
     ic = "hi Mode guibg=none guifg=" .. MILANO_RED,
     R  = "hi Mode guibg=none guifg=" .. FLUSH_ORANGE,
     v  = "hi Mode guibg=none guifg=" .. HOT_PINK,
     V  = "hi Mode guibg=none guifg=" .. HOT_PINK,
-    c  = "hi Mode guibg=none guifg=" .. BLACK,
+    c  = "hi Mode guibg=none guifg=" .. INCH_WORM,
 
   }
 
