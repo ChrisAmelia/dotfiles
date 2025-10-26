@@ -1,5 +1,3 @@
-vim.api.nvim_command("hi StatusLine guibg=none gui=nocombine")
-
 local Statusline = {}
 
 local api = vim.api
