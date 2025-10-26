@@ -69,3 +69,8 @@ api.nvim_set_keymap("n", "<space>",   "i<space><esc>", { noremap = true } )
 
 
 opt.colorcolumn = "99999" -- https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
+
+
+-- Highlight to avoid weird visual glitches
+api.nvim_command("hi StatusLine guibg=none gui=nocombine")
+api.nvim_command("hi WinBar guibg=none gui=nocombine")

@@ -1,5 +1,3 @@
-vim.api.nvim_command("hi WinBar guibg=none gui=nocombine")
-
 local Winbar = {}
 
 require('colors')

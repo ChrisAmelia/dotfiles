@@ -45,9 +45,7 @@ createNvimDirectories() {
 #------------------------------------------------------------------
 createConfigsSymlinks() {
 	readonly SYMLINKS=(
-		init.vim
-		status-line.vim
-		winbar.vim
+		init.lua
 	)
 
 	readonly SYMLINKS_FTDETECT=(

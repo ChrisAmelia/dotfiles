@@ -1,0 +1,6 @@
+require('plugins')
+require('status-line')
+require('winbar')
+require('settings')
+require('config')
+require('autocommands')
