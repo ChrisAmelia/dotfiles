@@ -1,3 +1,5 @@
+vim.api.nvim_command("hi WinBar guibg=none gui=nocombine")
+
 local Winbar = {}
 
 require('colors')
@@ -36,5 +38,12 @@ Winbar.eval = function ()
 
   return winbar
 end
+
+vim.api.nvim_create_autocmd('CursorHold', {
+    pattern = '*',
+    callback = function()
+        return require('lsp-status').update_current_function()
+    end
+})
 
 return Winbar

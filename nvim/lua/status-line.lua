@@ -1,3 +1,5 @@
+vim.api.nvim_command("hi StatusLine guibg=none gui=nocombine")
+
 local Statusline = {}
 
 local api = vim.api
@@ -410,5 +412,27 @@ function Statusline.inactivate()
 
   return filename
 end
+
+--- setup {{{
+local function set_statusline()
+    vim.api.nvim_create_autocmd({'WinEnter', 'BufEnter'}, {
+        pattern = '*',
+        callback = function()
+            vim.o.statusline = "%!v:lua.require('status-line').activate()"
+        end
+    })
+
+    vim.api.nvim_create_autocmd({'WinLeave', 'BufLeave'}, {
+        pattern = '*',
+        callback = function()
+            vim.o.statusline = "%!v:lua.require('status-line').inactivate()"
+        end
+    })
+
+    vim.o.statusline = "%!v:lua.require('status-line').activate()"
+end
+
+set_statusline()
+--- }}}
 
 return Statusline
