@@ -4,6 +4,7 @@
 # @description Directories for configuration
 #------------------------------------------------------------------
 readonly CURRENT_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+readonly KITTY="$CURRENT_DIRECTORY/kitty"
 readonly NVIM="$CURRENT_DIRECTORY/nvim"
 readonly OH_MY_ZSH="$CURRENT_DIRECTORY/oh-my-zsh"
 
@@ -171,6 +172,7 @@ createCurrentPathVariable() {
 #------------------------------------------------------------------
 installAll() {
 	INSTALLATION_FOLDERS=(
+		$KITTY
 		$OH_MY_ZSH
 		$NVIM
 	)
