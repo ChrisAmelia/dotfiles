@@ -3,11 +3,14 @@ local api = vim.api
 -- Retrieve current git branch's name and set it in buffer
 api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, { callback = function ()
   local handle = io.popen("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-  local branchName = handle:read("*a")
 
-  handle:close()
+  if handle ~= nil then
+    local branch_name = handle:read("*a")
 
-  vim.b.gitBranchName = branchName
+    vim.b.git_branch_name = branch_name
+
+    handle:close()
+  end
 end})
 
 -- Add buffer diagnostics to the location list.

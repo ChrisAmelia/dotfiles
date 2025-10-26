@@ -79,7 +79,7 @@ end
 
 --- @return string # current branch name
 local build_git_branch_component = function()
-  local branch_name = vim.b.gitBranchName or ""
+  local branch_name = vim.b.git_branch_name or ""
 
   local icon = ""
 
