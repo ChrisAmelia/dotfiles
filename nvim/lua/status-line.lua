@@ -16,14 +16,14 @@ local icons = setmetatable({
   ["s"]  = "  ",
   ["S"]  = "S·Line",
   ["^S"] = "S·Block",
-  ["i"]  = " 󰞇 ",
-  ["ic"] = " 󰞇 ",
-  ["ix"] = " 󰞇 ",
+  ["i"]  = " 󰭟 ",
+  ["ic"] = " 󰭟 ",
+  ["ix"] = " 󰭟 ",
   ["R"]  = "  ",
   ["Rv"] = "  ",
-  ["c"]  = "  ",
-  ["cv"] = "  ",
-  ["ce"] = "  ",
+  ["c"]  = " 󰊴 ",
+  ["cv"] = " 󰊴 ",
+  ["ce"] = " 󰊴 ",
   ["r"]  = "Prompt",
   ["rm"] = "More",
   ["r?"] = "Confirm",
@@ -224,13 +224,13 @@ end
 local draw_colors = function(mode)
   local colors = {
 
-    n  = "hi Mode guibg=none guifg=none",
-    i  = "hi Mode guibg=none guifg=" .. HARLEQUIN,
+    n  = "hi Mode guibg=none guifg=" .. INCH_WORM,
+    i  = "hi Mode guibg=none guifg=" .. WHITE,
     ic = "hi Mode guibg=none guifg=" .. MILANO_RED,
     R  = "hi Mode guibg=none guifg=" .. FLUSH_ORANGE,
     v  = "hi Mode guibg=none guifg=" .. HOT_PINK,
     V  = "hi Mode guibg=none guifg=" .. HOT_PINK,
-    c  = "hi Mode guibg=none guifg=" .. MALIBU,
+    c  = "hi Mode guibg=none guifg=" .. BLACK,
 
   }
 
