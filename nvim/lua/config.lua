@@ -68,6 +68,10 @@ vim.keymap.set('n', '<Leader>e', function()
   vim.diagnostic.config({ virtual_lines = new_config })
 end, { desc = 'Toggle diagnostic virtual_lines' })
 
+vim.keymap.set('n', '<leader>de', function()
+    vim.diagnostic.jump({count = 1, severity = vim.diagnostic.severity.ERROR} )
+end, { desc = "Jump to next error" })
+
 -- }}}
 
 -- nvim-colorizer {{{
