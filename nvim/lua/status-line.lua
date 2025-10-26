@@ -191,13 +191,14 @@ end
 ---                  following this format `"[ file.txt ]"`
 local build_filename_component = function()
   local file = fn.expand("%:t")
+  local filetype = vim.bo.filetype
 
   if file == "" then
     return ""
   end
 
   -- Default case, filetype not handled
-  if extensions[vim.bo.filetype] == nil then
+  if extensions[filetype] == nil then
     return component.build_element({
       separator_hl = "HlDefaultSeparatorFile",
       main_hl = "HlDefaultFile",
@@ -207,9 +208,9 @@ local build_filename_component = function()
     })
   end
 
-  local icon = extensions[vim.bo.filetype].icon
-  local bg = extensions[vim.bo.filetype].bg
-  local fg = extensions[vim.bo.filetype].fg
+  local icon = extensions[filetype].icon
+  local bg = extensions[filetype].bg
+  local fg = extensions[filetype].fg
 
   return component.build_element({
     separator_hl = "HlStatuslineSeparatorFile",
