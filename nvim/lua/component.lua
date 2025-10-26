@@ -11,9 +11,6 @@ local Component = {}
 SEPARATOR_LEFT = ""
 SEPARATOR_RIGHT = ""
 
-vim.api.nvim_command("hi StatusLine guibg=none gui=nocombine")
-vim.api.nvim_command("hi WinBar guibg=none gui=nocombine")
-
 --- @param params table
 --- @return string
 function Component.build_element(params)
