@@ -59,3 +59,9 @@ autocmd('CursorHold', {
     return require('lsp-status').update_current_function()
   end
 })
+
+autocmd("FileType", {
+  desc = "Automatically Split help Buffers to the right",
+  pattern = "help",
+  command = "wincmd L",
+})
