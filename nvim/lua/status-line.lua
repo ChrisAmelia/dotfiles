@@ -57,7 +57,7 @@ local extensions = {
   lua           = { icon = "", bg = MARINER         , fg = WHITE         },
   markdown      = { icon = "", bg = BLACK           , fg = WHITE         },
   merge         = { icon = "", bg = CORAL_RED       , fg = WHITE         },
-  rust          = { icon = "", bg = DUST            , fg = BLACK         };
+  rust          = { icon = "", bg = MATTERHORN      , fg = PORSCHE       };
   sh            = { icon = "", bg = COD_GRAY        , fg = SULU          },
   sql           = { icon = "", bg = BIG_STONE       , fg = WHITE         },
   text          = { icon = "", bg = WHITE           , fg = BLACK         },
