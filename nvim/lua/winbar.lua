@@ -45,19 +45,4 @@ Winbar.eval = function ()
   return winbar
 end
 
---- setup {{{
-local function set_winbar()
-    vim.api.nvim_create_autocmd({ 'WinEnter', 'BufEnter' }, {
-        pattern = '*',
-        callback = function()
-            vim.o.winbar = "%!v:lua.require('winbar').eval()"
-        end
-    })
-
-    vim.o.winbar = "%!v:lua.require('winbar').eval()"
-end
-
-set_winbar()
---- }}}
-
 return Winbar

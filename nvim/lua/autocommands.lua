@@ -1,7 +1,8 @@
-local api = vim.api
+local autocmd = vim.api.nvim_create_autocmd
 
--- Retrieve current git branch's name and set it in buffer
-api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, { callback = function ()
+autocmd({ "BufEnter", "BufWinEnter" }, {
+  desc = "Retrieve current git branch's name and set it in buffer.",
+  callback = function ()
   local handle = io.popen("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 
   if handle ~= nil then
@@ -13,12 +14,40 @@ api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, { callback = function ()
   end
 end})
 
--- Add buffer diagnostics to the location list.
-api.nvim_create_autocmd({ "InsertLeave" }, { callback = function ()
-  vim.diagnostic.setloclist({ open = false })
-end})
+autocmd({ "InsertLeave" }, {
+  desc = "Add buffer diagnostics to the location list.",
+  callback = function ()
+    vim.diagnostic.setloclist({ open = false })
+  end
+})
 
--- Highlights the yanked text.
-api.nvim_create_autocmd({ "TextYankPost" }, { callback = function ()
-  vim.highlight.on_yank {higroup="IncSearch", timeout=250, on_visual=false}
-end})
+autocmd({ "TextYankPost" }, {
+  desc = "Highlights the yanked text.",
+  callback = function ()
+    vim.highlight.on_yank {higroup="IncSearch", timeout=250, on_visual=false}
+  end
+})
+
+autocmd({'WinEnter', 'BufEnter'}, {
+  desc = "Update statusline.",
+  pattern = '*',
+  callback = function()
+    vim.o.statusline = "%!v:lua.require('status-line').activate()"
+  end
+})
+
+autocmd({ 'WinLeave', 'BufLeave' }, {
+  desc = "Inactivate statusline.",
+  pattern = '*',
+  callback = function()
+    vim.o.statusline = "%!v:lua.require('status-line').inactivate()"
+  end
+})
+
+autocmd({ 'WinEnter', 'BufEnter' }, {
+  desc = "Update winbar",
+  pattern = '*',
+  callback = function()
+    vim.o.winbar = "%!v:lua.require('winbar').eval()"
+  end
+})
