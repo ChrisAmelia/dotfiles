@@ -45,7 +45,7 @@ autocmd({ 'WinLeave', 'BufLeave' }, {
 })
 
 autocmd({ 'WinEnter', 'BufEnter' }, {
-  desc = "Update winbar",
+  desc = "Update winbar.",
   pattern = '*',
   callback = function()
     vim.o.winbar = "%!v:lua.require('winbar').eval()"
@@ -53,7 +53,7 @@ autocmd({ 'WinEnter', 'BufEnter' }, {
 })
 
 autocmd('CursorHold', {
-  desc = "Update the global variable under 'vim.b.lsp_current_function'",
+  desc = "Update the global variable under 'vim.b.lsp_current_function'.",
   pattern = '*',
   callback = function()
     return require('lsp-status').update_current_function()
@@ -61,7 +61,7 @@ autocmd('CursorHold', {
 })
 
 autocmd("FileType", {
-  desc = "Automatically Split help Buffers to the right",
+  desc = "Automatically Split help Buffers to the right.",
   pattern = "help",
   command = "wincmd L",
 })
