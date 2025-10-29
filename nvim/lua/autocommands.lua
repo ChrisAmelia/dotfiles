@@ -51,3 +51,11 @@ autocmd({ 'WinEnter', 'BufEnter' }, {
     vim.o.winbar = "%!v:lua.require('winbar').eval()"
   end
 })
+
+autocmd('CursorHold', {
+  desc = "Update the global variable under 'vim.b.lsp_current_function'",
+  pattern = '*',
+  callback = function()
+    return require('lsp-status').update_current_function()
+  end
+})

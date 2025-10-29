@@ -4,14 +4,6 @@ require('colors')
 
 local component = require('component')
 
--- autocmd to update the global variable under 'vim.b.lsp_current_function'
-vim.api.nvim_create_autocmd('CursorHold', {
-    pattern = '*',
-    callback = function()
-        return require('lsp-status').update_current_function()
-    end
-})
-
 --- @return string # function under cursor
 local build_current_function_component = function()
   local current_function = ""
