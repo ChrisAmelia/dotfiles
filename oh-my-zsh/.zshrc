@@ -23,6 +23,7 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 
+  archlinux
 	autojump
 	command-not-found
 	copypath
