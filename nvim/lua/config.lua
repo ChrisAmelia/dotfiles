@@ -162,6 +162,7 @@ api.nvim_set_hl(0 , "@function.macro.rust"          , { fg = BURNING_ORANGE     
 api.nvim_set_hl(0 , "@function.rust"                , { fg = INCH_WORM                })
 api.nvim_set_hl(0 , "@keyword.exception.rust"       , { link = "@function.macro.rust" })
 api.nvim_set_hl(0 , "@keyword.storage.lifetime.rust", { fg = HOT_PINK                 })
+api.nvim_set_hl(0 , "@type.rust"                    , { fg = TEXAS_ROSE               })
 api.nvim_set_hl(0 , "@variable.member.rust"         , { fg = GREEN_YELLOW             })
 
 --- }}}}
