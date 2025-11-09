@@ -1,6 +1,4 @@
 vim.pack.add({
-  'https://github.com/wbthomason/packer.nvim',
-
   -- Colors
   'https://github.com/norcalli/nvim-colorizer.lua',
 
