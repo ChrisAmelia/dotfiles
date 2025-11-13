@@ -62,7 +62,7 @@ local extensions = {
   sql           = { icon = "", bg = BIG_STONE       , fg = WHITE         },
   text          = { icon = "", bg = WHITE           , fg = BLACK         },
   vim           = { icon = "", bg = FOREST_GREEN    , fg = WHITE         },
-  xml           = { icon = "", bg = MAKO            , fg = WHITE         },
+  xml           = { icon = "󰗀", bg = MAKO            , fg = WHITE         },
   zsh           = { icon = "", bg = COD_GRAY        , fg = SULU          },
 
 }
