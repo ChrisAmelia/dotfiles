@@ -94,18 +94,17 @@ vim.keymap.set("n", "ga", "<Plug>(EasyAlign)")
 
 -- Tree-sitter {{{
 
-require'nvim-treesitter.configs'.setup {
-  -- one of "all", "language", or a list of languages
-  ensure_installed = {
-    "go" ,
-    "java",
-    "lua",
-    "rust"
-  }, 
-  highlight = {
-    enable = true, -- false will disable the whole extension
-  },
+local ensure_installed = { 
+  "java",
+  "lua",
+  "rust",
 }
+
+local installed = require'nvim-treesitter.config'.get_installed()
+local to_install = vim.iter(ensure_installed)
+  :filter(function(parser) return not vim.tbl_contains(installed, parser) end)
+  :totable( )
+require'nvim-treesitter'.install(to_install)
 
 ---- common {{{{
 
@@ -192,23 +191,15 @@ api.nvim_set_hl(0, "gitcommitUntrackedFile", { bg = GRAY,          fg = NAVAJO_W
 -- }}}
 
 -- nvim-ts-autotag {{{
-require("nvim-treesitter.parsers").list.xml = {
-  install_info = {
-    url = "https://github.com/Trivernis/tree-sitter-xml",
-    files = { "src/parser.c" },
-    generate_requires_npm = true,
-    branch = "main",
+
+require('nvim-ts-autotag').setup({
+  opts = {
+    -- Defaults
+    enable_close = true, -- Auto close tags
+    enable_rename = true, -- Auto rename pairs of tags
+    enable_close_on_slash = false -- Auto close on trailing </
   },
-  filetype = "xml",
-}
-
-
-require'nvim-treesitter.configs'.setup {
-  autotag = {
-    enable = true,
-    filetypes = { "xml" },
-  }
-}
+})
 
 -- }}}
 
@@ -530,29 +521,6 @@ require('hlargs').setup {
 -- fidget {{{
 
 require"fidget".setup{}
-
--- }}}
-
--- gitcommit tree-sitter {{{
-
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-
-parser_config.gitcommit = {
-  install_info = {
-    url = "https://github.com/gbprod/tree-sitter-gitcommit",
-    files = { "src/parser.c", "src/scanner.c" },
-    branch = "main",
-  },
-  filetype = "gitcommit",
-  maintainers = {  "@gbprod" },
-}
-
-api.nvim_set_hl(0, "@attribute.diff", { fg = "#CDB9F2" })
-api.nvim_set_hl(0, "@function.diff", { fg = "#8fBFFC" })
-api.nvim_set_hl(0, "@text.diff.delete", { bg = "#FFEBE9", fg = "#82071E", })
-api.nvim_set_hl(0, "@text.diff.add", { bg = "#DAFBE1", fg = "#116329" })
-api.nvim_set_hl(0, "@function.diff", { bg = "#8FBFFC", fg = "#0550AE" })
-api.nvim_set_hl(0, "@text.reference.gitcommit", { bg = "#BFFC8F", fg = "#357503" })
 
 -- }}}
 

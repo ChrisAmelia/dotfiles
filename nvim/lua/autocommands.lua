@@ -65,3 +65,13 @@ autocmd("FileType", {
   pattern = "help",
   command = "wincmd L",
 })
+
+autocmd('FileType', {
+  pattern = { '*' },
+  callback = function()
+    -- remove error = false when nvim 0.12+ is default
+    if vim.treesitter.get_parser(nil, nil, { error = false }) then
+      vim.treesitter.start()
+    end
+  end,
+})
