@@ -32,6 +32,7 @@ vim.pack.add({
   -- Interface
   'https://github.com/lukas-reineke/indent-blankline.nvim',
   'https://github.com/MeanderingProgrammer/render-markdown.nvim',
+  'https://github.com/rachartier/tiny-glimmer.nvim',
 
   -- Finder
   'https://github.com/Yggdroot/LeaderF',

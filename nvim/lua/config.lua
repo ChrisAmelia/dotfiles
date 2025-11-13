@@ -640,3 +640,47 @@ require'fzf-lua'.setup {
 }
 
 -- }}}
+
+-- tiny-glimmer.nvim {{{
+
+api.nvim_set_hl(0, "HlTinyGlimmerUndo", { bg = ROSE, fg = "none" })
+api.nvim_set_hl(0, "HlTinyGlimmerUndoTo", { bg = CROCODILE, fg = "none" })
+
+require("tiny-glimmer").setup({
+    enabled = true,
+
+    overwrite = {
+      -- Paste operation animation
+      paste = {
+        enabled = true,
+        default_animation = "left_to_right",
+      },
+
+      -- Undo operation animation
+      undo = {
+        enabled = true,
+        default_animation = {
+          name = "left_to_right",
+          settings = {
+            from_color = "HlTinyGlimmerUndo",
+            to_color = "HlTinyGlimmerUndoTo"
+          },
+        },
+        undo_mapping = "u",
+      },
+    },
+
+    animations = {
+      fade = {
+        max_duration = 100,
+        min_duration = 100,
+      },
+
+      left_to_right = {
+        max_duration = 150,
+        min_duration = 150,
+      },
+    },
+})
+
+-- }}}

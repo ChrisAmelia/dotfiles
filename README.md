@@ -76,6 +76,7 @@ are not installed by this script.
 | Git         | [vim-gitgutter](https://github.com/airblade/vim-gitgutter)                            | A Vim plugin which shows a git diff in the sign column.                                                         |
 | Interface   | [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)       | Indent guides on blank lines for Neovim                                                                         |
 | Interface   | [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)  | Plugin to improve viewing Markdown files in Neovim                                                              |
+| Interface   | [tiny-glimmer.nvim](https://github.com/rachartier/tiny-glimmer.nvim)                  | Smooth customizable animations to text operations like yank, paste, search, undo/redo, and more.                |
 | LSP         | [fidget.nvim](https://github.com/j-hui/fidget.nvim)                                   | Extensible UI for Neovim notifications and LSP progress messages.                                               |
 | LSP         | [lsp-status.nvim](https://github.com/nvim-lua/lsp-status.nvim)                        | Neovim plugin/library for generating statusline components from the built-in LSP client.                        |
 | LSP         | [nvim-eldoc](https://github.com/sj2tpgk/nvim-eldoc)                                   | Eldoc for Neovim!                                                                                               |

@@ -21,13 +21,6 @@ autocmd({ "InsertLeave" }, {
   end
 })
 
-autocmd({ "TextYankPost" }, {
-  desc = "Highlights the yanked text.",
-  callback = function ()
-    vim.highlight.on_yank {higroup="IncSearch", timeout=250, on_visual=false}
-  end
-})
-
 autocmd({'WinEnter', 'BufEnter'}, {
   desc = "Update statusline.",
   pattern = '*',
