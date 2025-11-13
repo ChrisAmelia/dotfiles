@@ -1,7 +1,6 @@
 require('colors')
 require('lsp')
 
-local fn = vim.fn
 local api = vim.api
 
 -- Built-in plugins {{{
@@ -94,7 +93,7 @@ vim.keymap.set("n", "ga", "<Plug>(EasyAlign)")
 
 -- Tree-sitter {{{
 
-local ensure_installed = { 
+local ensure_installed = {
   "java",
   "lua",
   "rust",
