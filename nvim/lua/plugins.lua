@@ -5,7 +5,7 @@ vim.pack.add({
   'https://github.com/norcalli/nvim-colorizer.lua',
 
   -- Colorscheme
-  'https://github.comErichDonGubler/vim-sublime-monokai',
+  'https://github.com/ErichDonGubler/vim-sublime-monokai',
 
   -- Completion
   'https://github.com/windwp/nvim-autopairs',
@@ -20,7 +20,7 @@ vim.pack.add({
   'https://github.com/hrsh7th/vim-vsnip',
   'https://github.com/hrsh7th/vim-vsnip-integ',
   'https://github.com/saadparwaiz1/cmp_luasnip',
-  'https//github.com/olimorris/codecompanion.nvim',
+  'https://github.com/olimorris/codecompanion.nvim',
     --- dependencies
     'https://github.com/nvim-lua/plenary.nvim',
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = "main" },
