@@ -65,7 +65,7 @@ createConfigsSymlinks() {
 	evaluateCommand "$messageRemoveSymlinkFtPlugin" "$commandRemoveSymlinkFtPlugin"
 
 	messageCreateSymlinkFtplugin="Create symlink for 'ftplugin' directory"
-	commandCreateSymlinkFtPlugin="ln -s $CURRENT_DIR/lua $NVIM_DIRECTORY/ftplugin"
+	commandCreateSymlinkFtPlugin="ln -s $CURRENT_DIR/ftplugin $NVIM_DIRECTORY/ftplugin"
 	evaluateCommand "$messageCreateSymlinkFtplugin" "$commandCreateSymlinkFtPlugin"
 
 	echo "========================================="
