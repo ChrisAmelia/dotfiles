@@ -12,7 +12,6 @@ echo -e "${BACKGROUND_GREEN}Executing install script in '${PWD##*/}'${NC}"
 readonly CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 readonly LOCAL_BIN="/usr/local/bin"
 readonly NVIM_DIRECTORY=$HOME/.config/nvim
-readonly NVIM_FTDETECT_DIRECTORY=$HOME/.config/nvim/ftdetect
 
 #-------------------------------------------------------------------
 # @description nvim
@@ -27,11 +26,6 @@ createNvimDirectories() {
 	readonly COMMAND_CREATE_NVIM_DIRECTORY="mkdir -p $NVIM_DIRECTORY"
 
 	evaluateCommand "$MESSAGE_CREATE_NVIM_DIRECTORY" "$COMMAND_CREATE_NVIM_DIRECTORY"
-
-	readonly MESSAGE_CREATE_FTDETECT_DIRECTORY="Creating nvim's ftdetect directory if does not exist."
-	readonly COMMAND_CREATE_FTDETECT_DIRECTORY="mkdir -p $NVIM_FTDETECT_DIRECTORY"
-
-	evaluateCommand "$MESSAGE_CREATE_FTDETECT_DIRECTORY" "$COMMAND_CREATE_FTDETECT_DIRECTORY"
 }
 
 #------------------------------------------------------------------
@@ -40,9 +34,6 @@ createNvimDirectories() {
 createConfigsSymlinks() {
 	readonly SYMLINKS=(
 		init.lua
-	)
-
-	readonly SYMLINKS_FTDETECT=(
 	)
 
 	for symlink in "${SYMLINKS[@]}"; do
@@ -57,20 +48,19 @@ createConfigsSymlinks() {
 		echo "========================================="
 	done
 
-	for symlink in "${SYMLINKS_FTDETECT[@]}"; do
-		messageRemoveSymlinkConfig="Removing '$symlink'"
-		commandRemoveSymlinkConfig="rm -f $NVIM_DIRECTORY/ftdetect/$symlink"
-		evaluateCommand "$messageRemoveSymlinkConfig" "$commandRemoveSymlinkConfig"
+	# Symlink for 'ftdetect'
+	messageRemoveSymlinkFtDetect="Removing 'ftdetect' directory"
+	commandRemoveSymlinkFtDetect="rm -rf $NVIM_DIRECTORY/ftdetect"
+	evaluateCommand "$messageRemoveSymlinkFtDetect" "$commandRemoveSymlinkFtDetect"
 
-		messageCreateSymlinkConfig="Creating symlink for '$symlink'"
-		commandCreateSymlinkConfig="ln -s $CURRENT_DIR/ftdetect/$symlink $NVIM_DIRECTORY/ftdetect"
-		evaluateCreateSymlink "$messageCreateSymlinkConfig" "$commandCreateSymlinkConfig"
+	messageCreateSymlinkFtDetect="Create symlink for 'ftdetect' directory"
+	commandCreateSymlinkFtDetect="ln -s $CURRENT_DIR/ftdetect $NVIM_DIRECTORY/ftdetect"
+	evaluateCommand "$messageCreateSymlinkFtDetect" "$commandCreateSymlinkFtDetect"
 
-		echo "========================================="
-	done
+	echo "========================================="
 
 	# Symlink for 'ftplugin' directory
-	messageRemoveSymlinkFtPlugin="Removing 'ftplugin' directory symlink"
+	messageRemoveSymlinkFtPlugin="Removing 'ftplugin' directory"
 	commandRemoveSymlinkFtPlugin="rm -rf $NVIM_DIRECTORY/ftplugin"
 	evaluateCommand "$messageRemoveSymlinkFtPlugin" "$commandRemoveSymlinkFtPlugin"
 
@@ -81,7 +71,7 @@ createConfigsSymlinks() {
 	echo "========================================="
 
 	# Symlink for 'lua' directory
-	messageRemoveSymlinkLua="Removing 'lua' directory symlink"
+	messageRemoveSymlinkLua="Removing 'lua' directory"
 	commandRemoveSymLinkLua="rm -rf $NVIM_DIRECTORY/lua"
 	evaluateCommand "$messageRemoveSymlinkLua" "$commandRemoveSymLinkLua"
 
