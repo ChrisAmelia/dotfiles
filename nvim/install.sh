@@ -13,7 +13,6 @@ readonly CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 &
 readonly LOCAL_BIN="/usr/local/bin"
 readonly NVIM_DIRECTORY=$HOME/.config/nvim
 readonly NVIM_FTDETECT_DIRECTORY=$HOME/.config/nvim/ftdetect
-readonly NVIM_FTPLUGIN_DIRECTORY=$HOME/.config/nvim/ftplugin
 
 #-------------------------------------------------------------------
 # @description nvim
@@ -33,11 +32,6 @@ createNvimDirectories() {
 	readonly COMMAND_CREATE_FTDETECT_DIRECTORY="mkdir -p $NVIM_FTDETECT_DIRECTORY"
 
 	evaluateCommand "$MESSAGE_CREATE_FTDETECT_DIRECTORY" "$COMMAND_CREATE_FTDETECT_DIRECTORY"
-
-	readonly MESSAGE_CREATE_FTPLUGIN_DIRECTORY="Creating nvim's ftplugin directory if does not exist."
-	readonly COMMAND_CREATE_FTPLUGIN_DIRECTORY="mkdir -p $NVIM_FTPLUGIN_DIRECTORY"
-
-	evaluateCommand "$MESSAGE_CREATE_FTPLUGIN_DIRECTORY" "$COMMAND_CREATE_FTPLUGIN_DIRECTORY"
 }
 
 #------------------------------------------------------------------
@@ -49,10 +43,6 @@ createConfigsSymlinks() {
 	)
 
 	readonly SYMLINKS_FTDETECT=(
-	)
-
-	readonly SYMLINKS_FTPLUGIN=(
-		lua.lua
 	)
 
 	for symlink in "${SYMLINKS[@]}"; do
@@ -79,17 +69,16 @@ createConfigsSymlinks() {
 		echo "========================================="
 	done
 
-	for symlink in "${SYMLINKS_FTPLUGIN[@]}"; do
-		messageRemoveSymlinkConfig="Removing '$symlink'"
-		commandRemoveSymlinkConfig="rm -f $NVIM_DIRECTORY/ftplugin/$symlink"
-		evaluateCommand "$messageRemoveSymlinkConfig" "$commandRemoveSymlinkConfig"
+	# Symlink for 'ftplugin' directory
+	messageRemoveSymlinkFtPlugin="Removing 'ftplugin' directory symlink"
+	commandRemoveSymlinkFtPlugin="rm -rf $NVIM_DIRECTORY/ftplugin"
+	evaluateCommand "$messageRemoveSymlinkFtPlugin" "$commandRemoveSymlinkFtPlugin"
 
-		messageCreateSymlinkConfig="Creating symlink for '$symlink'"
-		commandCreateSymlinkConfig="ln -s $CURRENT_DIR/ftplugin/$symlink $NVIM_DIRECTORY/ftplugin"
-		evaluateCreateSymlink "$messageCreateSymlinkConfig" "$commandCreateSymlinkConfig"
+	messageCreateSymlinkFtplugin="Create symlink for 'ftplugin' directory"
+	commandCreateSymlinkFtPlugin="ln -s $CURRENT_DIR/lua $NVIM_DIRECTORY/ftplugin"
+	evaluateCommand "$messageCreateSymlinkFtplugin" "$commandCreateSymlinkFtPlugin"
 
-		echo "========================================="
-	done
+	echo "========================================="
 
 	# Symlink for 'lua' directory
 	messageRemoveSymlinkLua="Removing 'lua' directory symlink"
