@@ -12,7 +12,6 @@ echo -e "${BACKGROUND_GREEN}Executing install script in '${PWD##*/}'${NC}"
 readonly CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 readonly LOCAL_BIN="/usr/local/bin"
 readonly NVIM_DIRECTORY=$HOME/.config/nvim
-readonly NVIM_LUA_DIRECTORY=$HOME/.config/nvim/lua
 readonly NVIM_FTDETECT_DIRECTORY=$HOME/.config/nvim/ftdetect
 readonly NVIM_FTPLUGIN_DIRECTORY=$HOME/.config/nvim/ftplugin
 
@@ -29,11 +28,6 @@ createNvimDirectories() {
 	readonly COMMAND_CREATE_NVIM_DIRECTORY="mkdir -p $NVIM_DIRECTORY"
 
 	evaluateCommand "$MESSAGE_CREATE_NVIM_DIRECTORY" "$COMMAND_CREATE_NVIM_DIRECTORY"
-
-	readonly MESSAGE_CREATE_LUA_DIRECTORY="Creating nvim's lua directory if does not exist."
-	readonly COMMAND_CREATE_LUA_DIRECTORY="mkdir -p $NVIM_LUA_DIRECTORY"
-
-	evaluateCommand "$MESSAGE_CREATE_LUA_DIRECTORY" "$COMMAND_CREATE_LUA_DIRECTORY"
 
 	readonly MESSAGE_CREATE_FTDETECT_DIRECTORY="Creating nvim's ftdetect directory if does not exist."
 	readonly COMMAND_CREATE_FTDETECT_DIRECTORY="mkdir -p $NVIM_FTDETECT_DIRECTORY"
@@ -59,19 +53,6 @@ createConfigsSymlinks() {
 
 	readonly SYMLINKS_FTPLUGIN=(
 		lua.lua
-	)
-
-	readonly SYMLINKS_LUA=(
-		colors.lua
-		config.lua
-		lsp.lua
-		plugins.lua
-		settings.lua
-		status-line.lua
-		stringutil.lua
-		winbar.lua
-		autocommands.lua
-		component.lua
 	)
 
 	for symlink in "${SYMLINKS[@]}"; do
@@ -110,17 +91,16 @@ createConfigsSymlinks() {
 		echo "========================================="
 	done
 
-	for symlink in "${SYMLINKS_LUA[@]}"; do
-		messageRemoveSymlinkConfig="Removing '$symlink'"
-		commandRemoveSymlinkConfig="rm -f $NVIM_DIRECTORY/lua/$symlink"
-		evaluateCommand "$messageRemoveSymlinkConfig" "$commandRemoveSymlinkConfig"
+	# Symlink for 'lua' directory
+	messageRemoveSymlinkLua="Removing 'lua' directory symlink"
+	commandRemoveSymLinkLua="rm -rf $NVIM_DIRECTORY/lua"
+	evaluateCommand "$messageRemoveSymlinkLua" "$commandRemoveSymLinkLua"
 
-		messageCreateSymlinkConfig="Creating symlink for '$symlink'"
-		commandCreateSymlinkConfig="ln -s $CURRENT_DIR/lua/$symlink $NVIM_DIRECTORY/lua"
-		evaluateCreateSymlink "$messageCreateSymlinkConfig" "$commandCreateSymlinkConfig"
+	messageCreateSymlinkLua="Creating symlink for 'lua' directory"
+	commandCreateSymlinkLua="ln -s $CURRENT_DIR/lua $NVIM_DIRECTORY/lua"
+	evaluateCommand "$messageCreateSymlinkLua" "$commandCreateSymlinkLua"
 
-		echo "========================================="
-	done
+	echo "========================================="
 }
 
 #------------------------------------------------------------------
