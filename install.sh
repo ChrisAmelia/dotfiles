@@ -31,7 +31,7 @@ readonly CHMOD_X_INSTALL="chmod +x $INSTALL_SH"
 # @arg $1: message to print
 #------------------------------------------------------------------
 echoMessage() {
-	echo -e "${YELLOW}\uf869 $1${NC}"
+	echo -e "${YELLOW}󰵅 $1${NC}"
 }
 
 #------------------------------------------------------------------
