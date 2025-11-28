@@ -32,21 +32,16 @@ createNvimDirectories() {
 # @description Create neovim's config's symlinks
 #------------------------------------------------------------------
 createConfigsSymlinks() {
-	readonly SYMLINKS=(
-		init.lua
-	)
+	# Symlink for 'init.lua'
+	messageRemoveSymlinkInit="Removing 'init.lua'"
+	commandRemoveSymlinkInit="rm $NVIM_DIRECTORY/init.lua"
+	evaluateCommand "$messageRemoveSymlinkInit" "$commandRemoveSymlinkInit"
 
-	for symlink in "${SYMLINKS[@]}"; do
-		messageRemoveSymlinkConfig="Removing '$symlink'"
-		commandRemoveSymlinkConfig="rm -f $NVIM_DIRECTORY/$symlink"
-		evaluateCommand "$messageRemoveSymlinkConfig" "$commandRemoveSymlinkConfig"
+	messageCreateSymlinkInit="Create symlink for 'init.lua"
+	commandCreateSymlinkInit="ln -s $CURRENT_DIR/init.lua $NVIM_DIRECTORY/init.lua"
+	evaluateCommand "$messageCreateSymlinkInit" "$commandCreateSymlinkInit"
 
-		messageCreateSymlinkConfig="Creating symlink for '$symlink'"
-		commandCreateSymlinkConfig="ln -s $CURRENT_DIR/$symlink $NVIM_DIRECTORY"
-		evaluateCreateSymlink "$messageCreateSymlinkConfig" "$commandCreateSymlinkConfig"
-
-		echo "========================================="
-	done
+	echo "========================================="
 
 	# Symlink for 'ftdetect'
 	messageRemoveSymlinkFtDetect="Removing 'ftdetect' directory"
