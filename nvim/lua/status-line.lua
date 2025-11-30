@@ -105,23 +105,18 @@ end
 --- @return string # git relative path of current file
 local build_git_relative_path_component = function()
   local icon = ""
-  local filename = fn.expand("%:t") -- file's name with extension: "file.txt"
-  local fullpath = fn.expand("%:p") -- path to file: "/home/user/git_repo/path/to/file.txt"
+
   local current_directory = fn.expand("%:p:h")
-  local git_directory = fn.finddir(".git/..", current_directory .. ";") -- "/home/user/git_repo"
 
   -- When opening an empty buffer
-  if fullpath == "" then
+  if current_directory == "" then
     return ""
   end
 
   -- From "/home/user/git_repo/path/to/file.txt"
-  --       ^^^^^^^^^^^^^^^^^^^         ^^^^^^^^^
-  --       len(git_directory)          len(filename)
   -- to "path/to"
-  local begin_index = string.len(git_directory) + 2
-  local end_index = string.len(fullpath) - string.len(filename) - 1
-  local path = string.sub(fullpath, begin_index, end_index)
+  local git_directory = fn.finddir(".git/..", current_directory .. ";") -- "/home/user/git_repo"
+  local path = current_directory:sub(git_directory:len() + 2)
 
   return component.build_element({
     separator_hl = "HlStatuslineSeparatorGitPath",
