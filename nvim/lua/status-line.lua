@@ -43,6 +43,7 @@ local extensions = {
   codecompanion = { icon = "󰚩", bg = BLACK           , fg = ELECTRIC_BLUE },
   commit        = { icon = "", bg = CORAL_RED       , fg = WHITE         },
   css           = { icon = "", bg = ENDEAVOUR       , fg = WHITE         },
+  dockerfile    = { icon = "", bg = LIGHT_BLUE      , fg = MOBY_BLUE     },
   edit          = { icon = "", bg = CORAL_RED       , fg = WHITE         },
   fugitive      = { icon = "", bg = CORAL_RED       , fg = WHITE         },
   go            = { icon = "", bg = CORNFLOWER_BLUE , fg = WHITE         },
