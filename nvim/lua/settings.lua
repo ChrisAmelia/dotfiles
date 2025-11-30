@@ -47,6 +47,7 @@ cmd("syntax on")                     -- See :h :syntax-on
 
 
 vim.g.mapleader = "," -- Leader map
+vim.keymap.set('n', 'p', '"+p', { noremap = true, silent = true })
 
 api.nvim_set_hl(0, "SignColumn" , { bg = "none"      , fg = "none"     })
 api.nvim_set_hl(0, "PMenuSel"   , { bg = "none"      , fg = "none"     })
