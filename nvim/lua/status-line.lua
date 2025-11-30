@@ -135,56 +135,35 @@ local build_git_relative_path_component = function()
   })
 end
 
---- considering the fullpath of the current file being `/home/user/project/file`,
---- this returns `~/user/project`.
+--- Returns the head path.
+--- Considering the fullpath of the current file being `/etc/user/project/file`, this returns `/etc/user/project`.
+--- If the file is located somewhere in `/home/user/`, then `/home/user` is shorten for `~`.
 --- @return string # full path to current file
 local build_fullpath_component = function()
-  local icon = ""
-  local filename = fn.expand("%:t") -- file's name with extension: "file.txt"
-  local fullpath = fn.expand("%:p") -- path to file: "/home/user/path/to/file.txt"
+  local icon = " 󰇝"
+  local fullpath = fn.expand("%:p:h") -- head path to file: "/home/user/path/to/"
 
   -- When opening an empty buffer
   if fullpath == "" then
     return ""
   end
 
-  local split_fullpath = stringutil.split(fullpath, "/") -- {"home", "user", "path", "to", "file.txt"}
-  local shorten_path = nil
-  local shift; -- remove the last '/' from "~/project/" (HOME) or "/usr/lib/" (ROOT)
+  -- /home/user/path/to
+  --           ^
+  --           end_index
+  local _, end_index = fullpath:find(os.getenv("HOME"))
 
-  -- Replace "/home/user/" with "~"
-  if split_fullpath[1] == "home" then
-    shorten_path = "~/"
-    shift = 2; -- introducing the tilde '~' shifts the last '/' from 1 to the right thus removing the two last chars
-
-    -- From {"home", "user", "path", "to", "file.txt"}
-    -- to {"path", "to", "file.txt"} thus begin index at 3
-    local begin_index = 3
-    local end_index = #split_fullpath
-    local slice = { unpack(split_fullpath, begin_index, end_index) }
-
-    -- Concatenate slice: "~/path/to/file.txt"
-    for _, value in pairs(slice) do
-      shorten_path = shorten_path .. value .. "/"
-    end
-  else
-    shift = 1;
+  -- replace '/home/user' with '~'
+  if end_index ~= nil then
+    fullpath = "~" .. fullpath:sub(end_index + 1)
   end
-
-  -- shorten_path: current directory is at $HOME
-  -- fullpath: current directory is at root "/"
-  local path = shorten_path or fullpath
-
-  -- Strip the last '/' and the file's name
-  -- path is "~/home/user/path/to"
-  path = string.sub(path, 0, string.len(path) - string.len(filename) - shift)
 
   return component.build_element({
     separator_hl = "HlStatuslineSeparatorFullPath",
     main_hl = "HlStatuslineFullPath",
     bg = GOLD,
     fg = BLACK,
-    value = icon .. " " .. path
+    value = icon .. " " .. fullpath
   })
 end
 
