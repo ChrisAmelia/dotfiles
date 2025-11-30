@@ -83,10 +83,10 @@ local build_git_branch_component = function()
 
   if branch_name == "master" or branch_name == "main" then
     icon = ""
-  elseif string.find(string.lower(branch_name), "fix") then
+  elseif branch_name:lower():find("fix") then
     icon = ""
     branch_name = branch_name:sub(5, -1)
-  elseif string.find(string.lower(branch_name), "feat") then
+  elseif branch_name:lower():find("feat") then
     icon = ""
     branch_name = branch_name:sub(6, -1)
   else
