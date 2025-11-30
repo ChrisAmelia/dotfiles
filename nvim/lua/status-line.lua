@@ -120,7 +120,7 @@ local build_git_relative_path_component = function()
 
   -- From "/home/user/git_repo/path/to/file.txt"
   --       ^^^^^^^^^^^^^^^^^^^         ^^^^^^^^^
-  --       len(gitDirectory)           len(filename)
+  --       len(git_directory)          len(filename)
   -- to "path/to"
   local begin_index = string.len(git_directory) + 2
   local end_index = string.len(fullpath) - string.len(filename) - 1
