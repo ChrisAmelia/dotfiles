@@ -50,7 +50,7 @@ vim.g.mapleader = "," -- Leader map
 vim.keymap.set('n', 'p', '"+p', { noremap = true, silent = true })
 
 api.nvim_set_hl(0, "SignColumn" , { bg = "none"      , fg = "none"     })
-api.nvim_set_hl(0, "PMenuSel"   , { bg = "none"      , fg = "none"     })
+api.nvim_set_hl(0, "PMenuSel"   , { bg = ABBEY       , fg = "none"     })
 api.nvim_set_hl(0, "LineNr"     , { bg = "none"      , fg = "none"     })
 api.nvim_set_hl(0, "Normal"     , { bg = "none"      , fg = "none"     })
 api.nvim_set_hl(0, "Comment"    , { bg = "none"      , fg = CHARTREUSE })

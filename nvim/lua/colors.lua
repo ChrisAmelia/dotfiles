@@ -1,3 +1,4 @@
+ABBEY             = "#4E545C"
 ALIZARIN_CRIMSON  = "#E31F16"
 ALTO              = "#D4D4D4"
 ANAKIWA           = "#9CDCFE"
