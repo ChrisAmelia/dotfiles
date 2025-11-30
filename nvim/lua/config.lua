@@ -238,8 +238,7 @@ vim.g.gitgutter_sign_modified = '│'
 -- }}}
 
 -- LSP Config {{{
-
-vim.keymap.set("n" , "K"          , vim.lsp.buf.hover           )
+vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = 'rounded' }) end)
 vim.keymap.set("n" , "gi"         , vim.lsp.buf.implementation  )
 vim.keymap.set("i" , "<C-k>"      , vim.lsp.buf.signature_help  )
 vim.keymap.set("n" , "gr"         , vim.lsp.buf.references      )
