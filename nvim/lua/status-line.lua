@@ -68,14 +68,11 @@ local extensions = {
 
 }
 
---- If value is not `nil`, then is a git repository,
---- especially check the presence of a .git directory.
---- @see string.find
+--- @return boolean # true if current directory is a git repo, else false
 local is_git_repository = function()
   local current_directory = fn.expand("%:p:h")
-  local git_root = fn.finddir(".git/", current_directory .. ";")
 
-  return string.find(git_root, ".git")
+  return fn.finddir(".git/", current_directory .. ";") ~= ''
 end
 
 --- @return string # current branch name
