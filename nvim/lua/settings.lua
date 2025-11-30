@@ -48,16 +48,15 @@ cmd("syntax on")                     -- See :h :syntax-on
 
 vim.g.mapleader = "," -- Leader map
 
-
-api.nvim_command("hi Comment     guibg=none guifg=#7CFC00" ) -- Comments highlight
-api.nvim_command("hi LineNr      guibg=none guifg=none"    ) -- Number column highlight
-api.nvim_command("hi Normal      guibg=NONE"               ) -- Transparent background
-api.nvim_command("hi NormalFloat guibg=#2F4F4F"            ) -- Floatin window highlight
-api.nvim_command("hi SignColumn  guibg=none"               ) -- Sign column highlight
-api.nvim_command("hi Visual      guibg=#00FA9A guifg=BLACK") -- Visual highlight
-api.nvim_command("hi PMenu guibg=#191f22 guifg=#C0C0C0")
-api.nvim_command("hi PMenuSel guibg=NONE guifg=NONE")
-api.nvim_set_hl(0, "CurSearch", { bg = BLUE_RIBBON, fg = WHITE })
+api.nvim_set_hl(0, "SignColumn" , { bg = "none"      , fg = "none"     })
+api.nvim_set_hl(0, "PMenuSel"   , { bg = "none"      , fg = "none"     })
+api.nvim_set_hl(0, "LineNr"     , { bg = "none"      , fg = "none"     })
+api.nvim_set_hl(0, "Normal"     , { bg = "none"      , fg = "none"     })
+api.nvim_set_hl(0, "Comment"    , { bg = "none"      , fg = CHARTREUSE })
+api.nvim_set_hl(0, "CurSearch"  , { bg = BLUE_RIBBON , fg = WHITE      })
+api.nvim_set_hl(0, "PMenu"      , { bg = SHARK       , fg = SILVER     })
+api.nvim_set_hl(0, "Visual"     , { bg = SPRING_GREEN, fg = BLACK      })
+api.nvim_set_hl(0, "NormalFloat", { bg = WOODSMOKE   , fg = "none"     })
 
 
 -- Quick mappings
