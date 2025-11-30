@@ -348,6 +348,8 @@ cmp.setup {
       col_offset = -3,
       side_padding = 0,
     },
+
+    documentation = cmp.config.window.bordered(),
   },
 
   formatting = {
