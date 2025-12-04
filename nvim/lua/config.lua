@@ -348,7 +348,10 @@ cmp.setup {
       side_padding = 0,
     },
 
-    documentation = cmp.config.window.bordered(),
+    documentation = {
+      border = "rounded",
+      winhighlight = "Normal:PMenu",
+    },
   },
 
   formatting = {

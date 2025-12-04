@@ -57,7 +57,10 @@ api.nvim_set_hl(0, "Comment"    , { bg = "none"      , fg = CHARTREUSE })
 api.nvim_set_hl(0, "CurSearch"  , { bg = BLUE_RIBBON , fg = WHITE      })
 api.nvim_set_hl(0, "PMenu"      , { bg = SHARK       , fg = SILVER     })
 api.nvim_set_hl(0, "Visual"     , { bg = SPRING_GREEN, fg = BLACK      })
-api.nvim_set_hl(0, "NormalFloat", { bg = WOODSMOKE   , fg = "none"     })
+api.nvim_set_hl(0, "NormalFloat", { bg = SHARK       , fg = "none"     })
+api.nvim_set_hl(0, "FloatBorder", { bg = "none"      , fg = SILVER     })
+api.nvim_set_hl(0, "ColorColumn", { bg = SHARK       , fg = "none"     })
+
 
 
 -- Quick mappings
