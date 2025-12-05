@@ -17,17 +17,17 @@ function Component.build_element(params)
   local buffer = ""
 
   if params.has_separator_left ~= false then
-    vim.api.nvim_command("hi " .. params.separator_hl .. " guifg=" .. params.bg  .. " guibg=none")
+    vim.api.nvim_set_hl(0, params.separator_hl, { fg = params.bg })
     buffer = buffer .. "%#" .. params.separator_hl .. "#"
     buffer = buffer .. SEPARATOR_LEFT
   end
 
-  vim.api.nvim_command("hi " .. params.main_hl .. " guifg=" .. params.fg .. " guibg=" .. params.bg)
+  vim.api.nvim_set_hl(0, params.main_hl, { fg = params.fg, bg = params.bg })
   buffer = buffer .. "%#" .. params.main_hl .. "#"
   buffer = buffer .. params.value
 
   if params.has_separator_right ~= false then
-    vim.api.nvim_command("hi " .. params.separator_hl .. " guifg=" .. params.bg  .. " guibg=none")
+    vim.api.nvim_set_hl(0, params.separator_hl, { fg = params.bg })
     buffer = buffer .. "%#" .. params.separator_hl .. "#"
     buffer = buffer .. SEPARATOR_RIGHT
   end
