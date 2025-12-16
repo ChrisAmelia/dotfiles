@@ -137,6 +137,15 @@ api.nvim_set_hl(0, "@variable.regex"              , { fg = SKY_BLUE     })
 
 ---- }}}}
 
+--- elixir {{{
+
+api.nvim_set_hl(0, "@comment.elixir", { fg = CROCODILE })
+api.nvim_set_hl(0, "@comment.documentation.elixir", { fg = CROCODILE })
+api.nvim_set_hl(0, "@module.elixir", { fg = MALIBU })
+api.nvim_set_hl(0, "@string.special.symbol.elixir", { fg = GOLDEN_SAND })
+
+--- }}}
+
 ---- html {{{{
 
 api.nvim_set_hl(0 , "@operator.html"      , { fg = GREEN_YELLOW })
@@ -209,7 +218,7 @@ vim.g.Lf_WindowPosition = 'popup'
 vim.g.Lf_PopupWidth = 0.70
 vim.g.Lf_PopupPreviewPosition = 'cursor'
 vim.g.Lf_WildIgnore = {
-  dir = { 'target', 'bin' }
+  dir = { 'target', 'bin', '_build' }
 }
 
 vim.keymap.set("n" , "<C-n>"      , ":Leaderf file<CR>"        )

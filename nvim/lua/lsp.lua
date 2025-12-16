@@ -194,3 +194,11 @@ vim.lsp.enable('lua_ls')
 -- 	},
 -- }
 -- }}}
+
+vim.lsp.config('expert', {
+  cmd = { '/usr/local/bin/expert', '--stdio' },
+  root_markers = { 'mix.exs', '.git' },
+  filetypes = { 'elixir', 'eelixir', 'heex' },
+})
+
+vim.lsp.enable 'expert'
