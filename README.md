@@ -88,6 +88,7 @@ are not installed by this script.
 | Parser      | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)                 | Treesitter configurations and abstraction layer for Neovim.                                                     |
 | Statusline  | [status-line.lua](nvim/lua/status-line.lua)                                           | Custom statusline, see screenshot                                                                               |
 | Tabs        | [barbar.nvim](https://github.com/romgrk/barbar.nvim)                                  | Tabs, as understood by any other editor.                                                                        |
+| Testing     | [neotest](https://github.com/nvim-neotest/neotest)                                    | An extensible framework for interacting with tests within NeoVim                                                |
 
 ## :bookmark_tabs: Other interesting plugins
 
