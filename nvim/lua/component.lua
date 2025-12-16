@@ -22,9 +22,11 @@ function Component.build_element(params)
     buffer = buffer .. SEPARATOR_LEFT
   end
 
+  -- %{ is part of the statusline syntax,
+  -- escape those characters to avoid conflict
   vim.api.nvim_set_hl(0, params.main_hl, { fg = params.fg, bg = params.bg })
   buffer = buffer .. "%#" .. params.main_hl .. "#"
-  buffer = buffer .. params.value
+  buffer = buffer .. params.value:gsub("%{", "%%%{")
 
   if params.has_separator_right ~= false then
     vim.api.nvim_set_hl(0, params.separator_hl, { fg = params.bg })
