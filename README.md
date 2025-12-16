@@ -13,7 +13,6 @@
 # :book: Table of contents
 
 - [Dotfiles](#open_file_folder-dotfiles)
-	- [Ubuntu 18.04](#computer-ubuntu-1804)
 - [Installation](#wrench-installation)
 - [Screenshots](#art-screenshots)
 	- [Neovim](#neovim)
@@ -27,7 +26,6 @@
 
 # :file_folder: Dotfiles
 
-### :computer: Ubuntu 18.04
 Development setup using **Oh-My-Zsh** and **Neovim**.  
 I aim to have something in-between a light and not too heavy development setup.
 
