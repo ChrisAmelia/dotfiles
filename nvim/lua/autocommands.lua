@@ -68,3 +68,19 @@ autocmd('FileType', {
     end
   end,
 })
+
+autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('close_with_q', { clear = true }),
+  desc = 'Close with <q>',
+  pattern = {
+    'fugitive',
+    'git',
+    'help',
+    'qf',
+  },
+  callback = function(args)
+    if args.match ~= 'help' or not vim.bo[args.buf].modifiable then
+      vim.keymap.set('n', 'q', '<cmd>quit<cr>', { buffer = args.buf })
+    end
+  end,
+})
