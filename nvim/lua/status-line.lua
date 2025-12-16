@@ -245,7 +245,11 @@ local build_errors_component = function()
 
   local first_error = errors[1]
   local first_error_line = first_error.lnum + 1
-  local first_error_message =  first_error.message
+  local first_error_message = first_error.message
+
+  if #first_error_message > 20 then
+    first_error_message = first_error_message:sub(1, 20) .. "..."
+  end
 
   return component.build_element({
     has_separator_left = false,
