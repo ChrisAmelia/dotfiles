@@ -56,6 +56,13 @@ vim.pack.add({
   -- Tabs
   'https://github.com/romgrk/barbar.nvim',
 
+  -- Testing
+  'https://github.com/nvim-neotest/neotest',
+  'https://github.com/jfpedroza/neotest-elixir',
+    --- dependencies
+    'https://github.com/nvim-lua/plenary.nvim',
+    'https://github.com/nvim-neotest/nvim-nio',
+
   -- Tree-sitter
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = "main" },
   'https://github.com/m-demare/hlargs.nvim',
