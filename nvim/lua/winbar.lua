@@ -16,6 +16,10 @@ local build_current_function_component = function()
 
   current_function = vim.b.lsp_current_function
 
+  if current_function:find("%{") then
+    current_function = current_function:gsub("%{", "%%%{")
+  end
+
   return component.build_element({
       separator_hl = "HlStatuslineSeparatorFunction",
       main_hl = "HlStatuslineFunction",
