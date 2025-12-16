@@ -1,6 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd({ "BufEnter", "BufWinEnter" }, {
+  group = vim.api.nvim_create_augroup("git_branch", { clear = true }),
   desc = "Retrieve current git branch's name and set it in buffer.",
   callback = function ()
   local handle = io.popen("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
@@ -46,6 +47,7 @@ autocmd({ 'WinEnter', 'BufEnter' }, {
 })
 
 autocmd('CursorHold', {
+  group = vim.api.nvim_create_augroup("lsp_signature", { clear = true }),
   desc = "Update the global variable under 'vim.b.lsp_current_function'.",
   pattern = '*',
   callback = function()
