@@ -51,7 +51,14 @@ autocmd('CursorHold', {
   desc = "Update the global variable under 'vim.b.lsp_current_function'.",
   pattern = '*',
   callback = function()
-    return require('lsp-status').update_current_function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local clients = vim.lsp.get_clients({ bufnr = bufnr })
+
+    for _, client in ipairs(clients) do
+      if client.server_capabilities.documentSymbolProvider then
+        return require('lsp-status').update_current_function()
+      end
+    end
   end
 })
 
