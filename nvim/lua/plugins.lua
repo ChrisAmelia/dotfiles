@@ -31,7 +31,6 @@ vim.pack.add({
 
   -- Interface
   'https://github.com/lukas-reineke/indent-blankline.nvim',
-  'https://github.com/MeanderingProgrammer/render-markdown.nvim',
   'https://github.com/rachartier/tiny-glimmer.nvim',
   'https://github.com/folke/zen-mode.nvim',
 
@@ -69,3 +68,38 @@ vim.pack.add({
   'https://github.com/m-demare/hlargs.nvim',
   'https://github.com/windwp/nvim-ts-autotag',
 })
+
+-- Rendermarkdown {{{
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  once = true,
+  pattern = { "*.md" },
+  callback = function()
+    vim.pack.add({ "https://github.com/MeanderingProgrammer/render-markdown.nvim" })
+
+    require('render-markdown').setup({
+      checkbox = {
+        enabled = true,
+        render_modes = false,
+        right_pad = 1,
+        unchecked = {
+          icon = '󰄱 ',
+          highlight = 'RenderMarkdownUnchecked',
+          scope_highlight = nil,
+        },
+        checked = {
+          icon = '󰱒 ',
+          highlight = 'RenderMarkdownChecked',
+          scope_highlight = nil,
+        },
+        custom = {
+          todo = { raw = '[-]', rendered = '󰥔 ', highlight = 'RenderMarkdownTodo', scope_highlight = nil },
+        },
+      },
+    })
+
+    vim.api.nvim_command("RenderMarkdown disable")
+  end
+})
+
+-- }}}
