@@ -49,7 +49,6 @@ vim.pack.add({
   -- LSP
   'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/nvim-lua/lsp-status.nvim',
-  'https://github.com/mfussenegger/nvim-jdtls',
   'https://github.com/j-hui/fidget.nvim',
   'https://github.com/mrcjkb/rustaceanvim',
   'https://github.com/chrisgrieser/nvim-lsp-endhints',
@@ -70,6 +69,18 @@ vim.pack.add({
   'https://github.com/m-demare/hlargs.nvim',
   'https://github.com/windwp/nvim-ts-autotag',
 })
+
+-- nvim-jdtls {{{
+
+autocmd("BufEnter", {
+  once = true,
+  pattern = { "*.java" },
+  callback = function ()
+    vim.pack.add({ "https://github.com/mfussenegger/nvim-jdtls" })
+  end
+})
+
+-- }}}
 
 -- Rendermarkdown {{{
 
