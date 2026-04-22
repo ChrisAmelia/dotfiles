@@ -1,3 +1,5 @@
+local autocmd = vim.api.nvim_create_autocmd
+
 vim.api.nvim_create_user_command("UpdatePlugins", function() vim.pack.update() end, {})
 
 vim.pack.add({
@@ -71,7 +73,7 @@ vim.pack.add({
 
 -- Rendermarkdown {{{
 
-vim.api.nvim_create_autocmd("BufEnter", {
+autocmd("BufEnter", {
   once = true,
   pattern = { "*.md" },
   callback = function()
