@@ -4,6 +4,8 @@ end
 
 vim.g.markdown_loaded = true
 
+local autocmd = vim.api.nvim_create_autocmd
+
 -- Rendermarkdown {{{
 
 autocmd("BufEnter", {
