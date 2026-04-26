@@ -196,6 +196,16 @@ api.nvim_set_hl(0, "gitcommitUntrackedFile", { bg = GRAY,          fg = NAVAJO_W
 
 ---}}}}
 
+---- heex {{{{
+
+api.nvim_set_hl(0, "@function.heex", { fg = ROSE })
+api.nvim_set_hl(0, "@string.heex", { fg = MALIBU_VARIANT, bg = LYNCH })
+api.nvim_set_hl(0, "@tag.attribute.heex", { fg = INCH_WORM })
+api.nvim_set_hl(0, "@tag.delimiter.heex", { fg = WHITE })
+api.nvim_set_hl(0, "@tag.heex", { fg = ROSE })
+
+--- }}}}
+
 -- }}}
 
 -- nvim-ts-autotag {{{
