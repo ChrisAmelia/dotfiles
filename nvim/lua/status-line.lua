@@ -28,7 +28,7 @@ local icons = setmetatable({
   ["rm"] = "More",
   ["r?"] = "Confirm",
   ["!"]  = "Shell",
-  ["t"]  = "TERMINAL"
+  ["t"]  = " 󱄕 "
 }, {
   -- fix weird issues
   __index = function(_, _)
@@ -48,6 +48,7 @@ local extensions = {
   elixir        = { icon = "", bg = LIGHT_BLUE      , fg = MARDI_GRAS    },
   fugitive      = { icon = "", bg = CORAL_RED       , fg = WHITE         },
   go            = { icon = "", bg = CORNFLOWER_BLUE , fg = WHITE         },
+  heex          = { icon = "", bg = MATTERHORN      , fg = SUNSET_ORANGE },
   help          = { icon = "", bg = FERN_GREEN      , fg = WHITE         },
   html          = { icon = "", bg = DEEP_RED        , fg = WHITE         },
   java          = { icon = "", bg = ALIZARIN_CRIMSON, fg = WHITE         },
@@ -59,15 +60,35 @@ local extensions = {
   lua           = { icon = "", bg = MARINER         , fg = WHITE         },
   markdown      = { icon = "", bg = BLACK           , fg = WHITE         },
   merge         = { icon = "", bg = CORAL_RED       , fg = WHITE         },
+  po            = { icon = "󰗊", bg = WHITE           , fg = BLACK         },
   rust          = { icon = "", bg = MATTERHORN      , fg = PORSCHE       };
   sh            = { icon = "", bg = COD_GRAY        , fg = SULU          },
   sql           = { icon = "", bg = BIG_STONE       , fg = WHITE         },
   text          = { icon = "", bg = WHITE           , fg = BLACK         },
   vim           = { icon = "", bg = FOREST_GREEN    , fg = WHITE         },
   xml           = { icon = "󰗀", bg = MAKO            , fg = WHITE         },
+  yaml          = { icon = "", bg = BLACK           , fg = RIPE_LEMON    },
   zsh           = { icon = "", bg = COD_GRAY        , fg = SULU          },
 
 }
+
+local directory_icons = {
+
+  config = { icon = "", bg = BIG_STONE  , fg = GRAY            },
+  lib    = { icon = "", bg = GOLD       , fg = WOODSMOKE       },
+  nvim   = { icon = "", bg = PARIS_WHITE, fg = FOREST_GREEN    },
+  priv   = { icon = "󰸐", bg = WHITE      , fg = LIGHT_AUBERGINE },
+  test   = { icon = "󰙨", bg = HELIOTROPE , fg = PIGMENT_INDIGO  },
+
+}
+
+local default_icon = { icon = "", bg = GOLD, fg = BLACK }
+
+setmetatable(directory_icons, {
+  __index = function()
+    return default_icon
+  end
+})
 
 --- @return boolean # true if current directory is a git repo, else false
 local is_git_repository = function()
@@ -105,7 +126,11 @@ end
 
 --- @return string # git relative path of current file
 local build_git_relative_path_component = function()
-  local icon = ""
+  ---@diagnostic disable-next-line: undefined-global
+  local default = directory_icons[default]
+  local icon = default.icon
+  local bg = default.bg
+  local fg = default.fg
 
   local current_directory = fn.expand("%:p:h")
 
@@ -119,11 +144,18 @@ local build_git_relative_path_component = function()
   local git_directory = fn.finddir(".git/..", current_directory .. ";") -- "/home/user/git_repo"
   local path = current_directory:sub(git_directory:len() + 2)
 
+  if path ~= "" then
+    local directory_header = string.match(path, "([^/]+)")
+    icon = directory_icons[directory_header].icon
+    bg = directory_icons[directory_header].bg
+    fg = directory_icons[directory_header].fg
+  end
+
   return component.build_element({
     separator_hl = "HlStatuslineSeparatorGitPath",
     main_hl = "HlStatuslineGitPath",
-    bg = GOLD,
-    fg = BLACK,
+    bg = bg,
+    fg = fg,
     value = icon .. " " .. path
   })
 end
