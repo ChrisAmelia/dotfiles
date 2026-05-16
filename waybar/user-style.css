@@ -1,0 +1,43 @@
+/* User custom styles */
+
+* {
+	border-radius: 10px;
+	font-size: 13px;
+	padding: 10px;
+}
+
+#waybar {
+	border-radius: 10px;
+}
+
+#clock {
+	color: #FF007F;
+	border-radius: 10px;
+}
+
+#workspaces button.active {
+	color: #FF0000;
+	background-color: transparent;
+}
+
+#cpu {
+	color: #FFD700;
+}
+
+#memory {
+	color: #E6BE8A;
+}
+
+#custom-launcher {
+    /* Set the path to your PNG file */
+    background-image: url('./assets/controller.png');
+    
+    /* Ensure the image is positioned and sized correctly */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain; /* or specify a size like 20px */
+    
+    /* Add padding/margin as needed for spacing */
+    padding: 0 10px; 
+    font-size: 20px; /* Adjust font size to control the module's height */
+}
