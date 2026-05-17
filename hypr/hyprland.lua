@@ -16,6 +16,13 @@ hl.workspace_rule({
   default = true,
 })
 
+hl.workspace_rule({
+  workspace = "name:2",
+  no_rounding = true,
+  decorate = true,
+  animation = "slidevert",
+})
+
 hl.monitor({
   output = "HDMI-A-1",
   mode = "preferred",
@@ -43,6 +50,7 @@ local menu        = "hyprlauncher"
 --
 hl.on("hyprland.start", function ()
   hl.exec_cmd("waybar & hyprpaper & firefox")
+  hl.exec_cmd("kitty --start-as=fullscreen", { workspace = 1 })
 end)
 
 
@@ -117,9 +125,9 @@ hl.config({
         },
 
         blur = {
-            enabled   = false,
-            size      = 3,
-            passes    = 1,
+            enabled   = true,
+            size      = 10,
+            passes    = 2,
             vibrancy  = 0.1696,
         },
     },
@@ -361,5 +369,12 @@ hl.window_rule({
 
 hl.window_rule({
   match = { class = "firefox" },
+  workspace = "name:2",
   opacity = "0.85 0.75",
+})
+
+hl.window_rule({
+  match = { class = "kitty" },
+  workspace = "name:1",
+  no_blur = true,
 })
