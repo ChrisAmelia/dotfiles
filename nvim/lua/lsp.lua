@@ -127,7 +127,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 
 -- LUA_LS {{{
-vim.lsp.config('lua_ls', {
+vim.lsp.config('emmylua_ls', {
   on_init = function(client)
     if client.workspace_folders then
       local path = client.workspace_folders[1].name
@@ -166,7 +166,7 @@ vim.lsp.config('lua_ls', {
     }
 });
 
-vim.lsp.enable('lua_ls')
+vim.lsp.enable('emmylua_ls')
 -- }}}
 
 -- GOPLS {{{
