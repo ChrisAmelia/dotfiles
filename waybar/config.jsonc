@@ -1,14 +1,12 @@
 // -*- mode: jsonc -*-
 {
-	// "layer": "top", // Waybar at top layer
-	// "position": "bottom", // Waybar position (top|bottom|left|right)
+	"layer": "top", // Waybar at top layer
+	"position": "right",
+	"exclusive": false,
 	"height": 30, // Waybar height (to be removed for auto height)
-	// "width": 1280, // Waybar width
 	"spacing": 4, // Gaps between modules (4px)
 	"margin-right": 4,
-	"position": "right",
 	"reload_style_on_change": true,
-	"mode": "overlay",
 	"modules-right": [
 		"hyprland/workspaces",
 		"custom/launcher",
@@ -37,12 +35,7 @@
 		"sort-by-number": true
 	},
 	"tray": {
-		// "icon-size": 21,
-		"spacing": 10,
-		// "icons": {
-		//   "blueman": "bluetooth",
-		//   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
-		// }
+		"spacing": 10
 	},
 	"clock": {
 		"format": "{0:%H:%M}\n{0:%A}\n{0:%d}/{0:%m}",
