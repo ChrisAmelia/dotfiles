@@ -13,7 +13,8 @@
 		"cpu",
 		"memory",
 		"clock",
-		"tray"
+		"tray",
+		"custom/weather"
 	],
 	"custom/launcher": {
 		"format": " ",
@@ -49,5 +50,12 @@
 	},
 	"memory": {
 		"format": "{}% "
+	},
+	"custom/weather": {
+		"exec": "${HOME}/.config/waybar/scripts/get_weather.sh ${TOWN}+${COUNTRY}",
+		"return-type": "json",
+		"format": "{}",
+		"tooltip": true,
+		"interval": 3600
 	}
 }
