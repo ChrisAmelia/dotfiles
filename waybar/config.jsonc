@@ -14,6 +14,7 @@
 		"memory",
 		"clock",
 		"tray",
+		"network",
 		"custom/weather"
 	],
 	"custom/launcher": {
@@ -39,7 +40,7 @@
 		"spacing": 10
 	},
 	"clock": {
-		"format": "{0:%H:%M}\n{0:%A}\n{0:%d}/{0:%m}",
+		"format": " {0:%H:%M}\n {0:%A}\n󰸗 {0:%d}/{0:%m}",
 		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
 		"format-alt": "{:%Y-%m-%d}",
 		"locale": "en_US.UTF-8"
@@ -49,7 +50,10 @@
 		"tooltip": false
 	},
 	"memory": {
-		"format": "{}% "
+		"format": "{percentage}% \n{swapPercentage}%  󰓡"
+	},
+	"network": {
+		"format": " {bandwidthTotalBytes}"
 	},
 	"custom/weather": {
 		"exec": "${HOME}/.config/waybar/scripts/get_weather.sh ${TOWN}+${COUNTRY}",
