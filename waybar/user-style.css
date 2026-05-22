@@ -3,7 +3,6 @@
 * {
 	border-radius: 10px;
 	font-size: 13px;
-	padding: 10px;
 }
 
 #waybar {
@@ -15,7 +14,12 @@
 	border-radius: 10px;
 }
 
+#workspaces button {
+	padding: 10px;
+}
+
 #workspaces button.active {
+	padding-top: 20px;
 	color: #FF0000;
 	background-color: transparent;
 }
@@ -40,4 +44,25 @@
     /* Add padding/margin as needed for spacing */
     padding: 0 10px; 
     font-size: 20px; /* Adjust font size to control the module's height */
+}
+
+#taskbar button {
+	padding: 10px;
+}
+
+#taskbar button.active {
+	background-color: rgba(169, 169, 169, 0.2); /* Red with 50% opacity */
+}
+
+#taskbar button.fullscreen {
+	padding: 0px;
+}
+
+#network {
+	padding: 10px;
+}
+
+#custom-separator {
+  padding: 10px;
+  color: #444;
 }

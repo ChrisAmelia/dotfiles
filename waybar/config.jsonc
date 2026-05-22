@@ -9,6 +9,8 @@
 	"reload_style_on_change": true,
 	"modules-right": [
 		"hyprland/workspaces",
+		"wlr/taskbar",
+		"custom/separator",
 		"custom/launcher",
 		"cpu",
 		"memory",
@@ -21,12 +23,24 @@
 		"format": " ",
 		"tooltip": false
 	},
+	"custom/separator": {
+		 "format": "" ,
+		 "interval": "once"
+	},
+	"wlr/taskbar": {
+		"format": "{icon}",
+		"icon-size": 24,
+		"tooltip-format": "{title}",
+		"orientation": "vertical",
+		"on-click": "activate",
+		"on-click-middle": "close"
+	},
 	"hyprland/workspaces": {
 		"format": "{icon}",
 		"on-click": "activate",
 		"format-icons": {
 			"1": "",
-			"2": "",
+			"2": "󰳽",
 			"3": "",
 			"4": "",
 			"5": "",
