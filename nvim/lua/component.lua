@@ -18,8 +18,7 @@ function Component.build_element(params)
 
   if params.has_separator_left ~= false then
     vim.api.nvim_set_hl(0, params.separator_hl, { fg = params.bg })
-    buffer = buffer .. "%#" .. params.separator_hl .. "#"
-    buffer = buffer .. SEPARATOR_LEFT
+    buffer = string.format("%s%s%s%s", "%#", params.separator_hl, "#", SEPARATOR_LEFT)
   end
 
   -- %{ is part of the statusline syntax,
@@ -34,8 +33,7 @@ function Component.build_element(params)
 
   if params.has_separator_right ~= false then
     vim.api.nvim_set_hl(0, params.separator_hl, { fg = params.bg })
-    buffer = buffer .. "%#" .. params.separator_hl .. "#"
-    buffer = buffer .. SEPARATOR_RIGHT
+    buffer = string.format("%s%s%s%s%s", buffer, "%#", params.separator_hl, "#", SEPARATOR_RIGHT)
   end
 
   return buffer
