@@ -1,7 +1,3 @@
-local autocmd = vim.api.nvim_create_autocmd
-
-vim.api.nvim_create_user_command("UpdatePlugins", function() vim.pack.update() end, {})
-
 vim.pack.add({
   -- Colors
   'https://github.com/norcalli/nvim-colorizer.lua',
