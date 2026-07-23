@@ -80,12 +80,12 @@ local directory_icons = {
   lib    = { icon = "", bg = GOLD       , fg = WOODSMOKE       },
   nvim   = { icon = "", bg = PARIS_WHITE, fg = FOREST_GREEN    },
   priv   = { icon = "󰸐", bg = WHITE      , fg = LIGHT_AUBERGINE },
-  test   = { icon = "", bg = LIGHT_BLUE , fg = PIGMENT_INDIGO  },
+  test   = { icon = "", bg = SHARK      , fg = TURQUOISE_BLUE  },
   waybar = { icon = "󱄄", bg = BLACK      , fg = ANAKIWA         },
 
 }
 
-local default_icon = { icon = "", bg = GOLD, fg = BLACK }
+local default_icon = { icon = "", bg = GOLD, fg = BLACK }
 
 setmetatable(directory_icons, {
   __index = function()
