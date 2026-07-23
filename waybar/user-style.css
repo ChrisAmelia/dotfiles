@@ -12,6 +12,7 @@
 #clock {
 	color: #FF007F;
 	border-radius: 10px;
+	padding: 10px;
 }
 
 #workspaces button {
@@ -51,14 +52,14 @@
 }
 
 #taskbar button.active {
-	background-color: rgba(169, 169, 169, 0.2); /* Red with 50% opacity */
+	background-color: rgba(169, 169, 169, 0.2);
 }
 
 #taskbar button.fullscreen {
-	padding: 0px;
 }
 
 #network {
+	color: #A9A9A9;
 	padding: 10px;
 }
 
