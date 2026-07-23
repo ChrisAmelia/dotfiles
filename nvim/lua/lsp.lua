@@ -128,43 +128,28 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- LUA_LS {{{
 vim.lsp.config('emmylua_ls', {
-  on_init = function(client)
-    if client.workspace_folders then
-      local path = client.workspace_folders[1].name
-      if
-        path ~= vim.fn.stdpath('config')
-        and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
-        then
-          return
-        end
-      end
-    end,
-
-    settings = {
-      Lua = {
-        hint = {
-          enable = true
-        },
-        runtime = {
-          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-          version = 'LuaJIT',
-        },
-        diagnostics = {
-          -- Get the language server to recognize the `vim` global
-          globals = {'vim'},
-        },
-        workspace = {
-          checkThirdParty = false,
-          -- Make the server aware of Neovim runtime files
-          library = vim.api.nvim_get_runtime_file("", true)
-        },
-        -- Do not send telemetry data containing a randomized but unique identifier
-        telemetry = {
-          enable = false,
+  cmd = { 'emmylua_ls' },
+  filetypes = { 'lua' },
+  root_markers = { { '.emmyrc.json', '.luarc.json' }, '.git' },
+  --- TODO: missing @type lspconfig.settings.emmylua_ls
+  settings = {
+    emmylua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
+      workspace = {
+        library = {
+          vim.env.VIMRUNTIME,
+          -- For LSP Settings Type Annotations: https://github.com/neovim/nvim-lspconfig#lsp-settings-type-annotations
+          vim.api.nvim_get_runtime_file('lua/lspconfig', false)[1],
         },
       },
-    }
-});
+      diagnostics = {
+        globals = { 'vim' },
+      },
+    },
+  },
+})
 
 vim.lsp.enable('emmylua_ls')
 -- }}}
