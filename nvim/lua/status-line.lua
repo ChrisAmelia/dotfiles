@@ -80,6 +80,7 @@ local directory_icons = {
   lib    = { icon = "", bg = GOLD       , fg = WOODSMOKE       },
   nvim   = { icon = "", bg = PARIS_WHITE, fg = FOREST_GREEN    },
   priv   = { icon = "󰸐", bg = WHITE      , fg = LIGHT_AUBERGINE },
+  src    = { icon = "󱘎", bg = GOLD       , fg = BLACK           },
   test   = { icon = "", bg = SHARK      , fg = TURQUOISE_BLUE  },
   waybar = { icon = "󱄄", bg = BLACK      , fg = ANAKIWA         },
 
