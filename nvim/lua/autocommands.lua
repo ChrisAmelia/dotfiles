@@ -62,10 +62,15 @@ autocmd('CursorHold', {
   end
 })
 
-autocmd("FileType", {
+autocmd("BufWinEnter", {
   desc = "Automatically Split help Buffers to the right.",
-  pattern = "help",
-  command = "wincmd L",
+  pattern = { "*.txt" },
+  callback = function()
+    if vim.o.filetype == "help" then
+      vim.cmd.wincmd("L")
+      vim.cmd("vertical resize 84")
+    end
+  end
 })
 
 autocmd('FileType', {
