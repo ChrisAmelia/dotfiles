@@ -29,6 +29,11 @@ hl.monitor({
   transform = 1,
 })
 
+hl.monitor({
+  output = "DP-3",
+  position = "auto-left"
+})
+
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
@@ -51,8 +56,20 @@ local menu        = "hyprlauncher"
 hl.on("hyprland.start", function ()
   hl.exec_cmd("waybar & hyprpaper & firefox")
   hl.exec_cmd("kitty --start-as=fullscreen", { workspace = 1 })
+  hl.exec_cmd("bongocat --watch-config --monitor DP-3")
+
+  hl.exec_cmd("dbus-update-activation-environment --all ")
+  hl.exec_cmd("./nuclear.sh")
 end)
 
+
+hl.on("monitor.focused", function()
+  play_bubble_sound()
+end)
+
+hl.on("hyprland.shutdown", function()
+  hl.exec_cmd("mplayer ~/sounds/ps4-shutdown.mp3")
+end)
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
@@ -81,6 +98,10 @@ hl.env("HYPRCURSOR_SIZE", "24")
 -- hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
 -- hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
 -- hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
+
+hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
+hl.env("XDG_SESSION_TYPE", "wayland")
+hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 
 
 -----------------------
@@ -260,6 +281,8 @@ hl.gesture({
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
+hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("wlogout"))
+
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
@@ -371,11 +394,12 @@ hl.window_rule({
 hl.window_rule({
   match = { class = "firefox" },
   workspace = "name:2 silent",
-  opacity = "0.85 0.75",
+  opacity = "0.85 1",
 })
 
 hl.window_rule({
   match = { class = "kitty" },
+  float = true,
   workspace = "name:1",
   no_blur = true,
 })
