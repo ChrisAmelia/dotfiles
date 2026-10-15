@@ -734,6 +734,19 @@ vim.keymap.set("n", "<F11>", function() require "zen-mode".toggle() end)
         height = 1, -- Maximum height.
       },
     },
-  })
+  },
+})
+
+vim.cmd("set messagesopt+=maxheight:50,pager:<CR>,timeout:4000")
+
+-- }}}
+
+-- nvim-lint {{{
+
+local linters = require("lint").linters
+
+require('lint').linters_by_ft = {
+  elixir = {'credo', 'dialyxir'},
+}
 
 -- }}}

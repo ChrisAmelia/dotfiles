@@ -75,6 +75,7 @@ are not installed by this script.
 | Interface   | [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)       | Indent guides on blank lines for Neovim                                                                         |
 | Interface   | [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)  | Plugin to improve viewing Markdown files in Neovim                                                              |
 | Interface   | [tiny-glimmer.nvim](https://github.com/rachartier/tiny-glimmer.nvim)                  | Smooth customizable animations to text operations like yank, paste, search, undo/redo, and more.                |
+| Linter      | [nvim-lint](https://github.com/mfussenegger/nvim-lint)                                | An asynchronous linter plugin for Neovim complementary to the built-in Language Server Protocol support.        |
 | LSP         | [fidget.nvim](https://github.com/j-hui/fidget.nvim)                                   | Extensible UI for Neovim notifications and LSP progress messages.                                               |
 | LSP         | [lsp-status.nvim](https://github.com/nvim-lua/lsp-status.nvim)                        | Neovim plugin/library for generating statusline components from the built-in LSP client.                        |
 | LSP         | [nvim-eldoc](https://github.com/sj2tpgk/nvim-eldoc)                                   | Eldoc for Neovim!                                                                                               |

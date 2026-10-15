@@ -50,6 +50,9 @@ vim.pack.add({
   'https://github.com/chrisgrieser/nvim-lsp-endhints',
   'https://github.com/sj2tpgk/nvim-eldoc',
 
+  -- Linter
+  'https://github.com/mfussenegger/nvim-lint',
+
   -- Tabs
   'https://github.com/romgrk/barbar.nvim',
 
