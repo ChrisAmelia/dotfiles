@@ -143,6 +143,7 @@ api.nvim_set_hl(0, "@comment.elixir", { fg = CROCODILE })
 api.nvim_set_hl(0, "@comment.documentation.elixir", { fg = CROCODILE })
 api.nvim_set_hl(0, "@module.elixir", { fg = MALIBU })
 api.nvim_set_hl(0, "@string.special.symbol.elixir", { fg = GOLDEN_SAND })
+api.nvim_set_hl(0, "@string.special.elixir", { fg = CHENIN })
 
 --- }}}
 
@@ -171,6 +172,8 @@ api.nvim_set_hl(0 , "@keyword.exception.rust"       , { link = "@function.macro.
 api.nvim_set_hl(0 , "@keyword.storage.lifetime.rust", { fg = HOT_PINK                 })
 api.nvim_set_hl(0 , "@type.rust"                    , { fg = TEXAS_ROSE               })
 api.nvim_set_hl(0 , "@variable.member.rust"         , { fg = GREEN_YELLOW             })
+api.nvim_set_hl(0 , "@type.struct.rust"             , { fg = TEXAS_ROSE               })
+api.nvim_set_hl(0 , "@type.trait.rust"              , { fg = MALIBU                   })
 
 --- }}}}
 
