@@ -19,65 +19,6 @@ readonly NVIM_DIRECTORY=$HOME/.config/nvim
 readonly NVIM_APPIMAGE="nvim.appimage"
 
 #------------------------------------------------------------------
-# @description Create nvim directory
-#------------------------------------------------------------------
-createNvimDirectories() {
-	readonly MESSAGE_CREATE_NVIM_DIRECTORY="Creating nvim's config directory if does not exist."
-	readonly COMMAND_CREATE_NVIM_DIRECTORY="mkdir -p $NVIM_DIRECTORY"
-
-	evaluateCommand "$MESSAGE_CREATE_NVIM_DIRECTORY" "$COMMAND_CREATE_NVIM_DIRECTORY"
-}
-
-#------------------------------------------------------------------
-# @description Create neovim's config's symlinks
-#------------------------------------------------------------------
-createConfigsSymlinks() {
-	# Symlink for 'init.lua'
-	messageRemoveSymlinkInit="Removing 'init.lua'"
-	commandRemoveSymlinkInit="rm $NVIM_DIRECTORY/init.lua"
-	evaluateCommand "$messageRemoveSymlinkInit" "$commandRemoveSymlinkInit"
-
-	messageCreateSymlinkInit="Create symlink for 'init.lua"
-	commandCreateSymlinkInit="ln -s $CURRENT_DIR/init.lua $NVIM_DIRECTORY/init.lua"
-	evaluateCommand "$messageCreateSymlinkInit" "$commandCreateSymlinkInit"
-
-	echo "========================================="
-
-	# Symlink for 'ftdetect'
-	messageRemoveSymlinkFtDetect="Removing 'ftdetect' directory"
-	commandRemoveSymlinkFtDetect="rm -rf $NVIM_DIRECTORY/ftdetect"
-	evaluateCommand "$messageRemoveSymlinkFtDetect" "$commandRemoveSymlinkFtDetect"
-
-	messageCreateSymlinkFtDetect="Create symlink for 'ftdetect' directory"
-	commandCreateSymlinkFtDetect="ln -s $CURRENT_DIR/ftdetect $NVIM_DIRECTORY/ftdetect"
-	evaluateCommand "$messageCreateSymlinkFtDetect" "$commandCreateSymlinkFtDetect"
-
-	echo "========================================="
-
-	# Symlink for 'ftplugin' directory
-	messageRemoveSymlinkFtPlugin="Removing 'ftplugin' directory"
-	commandRemoveSymlinkFtPlugin="rm -rf $NVIM_DIRECTORY/ftplugin"
-	evaluateCommand "$messageRemoveSymlinkFtPlugin" "$commandRemoveSymlinkFtPlugin"
-
-	messageCreateSymlinkFtplugin="Create symlink for 'ftplugin' directory"
-	commandCreateSymlinkFtPlugin="ln -s $CURRENT_DIR/ftplugin $NVIM_DIRECTORY/ftplugin"
-	evaluateCommand "$messageCreateSymlinkFtplugin" "$commandCreateSymlinkFtPlugin"
-
-	echo "========================================="
-
-	# Symlink for 'lua' directory
-	messageRemoveSymlinkLua="Removing 'lua' directory"
-	commandRemoveSymLinkLua="rm -rf $NVIM_DIRECTORY/lua"
-	evaluateCommand "$messageRemoveSymlinkLua" "$commandRemoveSymLinkLua"
-
-	messageCreateSymlinkLua="Creating symlink for 'lua' directory"
-	commandCreateSymlinkLua="ln -s $CURRENT_DIR/lua $NVIM_DIRECTORY/lua"
-	evaluateCommand "$messageCreateSymlinkLua" "$commandCreateSymlinkLua"
-
-	echo "========================================="
-}
-
-#------------------------------------------------------------------
 # @description Rename current appimage to old.
 #------------------------------------------------------------------
 renameCurrentNvimAppImage() {
@@ -111,7 +52,7 @@ makeNvimExecutale() {
 #------------------------------------------------------------------
 # @description Create neovim symlink in local binaries
 #------------------------------------------------------------------
-createNvimSylink() {
+createNvimSymlink() {
 	readonly SYMLINK_NVIM="nvim"
 	readonly MESSAGE_REMOVE_SYMLINK_NVIM="Removing existing symlink '$SYMLINK_NVIM' in '$LOCAL_BIN'"
 	readonly COMMAND_REMOVE_SYMLINK_NVIM="rm -f $LOCAL_BIN/$SYMLINK_NVIM"
@@ -127,17 +68,13 @@ createNvimSylink() {
 
 if [ "${PWD##*/}" == "nvim" ]
 then
-	createNvimDirectories
-	echo
-	createConfigsSymlinks
-	echo
 	renameCurrentNvimAppImage
 	echo
 	downloadNvim
 	echo
 	makeNvimExecutale
 	echo
-	createNvimSylink
+	createNvimSymlink
 	echo
 	echo ""
 	printf "${BACKGROUND_GREEN}END OF 'nvim'${NC}"
