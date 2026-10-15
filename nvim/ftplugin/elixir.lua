@@ -103,3 +103,5 @@ vim.api.nvim_create_autocmd("BufWrite", {
     vim.lsp.buf.format()
   end
 })
+
+vim.api.nvim_set_keymap('ia', '>>', '|>', { noremap = true })
