@@ -70,7 +70,7 @@
 		"format": " {bandwidthTotalBytes}"
 	},
 	"custom/weather": {
-		"exec": "waybar-weather",
+		"exec": "~/Repos/waybar-weather/waybar-weather",
 		"restart-interval": 60,
 		"return-type": "json",
 		"hide-empty-text": true,
