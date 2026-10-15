@@ -96,6 +96,10 @@ vim.api.nvim_create_autocmd("BufWrite", {
   desc = "Format current file.",
   pattern = { "*.ex", "*.exs" },
   callback = function ()
+    local path = vim.api.nvim_buf_get_name(0)
+    if path:match("router%.ex$") then
+      return
+    end
     vim.lsp.buf.format()
   end
 })
