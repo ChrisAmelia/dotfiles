@@ -715,27 +715,22 @@ vim.keymap.set("n", "<F11>", function() require "zen-mode".toggle() end)
   require('vim._core.ui2').enable({
     enable = true, -- Whether to enable or disable the UI.
     msg = { -- Options related to the message module.
-      ---@type 'cmd'|'msg' Default message target, either in the
-      ---cmdline or in a separate ephemeral message window.
       ---@type string|table<string, 'cmd'|'msg'|'pager'> Default message target
-      ---or table mapping |ui-messages| kinds and triggers to a target.
-      targets = "msg",
-      cmd = { -- Options related to messages in the cmdline window.
-        height = 0.5 -- Maximum height while expanded for messages beyond 'cmdheight'.
-      },
+      ---or table mapping |ui-messages| kinds, triggers and IDs to a target.
+      ---Table keys are matched as a Lua pattern to the message ID. 'default'
+      ---mapping applies to any omitted kind: { default = 'cmd', progress = 'msg' }.
+      targets = 'cmd',
       dialog = { -- Options related to dialog window.
         height = 0.5, -- Maximum height.
       },
       msg = { -- Options related to msg window.
         height = 0.5, -- Maximum height.
-        timeout = 4000, -- Time a message is visible in the message window.
       },
       pager = { -- Options related to message window.
-        height = 1, -- Maximum height.
+        height = 0.999, -- Maximum height.
       },
     },
-  },
-})
+  })
 
 vim.cmd("set messagesopt+=maxheight:50,pager:<CR>,timeout:4000")
 
