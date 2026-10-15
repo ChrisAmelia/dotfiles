@@ -656,31 +656,31 @@ require("tiny-glimmer").setup({
         default_animation = "left_to_right",
       },
 
-      -- Undo operation animation
-      undo = {
-        enabled = true,
-        default_animation = {
-          name = "left_to_right",
-          settings = {
-            from_color = "HlTinyGlimmerUndo",
-            to_color = "HlTinyGlimmerUndoTo"
-          },
+    -- Undo operation animation
+    undo = {
+      enabled = true,
+      default_animation = {
+        name = "left_to_right",
+        settings = {
+          from_color = "HlTinyGlimmerUndo",
+          to_color = "HlTinyGlimmerUndoTo"
         },
-        undo_mapping = "u",
       },
+      undo_mapping = "u",
+    },
+  },
+
+  animations = {
+    fade = {
+      max_duration = 100,
+      min_duration = 100,
     },
 
-    animations = {
-      fade = {
-        max_duration = 100,
-        min_duration = 100,
-      },
-
-      left_to_right = {
-        max_duration = 150,
-        min_duration = 150,
-      },
+    left_to_right = {
+      max_duration = 150,
+      min_duration = 150,
     },
+  },
 })
 
 -- }}}
