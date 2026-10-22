@@ -321,15 +321,15 @@ vim.keymap.set("n", "<Tab>", ":BufferNext<CR>")
 -- nvim-cmp {{{
 
 local has_words_before = function()
-  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+  if api.nvim_buf_get_option(0, "buftype") == "prompt" then
     return false
   end
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  local line, col = unpack(api.nvim_win_get_cursor(0))
+  return col ~= 0 and api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 local feedkey = function(key, mode)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+  api.nvim_feedkeys(api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
 local cmp = require('cmp')
@@ -446,8 +446,8 @@ cmp.setup {
       option = {
         get_bufnrs = function()
           local bufs = {}
-          for _, win in ipairs(vim.api.nvim_list_wins()) do
-            bufs[vim.api.nvim_win_get_buf(win)] = true
+          for _, win in ipairs(api.nvim_list_wins()) do
+            bufs[api.nvim_win_get_buf(win)] = true
           end
           return vim.tbl_keys(bufs)
         end
@@ -505,13 +505,13 @@ local hooks = require "ibl.hooks"
 -- create the highlight groups in the highlight setup hook, so they are reset
 -- every time the colorscheme changes
 hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-  vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
-  vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
-  vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
-  vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
-  vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
-  vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
-  vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+  api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+  api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+  api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+  api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+  api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+  api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+  api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
 end)
 
 require("ibl").setup {
@@ -620,7 +620,7 @@ require("lsp-endhints").setup {
   },
   autoEnableHints = true,
 }
-vim.api.nvim_set_hl(0, "LspInlayHint", { bg = MAKO, fg = WHITE })
+api.nvim_set_hl(0, "LspInlayHint", { bg = colors.MAKO, fg = colors.WHITE })
 
 -- }}}
 
