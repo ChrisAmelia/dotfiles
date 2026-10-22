@@ -482,7 +482,7 @@ api.nvim_set_hl(0, "CmpItemKindReference",     { fg = colors.WHITE, bg = colors.
 api.nvim_set_hl(0, "CmpItemKindSnippet",       { fg = colors.WHITE, bg = colors.SUNSET_ORANGE })
 api.nvim_set_hl(0, "CmpItemKindStruct",        { fg = colors.WHITE, bg = colors.CAMARONE      })
 api.nvim_set_hl(0, "CmpItemKindText",          { fg = colors.WHITE, bg = colors.BLUE_RIBBON   })
-api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = colors.WHITE, bg = colors.TRADEWIN      })
+api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = colors.WHITE, bg = colors.TRADEWIND     })
 api.nvim_set_hl(0, "CmpItemKindUnit",          { fg = colors.WHITE, bg = colors.ALTO          })
 api.nvim_set_hl(0, "CmpItemKindVariable",      { fg = colors.WHITE, bg = colors.FUSCOUS_GRAY  })
 api.nvim_set_hl(0, "CmpItemKindValue",         { fg = colors.WHITE, bg = colors.WOODSMOKE     })
