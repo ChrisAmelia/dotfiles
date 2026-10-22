@@ -1,6 +1,6 @@
 local Winbar = {}
 
-require('colors')
+local colors = require('colors')
 
 local component = require('component')
 
@@ -14,13 +14,13 @@ local build_current_function_component = function()
     return ""
   end
 
-  current_function = vim.b.lsp_current_function
+  current_function = vim.b.lsp_current_function:gsub("%%%{", "["):gsub("%}", "]")
 
   return component.build_element({
       separator_hl = "HlStatuslineSeparatorFunction",
       main_hl = "HlStatuslineFunction",
-      bg = ROSE,
-      fg = WHITE,
+      bg = colors.ROSE,
+      fg = colors.WHITE,
       value = icon .. ":" ..  current_function
   })
 end

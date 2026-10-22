@@ -1,4 +1,4 @@
-require('colors')
+local colors = require('colors')
 
 local api = vim.api
 local cmd = vim.cmd
@@ -49,17 +49,17 @@ cmd("syntax on")                     -- See :h :syntax-on
 vim.g.mapleader = "," -- Leader map
 vim.keymap.set('n', 'p', '"+p', { noremap = true, silent = true })
 
-api.nvim_set_hl(0, "SignColumn" , { bg = "none"      , fg = "none"     })
-api.nvim_set_hl(0, "PMenuSel"   , { bg = ABBEY       , fg = "none"     })
-api.nvim_set_hl(0, "LineNr"     , { bg = "none"      , fg = "none"     })
-api.nvim_set_hl(0, "Normal"     , { bg = "none"      , fg = "none"     })
-api.nvim_set_hl(0, "Comment"    , { bg = "none"      , fg = CHARTREUSE })
-api.nvim_set_hl(0, "CurSearch"  , { bg = BLUE_RIBBON , fg = WHITE      })
-api.nvim_set_hl(0, "PMenu"      , { bg = SHARK       , fg = SILVER     })
-api.nvim_set_hl(0, "Visual"     , { bg = SPRING_GREEN, fg = BLACK      })
-api.nvim_set_hl(0, "NormalFloat", { bg = SHARK       , fg = "none"     })
-api.nvim_set_hl(0, "FloatBorder", { bg = "none"      , fg = SILVER     })
-api.nvim_set_hl(0, "ColorColumn", { bg = SHARK       , fg = "none"     })
+api.nvim_set_hl(0, "Comment"    , { bg = "none"             , fg = colors.CHARTREUSE })
+api.nvim_set_hl(0, "CurSearch"  , { bg = colors.BLUE_RIBBON , fg = colors.WHITE      })
+api.nvim_set_hl(0, "FloatBorder", { bg = "none"             , fg = colors.SILVER     })
+api.nvim_set_hl(0, "LineNr"     , { bg = "none"             , fg = "none"            })
+api.nvim_set_hl(0, "Normal"     , { bg = "none"             , fg = "none"            })
+api.nvim_set_hl(0, "NormalFloat", { bg = "none"             , fg = "none"            })
+api.nvim_set_hl(0, "PMenu"      , { bg = colors.SHARK       , fg = colors.SILVER     })
+api.nvim_set_hl(0, "PMenuSel"   , { bg = colors.ABBEY       , fg = "none"            })
+api.nvim_set_hl(0, "SignColumn" , { bg = "none"             , fg = "none"            })
+api.nvim_set_hl(0, "Visual"     , { bg = colors.SPRING_GREEN, fg = colors.BLACK      })
+-- api.nvim_set_hl(0, "ColorColumn", { bg = "none"       , fg = "none"     })
 
 
 

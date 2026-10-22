@@ -1,4 +1,4 @@
-require('colors')
+local colors = require('colors')
 require('lsp')
 
 local api = vim.api
@@ -45,9 +45,9 @@ vim.diagnostic.config {
   virtual_text = false,
 }
 
-api.nvim_command("hi DiagnosticError guifg=" .. CONIFER)
-api.nvim_command("hi DiagnosticWarn  guifg=" .. GOLD)
-api.nvim_command("hi DiagnosticHint  guifg=" .. BRILLIANT_ROSE)
+api.nvim_command("hi DiagnosticError guifg=" .. colors.CONIFER)
+api.nvim_command("hi DiagnosticWarn  guifg=" .. colors.GOLD)
+api.nvim_command("hi DiagnosticHint  guifg=" .. colors.BRILLIANT_ROSE)
 
 api.nvim_command("hi DiagnosticVirtualTextError guifg=Red")
 api.nvim_command("hi DiagnosticVirtualTextWarn  guifg=Yellow")
@@ -107,106 +107,109 @@ require'nvim-treesitter'.install(to_install)
 
 ---- common {{{{
 
-api.nvim_set_hl(0, "@annotation"                  , { fg = ROSE         })
-api.nvim_set_hl(0, "@attribute"                   , { fg = YELLOW       })
-api.nvim_set_hl(0, "@constant"                    , { fg = RIPE_LEMON   })
-api.nvim_set_hl(0, "@definition.macro"            , { fg = MALIBU       })
-api.nvim_set_hl(0, "@function"                    , { fg = INCH_WORM    })
-api.nvim_set_hl(0, "@function.macro"              , { fg = MALIBU       })
-api.nvim_set_hl(0, "@function.method"             , { fg = INCH_WORM    })
-api.nvim_set_hl(0, "@keyword.exception"           , { fg = ROSE         })
-api.nvim_set_hl(0, "@keyword.function"            , { fg = ROSE         })
-api.nvim_set_hl(0, "@keyword.return"              , { fg = ROSE         })
-api.nvim_set_hl(0, "@keyword.storage"             , { fg = MALIBU       })
-api.nvim_set_hl(0, "@markup.link.url"             , { fg = YELLOW       })
-api.nvim_set_hl(0, "@module"                      , { fg = NAVAJO_WHITE })
-api.nvim_set_hl(0, "@punctuation.bracket"         , { fg = WHITE        })
-api.nvim_set_hl(0, "@string.regexp"               , { fg = SKY_BLUE     })
-api.nvim_set_hl(0, "@string.special.url"          , { fg = YELLOW       })
-api.nvim_set_hl(0, "@tag"                         , { fg = YELLOW       })
-api.nvim_set_hl(0, "@tag.attribute"               , { fg = YELLOW       })
-api.nvim_set_hl(0, "@tag.delimiter"               , { fg = YELLOW       })
-api.nvim_set_hl(0, "@type.builtin"                , { fg = MALIBU       })
-api.nvim_set_hl(0, "@type.qualifier"              , { fg = ROSE         })
-api.nvim_set_hl(0, "@variable"                    , { fg = SOFT_AMBER   })
-api.nvim_set_hl(0, "@variable.builtin"            , { fg = ROSE         })
-api.nvim_set_hl(0, "@variable.member"             , { fg = SOFT_AMBER   })
-api.nvim_set_hl(0, "@variable.parameter"          , { fg = MAYA_BLUE    })
-api.nvim_set_hl(0, "@variable.parameter.reference", { fg = MAYA_BLUE    })
-api.nvim_set_hl(0, "@variable.regex"              , { fg = SKY_BLUE     })
+api.nvim_set_hl(0, "@annotation"                  , { fg = colors.ROSE         })
+api.nvim_set_hl(0, "@attribute"                   , { fg = colors.YELLOW       })
+api.nvim_set_hl(0, "@constant"                    , { fg = colors.RIPE_LEMON   })
+api.nvim_set_hl(0, "@definition.macro"            , { fg = colors.MALIBU       })
+api.nvim_set_hl(0, "@function"                    , { fg = colors.INCH_WORM    })
+api.nvim_set_hl(0, "@function.macro"              , { fg = colors.MALIBU       })
+api.nvim_set_hl(0, "@function.method"             , { fg = colors.INCH_WORM    })
+api.nvim_set_hl(0, "@keyword.exception"           , { fg = colors.ROSE         })
+api.nvim_set_hl(0, "@keyword.function"            , { fg = colors.ROSE         })
+api.nvim_set_hl(0, "@keyword.return"              , { fg = colors.ROSE         })
+api.nvim_set_hl(0, "@keyword.storage"             , { fg = colors.MALIBU       })
+api.nvim_set_hl(0, "@markup.link.url"             , { fg = colors.YELLOW       })
+api.nvim_set_hl(0, "@module"                      , { fg = colors.NAVAJO_WHITE })
+api.nvim_set_hl(0, "@punctuation.bracket"         , { fg = colors.WHITE        })
+api.nvim_set_hl(0, "@string.regexp"               , { fg = colors.SKY_BLUE     })
+api.nvim_set_hl(0, "@string.special.url"          , { fg = colors.YELLOW       })
+api.nvim_set_hl(0, "@tag"                         , { fg = colors.YELLOW       })
+api.nvim_set_hl(0, "@tag.attribute"               , { fg = colors.YELLOW       })
+api.nvim_set_hl(0, "@tag.delimiter"               , { fg = colors.YELLOW       })
+api.nvim_set_hl(0, "@type.builtin"                , { fg = colors.MALIBU       })
+api.nvim_set_hl(0, "@type.qualifier"              , { fg = colors.ROSE         })
+api.nvim_set_hl(0, "@variable"                    , { fg = colors.SOFT_AMBER   })
+api.nvim_set_hl(0, "@variable.builtin"            , { fg = colors.ROSE         })
+api.nvim_set_hl(0, "@variable.member"             , { fg = colors.SOFT_AMBER   })
+api.nvim_set_hl(0, "@variable.parameter"          , { fg = colors.MAYA_BLUE    })
+api.nvim_set_hl(0, "@variable.parameter.reference", { fg = colors.MAYA_BLUE    })
+api.nvim_set_hl(0, "@variable.regex"              , { fg = colors.SKY_BLUE     })
 
 ---- }}}}
 
 --- elixir {{{
 
-api.nvim_set_hl(0, "@comment.elixir", { fg = CROCODILE })
-api.nvim_set_hl(0, "@comment.documentation.elixir", { fg = CROCODILE })
-api.nvim_set_hl(0, "@module.elixir", { fg = MALIBU })
-api.nvim_set_hl(0, "@string.special.symbol.elixir", { fg = GOLDEN_SAND })
-api.nvim_set_hl(0, "@string.special.elixir", { fg = CHENIN })
+api.nvim_set_hl(0, "@call.test.elixir"            , { fg = colors.HOT_PINK , italic = true })
+api.nvim_set_hl(0, "@comment.elixir"              , { fg = colors.CROCODILE                })
+api.nvim_set_hl(0, "@comment.documentation.elixir", { fg = colors.CROCODILE                })
+api.nvim_set_hl(0, "@module.elixir"               , { fg = colors.MALIBU                   })
+api.nvim_set_hl(0, "@string.special.elixir"       , { fg = colors.CHENIN                   })
+api.nvim_set_hl(0, "@string.special.symbol.elixir", { fg = colors.GOLDEN_SAND              })
 
 --- }}}
 
 ---- html {{{{
 
-api.nvim_set_hl(0 , "@operator.html"      , { fg = GREEN_YELLOW })
-api.nvim_set_hl(0 , "@tag.attribute.html" , { fg = GREEN_YELLOW })
-api.nvim_set_hl(0 , "@tag.delimiter.html" , { fg = WHITE        })
-api.nvim_set_hl(0 , "@tag.html"           , { fg = ROSE         })
+api.nvim_set_hl(0 , "@operator.html"      , { fg = colors.GREEN_YELLOW })
+api.nvim_set_hl(0 , "@tag.attribute.html" , { fg = colors.GREEN_YELLOW })
+api.nvim_set_hl(0 , "@tag.delimiter.html" , { fg = colors.WHITE        })
+api.nvim_set_hl(0 , "@tag.html"           , { fg = colors.ROSE         })
 
 ---}}}}
 
 ---- java {{{{
 
-api.nvim_set_hl(0, "@constant.java", { fg = SOFT_AMBER, italic = true })
-api.nvim_set_hl(0, "@method.java"  , { fg = INCH_WORM,  bold   = true })
+api.nvim_set_hl(0, "@constant.java", { fg = colors.SOFT_AMBER, italic = true })
+api.nvim_set_hl(0, "@method.java"  , { fg = colors.INCH_WORM,  bold   = true })
 
 ---- }}}}
 
 ---- rust {{{{
 
-api.nvim_set_hl(0 , "@function.call.rust"           , { fg = INCH_WORM                })
-api.nvim_set_hl(0 , "@function.macro.rust"          , { fg = BURNING_ORANGE           })
-api.nvim_set_hl(0 , "@function.rust"                , { fg = INCH_WORM                })
+api.nvim_set_hl(0 , "@function.call.rust"           , { fg = colors.INCH_WORM                })
+api.nvim_set_hl(0 , "@function.macro.rust"          , { fg = colors.BURNING_ORANGE           })
+api.nvim_set_hl(0 , "@function.rust"                , { fg = colors.INCH_WORM                })
 api.nvim_set_hl(0 , "@keyword.exception.rust"       , { link = "@function.macro.rust" })
-api.nvim_set_hl(0 , "@keyword.storage.lifetime.rust", { fg = HOT_PINK                 })
-api.nvim_set_hl(0 , "@type.rust"                    , { fg = TEXAS_ROSE               })
-api.nvim_set_hl(0 , "@variable.member.rust"         , { fg = GREEN_YELLOW             })
-api.nvim_set_hl(0 , "@type.struct.rust"             , { fg = TEXAS_ROSE               })
-api.nvim_set_hl(0 , "@type.trait.rust"              , { fg = MALIBU                   })
+api.nvim_set_hl(0 , "@keyword.storage.lifetime.rust", { fg = colors.HOT_PINK                 })
+api.nvim_set_hl(0 , "@type.rust"                    , { fg = colors.TEXAS_ROSE               })
+api.nvim_set_hl(0 , "@variable.member.rust"         , { fg = colors.GREEN_YELLOW             })
+api.nvim_set_hl(0 , "@type.struct.rust"             , { fg = colors.TEXAS_ROSE               })
+api.nvim_set_hl(0 , "@type.trait.rust"              , { fg = colors.MALIBU                   })
 
 --- }}}}
 
 ---- git {{{{
 
-api.nvim_set_hl(0, "@diff.delta", { bg = FLAX,      fg = FUSCOUS_GRAY })
-api.nvim_set_hl(0, "@diff.minus", { bg = FAIR_PINK, fg = MONARCH      })
-api.nvim_set_hl(0, "@diff.plus" , { bg = SCANDAL,   fg = JEWEL        })
-api.nvim_set_hl(0, "diffAdded"  , { bg = SCANDAL,   fg = JEWEL        })
-api.nvim_set_hl(0, "diffFile"   , { bg = ENDEAVOUR, fg = WHITE        })
-api.nvim_set_hl(0, "diffLine"   , {                 fg = HOT_PINK     })
-api.nvim_set_hl(0, "diffOldFile", {                 fg = CROCODILE    })
-api.nvim_set_hl(0, "diffRemoved", { bg = FAIR_PINK, fg = MONARCH      })
-api.nvim_set_hl(0, "diffSubname", {                 fg = WHITE        })
+api.nvim_set_hl(0, "@diff.delta", { bg = colors.FLAX,      fg = colors.FUSCOUS_GRAY })
+api.nvim_set_hl(0, "@diff.minus", { bg = colors.FAIR_PINK, fg = colors.MONARCH      })
+api.nvim_set_hl(0, "@diff.plus" , { bg = colors.SCANDAL,   fg = colors.JEWEL        })
+api.nvim_set_hl(0, "diffAdded"  , { bg = colors.SCANDAL,   fg = colors.JEWEL        })
+api.nvim_set_hl(0, "diffFile"   , { bg = colors.ENDEAVOUR, fg = colors.WHITE        })
+api.nvim_set_hl(0, "diffLine"   , {                        fg = colors.HOT_PINK     })
+api.nvim_set_hl(0, "diffOldFile", {                        fg = colors.CROCODILE    })
+api.nvim_set_hl(0, "diffRemoved", { bg = colors.FAIR_PINK, fg = colors.MONARCH      })
+api.nvim_set_hl(0, "diffSubname", {                        fg = colors.WHITE        })
 
 --- }}}}
 
 ---- gitcommit {{{{
 
-api.nvim_set_hl(0, "gitcommitBranch",        { bg = JEWEL,         fg = INCH_WORM    })
-api.nvim_set_hl(0, "gitcommitSelectedFile",  { bg = MEDIUM_PURPLE, fg = WHITE        })
-api.nvim_set_hl(0, "gitcommitUntrackedFile", { bg = GRAY,          fg = NAVAJO_WHITE })
+api.nvim_set_hl(0, "gitcommitBranch",        { bg = colors.JEWEL,         fg = colors.INCH_WORM    })
+api.nvim_set_hl(0, "gitcommitSelectedFile",  { bg = colors.MEDIUM_PURPLE, fg = colors.WHITE        })
+api.nvim_set_hl(0, "gitcommitUntrackedFile", { bg = colors.GRAY,          fg = colors.NAVAJO_WHITE })
 
 ---}}}}
 
 ---- heex {{{{
 
-api.nvim_set_hl(0, "@attribute.class.heex", { fg = MALIBU_VARIANT, bg = LYNCH })
-api.nvim_set_hl(0, "@function.heex", { fg = ROSE })
-api.nvim_set_hl(0, "@string.heex", { fg = ALTO })
-api.nvim_set_hl(0, "@tag.attribute.heex", { fg = INCH_WORM })
-api.nvim_set_hl(0, "@tag.delimiter.heex", { fg = WHITE })
-api.nvim_set_hl(0, "@tag.heex", { fg = ROSE })
+api.nvim_set_hl(0, "@attribute.class.heex", { bg = colors.LYNCH,          fg = colors.MALIBU_VARIANT       })
+api.nvim_set_hl(0, "@attribute.id.heex",    { bg = colors.MONARCH,        fg = colors.WHITE, italic = true })
+api.nvim_set_hl(0, "@function.heex",        {                             fg = colors.ROSE                 })
+api.nvim_set_hl(0, "@string.heex",          {                             fg = colors.ALTO                 })
+api.nvim_set_hl(0, "@string.phx.heex",      { bg = colors.BRILLIANT_ROSE, fg = colors.WHITE, italic = true })
+api.nvim_set_hl(0, "@tag.attribute.heex",   {                             fg = colors.INCH_WORM            })
+api.nvim_set_hl(0, "@tag.delimiter.heex",   {                             fg = colors.WHITE                })
+api.nvim_set_hl(0, "@tag.heex",             {                             fg = colors.ROSE                 })
 
 --- }}}}
 
@@ -289,16 +292,16 @@ require'barbar'.setup {
   auto_hide = true,
 }
 
-api.nvim_command("hi BufferCurrent       guibg=" .. MAYA_BLUE .. " guifg=WHITE")
-api.nvim_command("hi BufferCurrentMod    guibg=" .. MAYA_BLUE .. " guifg=WHITE")
-api.nvim_command("hi BufferCurrentIndex  guibg=" .. MAYA_BLUE .. " guifg=WHITE")
-api.nvim_command("hi BufferCurrentSign   guibg=" .. MAYA_BLUE .. " guifg=WHITE")
-api.nvim_command("hi BufferCurrentTarget guibg=" .. MAYA_BLUE .. " guifg=WHITE")
-api.nvim_command("hi BufferInactive      guibg=none guifg=" .. WHITE)
-api.nvim_command("hi BufferInactiveIndex guibg=none guifg=" .. WHITE)
-api.nvim_command("hi BufferInactiveSign  guibg=none guifg=" .. WHITE)
-api.nvim_command("hi BufferInactiveMod   guibg=none guifg=" .. WHITE)
-api.nvim_command("hi BufferTabpageFill   guibg=none guifg=" .. WHITE)
+api.nvim_command("hi BufferCurrent       guibg=" .. colors.MAYA_BLUE .. " guifg=WHITE")
+api.nvim_command("hi BufferCurrentMod    guibg=" .. colors.MAYA_BLUE .. " guifg=WHITE")
+api.nvim_command("hi BufferCurrentIndex  guibg=" .. colors.MAYA_BLUE .. " guifg=WHITE")
+api.nvim_command("hi BufferCurrentSign   guibg=" .. colors.MAYA_BLUE .. " guifg=WHITE")
+api.nvim_command("hi BufferCurrentTarget guibg=" .. colors.MAYA_BLUE .. " guifg=WHITE")
+api.nvim_command("hi BufferInactive      guibg=none guifg=" .. colors.WHITE)
+api.nvim_command("hi BufferInactiveIndex guibg=none guifg=" .. colors.WHITE)
+api.nvim_command("hi BufferInactiveSign  guibg=none guifg=" .. colors.WHITE)
+api.nvim_command("hi BufferInactiveMod   guibg=none guifg=" .. colors.WHITE)
+api.nvim_command("hi BufferTabpageFill   guibg=none guifg=" .. colors.WHITE)
 
 vim.keymap.set("n", "<Leader>1", ":BufferGoto 1<CR>")
 vim.keymap.set("n", "<Leader>2", ":BufferGoto 2<CR>")
@@ -455,34 +458,34 @@ cmp.setup {
   },
 }
 
-api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = WHITE, bg = "NONE", strikethrough = true })
-api.nvim_set_hl(0, "CmpItemAbbrMatch",      { fg = WHITE, bg = HAVELOCK_BLUE })
-api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = WHITE, bg = HAVELOCK_BLUE })
+api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = colors.WHITE, bg = "NONE", strikethrough = true })
+api.nvim_set_hl(0, "CmpItemAbbrMatch",      { fg = colors.WHITE, bg = colors.HAVELOCK_BLUE })
+api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = colors.WHITE, bg = colors.HAVELOCK_BLUE })
 
-api.nvim_set_hl(0, "CmpItemKindClass",         { fg = WHITE, bg = CRIMSON       })
-api.nvim_set_hl(0, "CmpItemKindConstant",      { fg = WHITE, bg = RANGITOTO     })
-api.nvim_set_hl(0, "CmpItemKindConstructor",   { fg = BLACK, bg = WHITE         })
-api.nvim_set_hl(0, "CmpItemKindEnum",          { fg = WHITE, bg = CONGO_BROWN   })
-api.nvim_set_hl(0, "CmpItemKindEnumMember",    { fg = WHITE, bg = CONGO_BROWN   })
-api.nvim_set_hl(0, "CmpItemKindEvent",         { fg = GOLD,  bg = BLACK         })
-api.nvim_set_hl(0, "CmpItemKindField",         { fg = WHITE, bg = GREEN_HAZE    })
-api.nvim_set_hl(0, "CmpItemKindFile",          { fg = WHITE, bg = BIG_STONE     })
-api.nvim_set_hl(0, "CmpItemKindFolder",        { fg = BLACK, bg = FLAX          })
-api.nvim_set_hl(0, "CmpItemKindFunction",      { fg = WHITE, bg = MEDIUM_PURPLE })
-api.nvim_set_hl(0, "CmpItemKindInterface",     { fg = WHITE, bg = BLUE_CHILL    })
-api.nvim_set_hl(0, "CmpItemKindKeyword",       { fg = WHITE, bg = HOT_PINK      })
-api.nvim_set_hl(0, "CmpItemKindMethod",        { fg = WHITE, bg = MEDIUM_PURPLE })
-api.nvim_set_hl(0, "CmpItemKindModule",        { fg = WHITE, bg = LOTUS         })
-api.nvim_set_hl(0, "CmpItemKindOperator",      { fg = WHITE, bg = "#A377BF"     })
-api.nvim_set_hl(0, "CmpItemKindProperty",      { fg = WHITE, bg = ALTO          })
-api.nvim_set_hl(0, "CmpItemKindReference",     { fg = WHITE, bg = RUST          })
-api.nvim_set_hl(0, "CmpItemKindSnippet",       { fg = WHITE, bg = SUNSET_ORANGE })
-api.nvim_set_hl(0, "CmpItemKindStruct",        { fg = WHITE, bg = CAMARONE      })
-api.nvim_set_hl(0, "CmpItemKindText",          { fg = WHITE, bg = BLUE_RIBBON   })
-api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = WHITE, bg = "#58B5A8"     })
-api.nvim_set_hl(0, "CmpItemKindUnit",          { fg = WHITE, bg = ALTO          })
-api.nvim_set_hl(0, "CmpItemKindVariable",      { fg = WHITE, bg = FUSCOUS_GRAY  })
-api.nvim_set_hl(0, "CmpItemKindValue",         { fg = WHITE, bg = WOODSMOKE     })
+api.nvim_set_hl(0, "CmpItemKindClass",         { fg = colors.WHITE, bg = colors.CRIMSON       })
+api.nvim_set_hl(0, "CmpItemKindConstant",      { fg = colors.WHITE, bg = colors.RANGITOTO     })
+api.nvim_set_hl(0, "CmpItemKindConstructor",   { fg = colors.BLACK, bg = colors.WHITE         })
+api.nvim_set_hl(0, "CmpItemKindEnum",          { fg = colors.WHITE, bg = colors.CONGO_BROWN   })
+api.nvim_set_hl(0, "CmpItemKindEnumMember",    { fg = colors.WHITE, bg = colors.CONGO_BROWN   })
+api.nvim_set_hl(0, "CmpItemKindEvent",         { fg = colors.GOLD,  bg = colors.BLACK         })
+api.nvim_set_hl(0, "CmpItemKindField",         { fg = colors.WHITE, bg = colors.GREEN_HAZE    })
+api.nvim_set_hl(0, "CmpItemKindFile",          { fg = colors.WHITE, bg = colors.BIG_STONE     })
+api.nvim_set_hl(0, "CmpItemKindFolder",        { fg = colors.BLACK, bg = colors.FLAX          })
+api.nvim_set_hl(0, "CmpItemKindFunction",      { fg = colors.WHITE, bg = colors.MEDIUM_PURPLE })
+api.nvim_set_hl(0, "CmpItemKindInterface",     { fg = colors.WHITE, bg = colors.BLUE_CHILL    })
+api.nvim_set_hl(0, "CmpItemKindKeyword",       { fg = colors.WHITE, bg = colors.HOT_PINK      })
+api.nvim_set_hl(0, "CmpItemKindMethod",        { fg = colors.WHITE, bg = colors.MEDIUM_PURPLE })
+api.nvim_set_hl(0, "CmpItemKindModule",        { fg = colors.WHITE, bg = colors.LOTUS         })
+api.nvim_set_hl(0, "CmpItemKindOperator",      { fg = colors.WHITE, bg = colors.WISTERIA      })
+api.nvim_set_hl(0, "CmpItemKindProperty",      { fg = colors.WHITE, bg = colors.ALTO          })
+api.nvim_set_hl(0, "CmpItemKindReference",     { fg = colors.WHITE, bg = colors.RUST          })
+api.nvim_set_hl(0, "CmpItemKindSnippet",       { fg = colors.WHITE, bg = colors.SUNSET_ORANGE })
+api.nvim_set_hl(0, "CmpItemKindStruct",        { fg = colors.WHITE, bg = colors.CAMARONE      })
+api.nvim_set_hl(0, "CmpItemKindText",          { fg = colors.WHITE, bg = colors.BLUE_RIBBON   })
+api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = colors.WHITE, bg = colors.TRADEWIN      })
+api.nvim_set_hl(0, "CmpItemKindUnit",          { fg = colors.WHITE, bg = colors.ALTO          })
+api.nvim_set_hl(0, "CmpItemKindVariable",      { fg = colors.WHITE, bg = colors.FUSCOUS_GRAY  })
+api.nvim_set_hl(0, "CmpItemKindValue",         { fg = colors.WHITE, bg = colors.WOODSMOKE     })
 
 -- }}}
 
@@ -532,7 +535,7 @@ cmp.event:on(
 -- hlargs {{{
 
 require('hlargs').setup {
-  color = MAYA_BLUE,
+  color = colors.MAYA_BLUE,
   excluded_filetypes = {},
   paint_arg_declarations = true,
   paint_arg_usages = true,
@@ -644,8 +647,8 @@ require'fzf-lua'.setup {
 
 -- tiny-glimmer.nvim {{{
 
-api.nvim_set_hl(0, "HlTinyGlimmerUndo", { bg = ROSE, fg = "none" })
-api.nvim_set_hl(0, "HlTinyGlimmerUndoTo", { bg = CROCODILE, fg = "none" })
+api.nvim_set_hl(0, "HlTinyGlimmerUndo", { bg = colors.ROSE, fg = "none" })
+api.nvim_set_hl(0, "HlTinyGlimmerUndoTo", { bg = colors.CROCODILE, fg = "none" })
 
 require("tiny-glimmer").setup({
     enabled = true,

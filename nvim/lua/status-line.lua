@@ -3,9 +3,9 @@ local Statusline = {}
 local api = vim.api
 local fn  = vim.fn
 
-require('colors')
 local stringutil = require('stringutil')
 local component = require('component')
+local colors = require('colors')
 
 local icons = setmetatable({
   ["n"]  = " 󰊴 ",
@@ -40,53 +40,55 @@ local icons = setmetatable({
 -- Extensions icon
 local extensions = {
 
-  codecompanion = { icon = "󰚩", bg = BLACK           , fg = ELECTRIC_BLUE },
-  commit        = { icon = "", bg = CORAL_RED       , fg = WHITE         },
-  css           = { icon = "", bg = ENDEAVOUR       , fg = WHITE         },
-  dockerfile    = { icon = "", bg = LIGHT_BLUE      , fg = MOBY_BLUE     },
-  edit          = { icon = "", bg = CORAL_RED       , fg = WHITE         },
-  elixir        = { icon = "", bg = LIGHT_BLUE      , fg = MARDI_GRAS    },
-  fugitive      = { icon = "", bg = CORAL_RED       , fg = WHITE         },
-  go            = { icon = "", bg = CORNFLOWER_BLUE , fg = WHITE         },
-  heex          = { icon = "", bg = MATTERHORN      , fg = SUNSET_ORANGE },
-  help          = { icon = "", bg = FERN_GREEN      , fg = WHITE         },
-  html          = { icon = "", bg = DEEP_RED        , fg = WHITE         },
-  java          = { icon = "", bg = ALIZARIN_CRIMSON, fg = WHITE         },
-  javascript    = { icon = "", bg = COD_GRAY        , fg = GOLD          },
-  jproperties   = { icon = "", bg = BLEACHED_CEDAR  , fg = WHITE         },
-  json          = { icon = "", bg = CAMARONE        , fg = GREEN_YELLOW  },
-  jsp           = { icon = "󰬷", bg = PIGMENT_INDIGO  , fg = WHITE         },
-  leaderf       = { icon = "󰈳", bg = FUSCOUS_GRAY    , fg = DUST          },
-  lua           = { icon = "", bg = MARINER         , fg = WHITE         },
-  markdown      = { icon = "", bg = BLACK           , fg = WHITE         },
-  merge         = { icon = "", bg = CORAL_RED       , fg = WHITE         },
-  po            = { icon = "󰗊", bg = WHITE           , fg = BLACK         },
-  rust          = { icon = "", bg = MATTERHORN      , fg = PORSCHE       };
-  sh            = { icon = "", bg = COD_GRAY        , fg = SULU          },
-  sql           = { icon = "", bg = BIG_STONE       , fg = WHITE         },
-  text          = { icon = "", bg = WHITE           , fg = BLACK         },
-  vim           = { icon = "", bg = FOREST_GREEN    , fg = WHITE         },
-  xml           = { icon = "󰗀", bg = MAKO            , fg = WHITE         },
-  yaml          = { icon = "", bg = BLACK           , fg = RIPE_LEMON    },
-  zsh           = { icon = "", bg = COD_GRAY        , fg = SULU          },
+  codecompanion = { icon = "󰚩", bg = colors.BLACK           , fg = colors.ELECTRIC_BLUE },
+  commit        = { icon = "", bg = colors.CORAL_RED       , fg = colors.WHITE         },
+  css           = { icon = "", bg = colors.ENDEAVOUR       , fg = colors.WHITE         },
+  dockerfile    = { icon = "", bg = colors.LIGHT_BLUE      , fg = colors.MOBY_BLUE     },
+  edit          = { icon = "", bg = colors.CORAL_RED       , fg = colors.WHITE         },
+  elixir        = { icon = "", bg = colors.LIGHT_BLUE      , fg = colors.MARDI_GRAS    },
+  fugitive      = { icon = "", bg = colors.CORAL_RED       , fg = colors.WHITE         },
+  go            = { icon = "", bg = colors.CORNFLOWER_BLUE , fg = colors.WHITE         },
+  heex          = { icon = "", bg = colors.MATTERHORN      , fg = colors.SUNSET_ORANGE },
+  help          = { icon = "", bg = colors.FERN_GREEN      , fg = colors.WHITE         },
+  html          = { icon = "", bg = colors.DEEP_RED        , fg = colors.WHITE         },
+  java          = { icon = "", bg = colors.ALIZARIN_CRIMSON, fg = colors.WHITE         },
+  javascript    = { icon = "", bg = colors.COD_GRAY        , fg = colors.GOLD          },
+  jproperties   = { icon = "", bg = colors.BLEACHED_CEDAR  , fg = colors.WHITE         },
+  json          = { icon = "", bg = colors.CAMARONE        , fg = colors.GREEN_YELLOW  },
+  jsp           = { icon = "󰬷", bg = colors.PIGMENT_INDIGO  , fg = colors.WHITE         },
+  leaderf       = { icon = "󰈳", bg = colors.FUSCOUS_GRAY    , fg = colors.DUST          },
+  lua           = { icon = "", bg = colors.MARINER         , fg = colors.WHITE         },
+  markdown      = { icon = "", bg = colors.BLACK           , fg = colors.WHITE         },
+  merge         = { icon = "", bg = colors.CORAL_RED       , fg = colors.WHITE         },
+  po            = { icon = "󰗊", bg = colors.WHITE           , fg = colors.BLACK         },
+  query         = { icon = "󱘎", bg = colors.CHENIN          , fg = colors.BLACK         },
+  rust          = { icon = "", bg = colors.MATTERHORN      , fg = colors.PORSCHE       };
+  sh            = { icon = "", bg = colors.COD_GRAY        , fg = colors.SULU          },
+  sql           = { icon = "", bg = colors.BIG_STONE       , fg = colors.WHITE         },
+  text          = { icon = "", bg = colors.WHITE           , fg = colors.BLACK         },
+  vim           = { icon = "", bg = colors.FOREST_GREEN    , fg = colors.WHITE         },
+  xml           = { icon = "󰗀", bg = colors.MAKO            , fg = colors.WHITE         },
+  yaml          = { icon = "", bg = colors.BLACK           , fg = colors.RIPE_LEMON    },
+  zsh           = { icon = "", bg = colors.COD_GRAY        , fg = colors.SULU          },
 
 }
 
 local directory_icons = {
 
-  assets = { icon = "", bg = GOLDEN_SAND, fg = CONGO_BROWN     },
-  config = { icon = "", bg = BIG_STONE  , fg = GRAY            },
-  hypr   = { icon = "", bg = BLACK      , fg = ANAKIWA         },
-  lib    = { icon = "", bg = GOLD       , fg = WOODSMOKE       },
-  nvim   = { icon = "", bg = PARIS_WHITE, fg = FOREST_GREEN    },
-  priv   = { icon = "󰸐", bg = WHITE      , fg = LIGHT_AUBERGINE },
-  src    = { icon = "󱘎", bg = GOLD       , fg = BLACK           },
-  test   = { icon = "", bg = SHARK      , fg = TURQUOISE_BLUE  },
-  waybar = { icon = "󱄄", bg = BLACK      , fg = ANAKIWA         },
+  assets = { icon = "", bg = colors.GOLDEN_SAND, fg = colors.CONGO_BROWN     },
+  config = { icon = "", bg = colors.BIG_STONE  , fg = colors.GRAY            },
+  deps   = { icon = "", bg = colors.MONARCH    , fg = colors.FAIR_PINK       },
+  hypr   = { icon = "", bg = colors.BLACK      , fg = colors.ANAKIWA         },
+  lib    = { icon = "", bg = colors.GOLD       , fg = colors.WOODSMOKE       },
+  nvim   = { icon = "", bg = colors.PARIS_WHITE, fg = colors.FOREST_GREEN    },
+  priv   = { icon = "󰸐", bg = colors.WHITE      , fg = colors.LIGHT_AUBERGINE },
+  src    = { icon = "󱘎", bg = colors.GOLD       , fg = colors.BLACK           },
+  test   = { icon = "", bg = colors.SHARK      , fg = colors.TURQUOISE_BLUE  },
+  waybar = { icon = "󱄄", bg = colors.BLACK      , fg = colors.ANAKIWA         },
 
 }
 
-local default_icon = { icon = "", bg = GOLD, fg = BLACK }
+local default_icon = { icon = "", bg = colors.GOLD, fg = colors.BLACK }
 
 setmetatable(directory_icons, {
   __index = function()
@@ -122,8 +124,8 @@ local build_git_branch_component = function()
   return component.build_element({
       separator_hl = "HlStatuslineSeparatorBranch",
       main_hl = "HlStatuslineBranch",
-      bg = BLUE_RIBBON,
-      fg = WHITE,
+      bg = colors.BLUE_RIBBON,
+      fg = colors.WHITE,
       value = icon .. " " .. branch_name
     })
 end
@@ -190,8 +192,8 @@ local build_fullpath_component = function()
   return component.build_element({
     separator_hl = "HlStatuslineSeparatorFullPath",
     main_hl = "HlStatuslineFullPath",
-    bg = GOLD,
-    fg = BLACK,
+    bg = colors.GOLD,
+    fg = colors.BLACK,
     value = icon .. " " .. fullpath
   })
 end
@@ -211,8 +213,8 @@ local build_filename_component = function()
     return component.build_element({
       separator_hl = "HlDefaultSeparatorFile",
       main_hl = "HlDefaultFile",
-      bg = WHITE,
-      fg = BLACK,
+      bg = colors.WHITE,
+      fg = colors.BLACK,
       value = "" .. " " .. file
     })
   end
@@ -232,22 +234,22 @@ end
 
 --- Set highlight for given mode
 local draw_colors = function(mode)
-  local colors = {
+  local mode_colors = {
 
-    n  = "hi Mode guibg=none guifg=" .. BLACK,
-    i  = "hi Mode guibg=none guifg=" .. WHITE,
-    ic = "hi Mode guibg=none guifg=" .. MILANO_RED,
-    R  = "hi Mode guibg=none guifg=" .. FLUSH_ORANGE,
-    v  = "hi Mode guibg=none guifg=" .. HOT_PINK,
-    V  = "hi Mode guibg=none guifg=" .. HOT_PINK,
-    c  = "hi Mode guibg=none guifg=" .. INCH_WORM,
+    n  = "hi Mode guibg=none guifg=" .. colors.BLACK,
+    i  = "hi Mode guibg=none guifg=" .. colors.WHITE,
+    ic = "hi Mode guibg=none guifg=" .. colors.MILANO_RED,
+    R  = "hi Mode guibg=none guifg=" .. colors.FLUSH_ORANGE,
+    v  = "hi Mode guibg=none guifg=" .. colors.HOT_PINK,
+    V  = "hi Mode guibg=none guifg=" .. colors.HOT_PINK,
+    c  = "hi Mode guibg=none guifg=" .. colors.INCH_WORM,
 
   }
 
-  if colors[mode] == nil then
-    api.nvim_command("hi Mode guibg=none guifg=" .. MALIBU .. " gui=bold")
+  if mode_colors[mode] == nil then
+    api.nvim_command("hi Mode guibg=none guifg=" .. colors.MALIBU .. " gui=bold")
   else
-    api.nvim_command(colors[mode])
+    api.nvim_command(mode_colors[mode])
   end
 end
 
@@ -265,7 +267,7 @@ local build_warnings_component = function()
       has_separator_right = false,
       main_hl = "HlStatuslineWarning",
       bg = "none",
-      fg = RIPE_LEMON,
+      fg = colors.RIPE_LEMON,
       value = "" .. icon .. " :" .. #warns.. ""
     })
 end
@@ -285,7 +287,7 @@ local build_errors_component = function()
   local first_error_message = first_error.message
 
   if #first_error_message > 20 then
-    first_error_message = first_error_message:sub(1, 20) .. "..."
+    first_error_message = first_error_message:sub(1, 20) .. "󰇘 󰩫 "
   end
 
   return component.build_element({
@@ -293,7 +295,7 @@ local build_errors_component = function()
     has_separator_right = false,
     main_hl = "HlStatuslineErrors",
     bg = "none",
-    fg = SALMON,
+    fg = colors.SALMON,
     value = "" .. line_icon .. first_error_line .. " 󰄽" .. first_error_message .. "󰄾" .. (count == 1 and "" or ", #" .. count) .. ""
   })
 end
@@ -327,7 +329,7 @@ local build_gutter_component = function()
     has_separator_right = false,
     main_hl = "HlStatuslineGutter",
     bg = "none",
-    fg = GOLD,
+    fg = colors.GOLD,
     value = hunks
   })
 end
@@ -340,7 +342,7 @@ local build_nvim_component = function()
     has_separator_right = false,
     main_hl = "HlNvimIcon",
     bg = "none",
-    fg = FOREST_GREEN,
+    fg = colors.FOREST_GREEN,
     value = "  "
   })
 end
