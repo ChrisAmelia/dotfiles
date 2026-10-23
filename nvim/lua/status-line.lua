@@ -3,7 +3,6 @@ local Statusline = {}
 local api = vim.api
 local fn  = vim.fn
 
-local stringutil = require('stringutil')
 local component = require('component')
 local colors = require('colors')
 
