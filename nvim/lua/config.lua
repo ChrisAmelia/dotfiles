@@ -561,42 +561,44 @@ require('spectre').setup()
 
 -- codecompanion {{{
 
-local adapter = "mistral"
+local filepath = os.getenv("HOME") .. "/.config/codecompanion/config.json"
+local config = io.open(filepath, "r")
 
-require("codecompanion").setup({
+if config ~= nil then
+  local codecompanion = vim.json.decode(config:read("*all"), {})
+  local adapter = codecompanion["adapter"]
+  local model = codecompanion["model"]
+  local key = codecompanion["key"]
 
-  strategies = {
-    chat = {
-      adapter = adapter,
+  require("codecompanion").setup({
+    interactions = {
+      chat = {
+        adapter = {
+          name = adapter,
+          model = model
+        },
+      },
+      inline = {
+        adapter = adapter,
+      },
     },
-    inline = {
-      adapter = adapter,
-    },
-  },
 
-  adapters = {
-    http = {
-      mistral = function()
-        local file = io.open(os.getenv("HOME") .. "/.config/" .. adapter .. "/key", "r")
-        local api_key = ""
-        if file ~= nil then
-          api_key = file:read()
-          file:close()
-        end
-
-        return require("codecompanion.adapters").extend(adapter, {
-          schema = {
-            model = {
+    adapters = {
+      http = {
+        [adapter] = function()
+          return require("codecompanion.adapters").extend(adapter, {
+            env = {
+              api_key = key,
             },
-          },
-          env = {
-            api_key = api_key
-          },
-        })
-      end,
+          })
+        end,
+      },
     },
-  },
-})
+  })
+
+else
+  vim.print("No configuration found at " .. filepath)
+end
 
 -- }}}
 
@@ -741,8 +743,6 @@ vim.cmd("set messagesopt+=maxheight:50,pager:<CR>,timeout:4000")
 -- }}}
 
 -- nvim-lint {{{
-
-local linters = require("lint").linters
 
 require('lint').linters_by_ft = {
   elixir = {'credo', 'dialyxir'},
