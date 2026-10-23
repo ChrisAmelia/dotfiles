@@ -139,12 +139,20 @@ api.nvim_set_hl(0, "@variable.regex"              , { fg = colors.SKY_BLUE     }
 
 --- elixir {{{
 
-api.nvim_set_hl(0, "@call.test.elixir"            , { fg = colors.HOT_PINK , italic = true })
-api.nvim_set_hl(0, "@comment.elixir"              , { fg = colors.CROCODILE                })
-api.nvim_set_hl(0, "@comment.documentation.elixir", { fg = colors.CROCODILE                })
-api.nvim_set_hl(0, "@module.elixir"               , { fg = colors.MALIBU                   })
-api.nvim_set_hl(0, "@string.special.elixir"       , { fg = colors.CHENIN                   })
-api.nvim_set_hl(0, "@string.special.symbol.elixir", { fg = colors.GOLDEN_SAND              })
+api.nvim_set_hl(0, "@assert.elixir"                , { fg = colors.PADUA, italic = true            })
+api.nvim_set_hl(0, "@comment.elixir"               , { fg = colors.CROCODILE                       })
+api.nvim_set_hl(0, "@comment.documentation.elixir" , { fg = colors.CROCODILE                       })
+api.nvim_set_hl(0, "@describe"                     , { fg = colors.SALMON                          })
+api.nvim_set_hl(0, "@describe.do.end.elixir"       , { link = "@describe"                          })
+api.nvim_set_hl(0, "@module.elixir"                , { fg = colors.MALIBU                          })
+api.nvim_set_hl(0, "@refute.elixir"                , { fg = colors.CORNFLOWER_LILAC, italic = true })
+api.nvim_set_hl(0, "@setup.elixir"                 , { fg = colors.WHITE                           })
+api.nvim_set_hl(0, "@setup.do.end.elixir"          , { link = "@setup.elixir"                      })
+api.nvim_set_hl(0, "@string.special.elixir"        , { fg = colors.CHENIN                          })
+api.nvim_set_hl(0, "@string.special.symbol.elixir" , { fg = colors.GOLDEN_SAND                     })
+api.nvim_set_hl(0, "@test.elixir"                  , { fg = colors.WHITE, italic = true            })
+api.nvim_set_hl(0, "@test.do.end.elixir"           , { link = "@test.elixir"                       })
+api.nvim_set_hl(0, "@test.title.elixir"            , { fg = colors.LIGHT_BLUE, bg = colors.ABBEY   })
 
 --- }}}
 
