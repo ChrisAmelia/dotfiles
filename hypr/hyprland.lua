@@ -18,6 +18,7 @@ hl.workspace_rule({
 
 hl.workspace_rule({
   workspace = "name:2",
+  monitor = "HDMI-A-1",
   no_rounding = true,
   decorate = true,
   animation = "slidevert",
@@ -54,8 +55,9 @@ local menu        = "hyprlauncher"
 -- Or execute your favorite apps at launch like this:
 --
 hl.on("hyprland.start", function ()
-  hl.exec_cmd("waybar & hyprpaper & firefox")
-  hl.exec_cmd("kitty --start-as=fullscreen", { workspace = 1 })
+  hl.exec_cmd("waybar & hyprpaper")
+  hl.exec_cmd("firefox", { monitor = "HDMI-A-1" })
+  hl.exec_cmd("kitty", { workspace = 2 })
   hl.exec_cmd("bongocat --watch-config --monitor DP-3")
 
   hl.exec_cmd("dbus-update-activation-environment --all ")
@@ -291,7 +293,7 @@ hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
-hl.bind(mainMod .. " + K", hl.dsp.exec_cmd("kitty --start-as=fullscreen", { workspace = "1" }))
+hl.bind(mainMod .. " + K", hl.dsp.exec_cmd("kitty", { workspace = "2" }))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
 
 -- Move focus with mainMod + arrow keys
@@ -311,8 +313,8 @@ for i = 1, 10 do
     hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
 end
 
-hl.bind(mainMod .. " + ampersand", hl.dsp.focus({ workspace = 1}))
-hl.bind(mainMod .. " + eacute", hl.dsp.focus({ workspace = 2}))
+hl.bind(mainMod .. " + ampersand", hl.dsp.focus({ workspace = 2}))
+hl.bind(mainMod .. " + eacute", hl.dsp.focus({ workspace = 1}))
 
 -- Example special workspace (scratchpad)
 hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
@@ -402,4 +404,7 @@ hl.window_rule({
   float = true,
   workspace = "name:1",
   no_blur = true,
+  size = { "monitor_w", "monitor_h" },
+  decorate = false,
+  rounding = 0
 })
