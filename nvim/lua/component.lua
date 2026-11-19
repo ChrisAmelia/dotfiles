@@ -1,4 +1,4 @@
----@class Component
+---@class StatuslineComponentParams
 ---@field separator_hl string The separator's highlight.
 ---@field main_hl      string The value's separator highlight.
 ---@field bg           string The background color.
@@ -11,7 +11,7 @@ local Component = {}
 SEPARATOR_LEFT = ""
 SEPARATOR_RIGHT = ""
 
---- @param params table
+--- @param params StatuslineComponentParams
 --- @return string
 function Component.build_element(params)
   local buffer = ""
