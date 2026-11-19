@@ -295,7 +295,7 @@ local build_errors_component = function()
     main_hl = "HlStatuslineErrors",
     bg = "none",
     fg = colors.SALMON,
-    value = "" .. line_icon .. first_error_line .. " 󰄽" .. first_error_message .. "󰄾" .. (count == 1 and "" or ", #" .. count) .. ""
+    value = "" .. line_icon .. first_error_line .. " " .. first_error_message .. "" .. (count == 1 and "" or ", #" .. count) .. ""
   })
 end
 
